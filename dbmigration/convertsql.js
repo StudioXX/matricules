@@ -1,3 +1,5 @@
+// this file queries the old matricules db (or a copy of it) and outputs to JSON
+
 const express = require ('express');
 const mysql = require ('mysql');
 const jsonfile = require('jsonfile');
@@ -9,7 +11,7 @@ const connection = mysql.createConnection({
   user     : 'root',
   password : 'root',
   database : 'matricules',
-  socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock'
+  socketPath: '/Applications/MAMP/tmp/mysql/mysql.sock' 
 });
 
 connection.connect(function(err) {
