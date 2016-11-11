@@ -26,9 +26,8 @@ app.get('/', (req, res) => {
 });
 
 app.get('/documents', (req, res) => {
-  db.collection('documents').find.toArray((err, result) => {
+  db.collection('documents').find().toArray((err, result) => {
     if (err) return console.log(err);
-    // renders index.ejs
     res.send(result);
   });
 });
