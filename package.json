@@ -8,6 +8,9 @@
     "start": "node init.js",
     "start-develop": "concurrently --kill-others \"webpack -w\" \"nodemon --debug ./init.js\""
   },
+  "engines": {
+    "node": ">=6"
+  },
   "author": "conan lai",
   "license": "ISC",
   "dependencies": {
