@@ -3,7 +3,7 @@ const bodyParser = require('body-parser');
 const path = require('path');
 
 const app = express();
-const MongoClient = require('mongodb').MongoClient;
+const MongoClient = require('mongodb').MongoClient
 
 
 app.use(bodyParser.urlencoded({ extended: true, }));
@@ -21,15 +21,15 @@ MongoClient.connect(url, (err, database) => {
   });
 });
 
-app.get('/', (req, res) => {
-  res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
-});
+// app.get('/', (req, res) => {
+//   res.sendFile(path.resolve(__dirname, 'public', 'index.html'));
+// });
 
-app.get('/documents', (req, res) => {
-  db.collection('documents').find().toArray((err, result) => {
-    if (err) return console.log(err);
-    // renders index.ejs
-    res.send(result);
-  });
-});
+// app.get('/documents', (req, res) => {
+//   db.collection('documents').find.toArray((err, result) => {
+//     if (err) return console.log(err);
+//     // renders index.ejs
+//     res.send(result);
+//   });
+// });
 
