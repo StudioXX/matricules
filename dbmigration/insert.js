@@ -16,11 +16,20 @@ MongoClient.connect(url, (err, db) => {
   } else {
     console.log('Connection established to', url);
     // this converts our date field in db to ISOdate objects for mongodb
-    db.collection('documents').find().forEach(function(doc) { 
-    doc.date=new Date(doc.date);
-    console.log(doc.date);
-    db.collection('documents').save(doc); 
-    })
+    // db.collection('documents').find().forEach(function(doc) { 
+    // doc.date=new Date(doc.date);
+    // console.log(doc.date);
+    // db.collection('documents').save(doc); 
+    // })
+
+    // this converts our keywords into an array
+    db.collection('documents').find().forEach(function(doc) {
+      if (doc.keywords !== null && doc.keywords.constructor === String) {
+        // console.log(doc.keywords);
+        doc.keywords = doc.keywords.split(',');
+        db.collection('documents').save(doc);
+      }
+    });
 
     // this inserts our JSON file into the db
     // fs.readFile('fullarchives.json', 'utf8', (err, data) => {

@@ -6,25 +6,30 @@ class DocumentsList extends React.Component {
     this.state = {
       doclist: [],
     };
-    this.updateYearFilter = this.updateYearFilter.bind(this);
+    this.updateFilter = this.updateFilter.bind(this);
   }
 
   componentDidMount() {
-    this.updateYearFilter();
+    this.updateFilter();
   }
 
   componentDidUpdate(prevProps) {
-    if (prevProps.year !== this.props.year) {
-      this.updateYearFilter();
+    if (prevProps.year !== this.props.year || prevProps.keyword !== this.props.keyword) {
+      this.updateFilter();
     }
   }
 
-  updateYearFilter() {
-    let path = '/documents';
-    if (this.props.year !== 'all') {
-      path += `/${this.props.year}`;
-    }
-    fetch(path).then((response) => {
+  updateFilter() {
+    fetch('/documents', {
+      method: 'post',
+    headers: {
+      'Content-type': 'application/json',
+    },
+    body: JSON.stringify({
+      keyword: this.props.keyword,
+      year: this.props.year,
+    }),
+    }).then((response) => {
       return response.json();
     }).then((json) => {
       this.setState({ doclist: json, });
@@ -36,12 +41,11 @@ class DocumentsList extends React.Component {
     return (
       <ul>
         {docs.map((doc, i) => {
-          return <li key={i}>{doc.name} {doc.date}</li>;
+          return <li key={i}>{doc.name} {doc.title}</li>;
         })}
       </ul>
     );
   }
-
 }
 
 module.exports = DocumentsList;
