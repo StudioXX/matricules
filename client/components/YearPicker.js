@@ -14,6 +14,7 @@ class YearPicker extends React.Component {
     for (let i = 1995; i <= currentyear; i += 1) {
       yeararray.push(i);
     }
+    yeararray.push('all');
     this.setState({ years: yeararray, });
   }
 
