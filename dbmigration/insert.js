@@ -15,20 +15,25 @@ MongoClient.connect(url, (err, db) => {
     console.log('Unable to connect to the mongoDB server. Error:', err);
   } else {
     console.log('Connection established to', url);
-    fs.readFile('fullarchives.json', 'utf8', (err, data) => {
-      if (err) throw err;
-      const json = JSON.parse(data);
-      db.collection('documents').insert(json, (error, result) => {
-        if (error) {
-          console.log('error');
-          db.close();
-          process.exit();
-        } else {
-          console.log('success');
-          db.close();
-          process.exit();
-        }
-      });
-    });
+    db.collection('documents').find().forEach(function(doc) { 
+    doc.date=new Date(doc.date);
+    console.log(doc.date);
+    db.collection('documents').save(doc); 
+    })
+    // fs.readFile('fullarchives.json', 'utf8', (err, data) => {
+    //   if (err) throw err;
+    //   const json = JSON.parse(data);
+    //   db.collection('documents').insert(json, (error, result) => {
+    //     if (error) {
+    //       console.log('error');
+    //       db.close();
+    //       process.exit();
+    //     } else {
+    //       console.log('success');
+    //       db.close();
+    //       process.exit();
+    //     }
+    //   });
+    // });
   }
 });

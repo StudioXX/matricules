@@ -32,3 +32,13 @@ app.get('/documents', (req, res) => {
   });
 });
 
+app.get('/documents/:year', (req, res) => {
+  const year = req.params.year;
+  const start = new Date(year, 1, 1);
+  const end = new Date(year, 12, 31);
+  db.collection('documents').find({ "date": {$gte: start, $lt: end} }).toArray((err, result) => {
+    if (err) return console.log(err);
+    res.send(result);
+  });
+});
+
