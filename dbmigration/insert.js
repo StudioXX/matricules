@@ -15,11 +15,14 @@ MongoClient.connect(url, (err, db) => {
     console.log('Unable to connect to the mongoDB server. Error:', err);
   } else {
     console.log('Connection established to', url);
+    // this converts our date field in db to ISOdate objects for mongodb
     db.collection('documents').find().forEach(function(doc) { 
     doc.date=new Date(doc.date);
     console.log(doc.date);
     db.collection('documents').save(doc); 
     })
+
+    // this inserts our JSON file into the db
     // fs.readFile('fullarchives.json', 'utf8', (err, data) => {
     //   if (err) throw err;
     //   const json = JSON.parse(data);

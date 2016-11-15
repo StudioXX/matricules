@@ -26,7 +26,7 @@ app.get('/', (req, res) => {
 });
 
 app.get('/documents', (req, res) => {
-  db.collection('documents').find().toArray((err, result) => {
+  db.collection('documents').find().sort({ date: -1, }).toArray((err, result) => {
     if (err) return console.log(err);
     res.send(result);
   });
