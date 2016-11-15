@@ -48,6 +48,11 @@ class DocumentsList extends React.Component {
   }
 }
 
+DocumentsList.propTypes = {
+  keyword: React.PropTypes.string,
+  year: React.PropTypes.string,
+};
+
 module.exports = DocumentsList;
 
 

@@ -30,4 +30,8 @@ class KeywordPicker extends React.Component {
   }
 }
 
+KeywordPicker.propTypes = {
+  handleKeywordChange: React.PropTypes.func,
+};
+
 module.exports = KeywordPicker;

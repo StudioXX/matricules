@@ -27,7 +27,6 @@ app.get('/', (req, res) => {
 });
 
 app.post('/documents', (req, res) => {
-  console.log(req.body);
   let searchparams = {};
   if (req.body.keyword !== 'all') {
     searchparams.keywords = req.body.keyword;
@@ -38,7 +37,6 @@ app.post('/documents', (req, res) => {
     const end = new Date(year, 12, 31);
     searchparams.date = { $gte: start, $lt: end, };
   }
-  console.log(searchparams);
   db.collection('documents').find(searchparams).sort({ date: -1, }).toArray((err, result) => {
     if (err) return console.log(err);
     res.send(result);

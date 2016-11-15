@@ -34,4 +34,8 @@ class YearPicker extends React.Component {
   }
 }
 
+YearPicker.propTypes = {
+  handleYearChange: React.PropTypes.func,
+};
+
 module.exports = YearPicker;
