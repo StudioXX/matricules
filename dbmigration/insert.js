@@ -16,25 +16,31 @@ MongoClient.connect(url, (err, db) => {
   } else {
     console.log('Connection established to', url);
     // this converts our date field in db to ISOdate objects for mongodb
-    // db.collection('documents').find().forEach(function(doc) { 
-    // doc.date=new Date(doc.date);
+    // db.collection('documents').find({}).forEach(function(doc) { 
+    // doc.date=new Date(doc.date * 1000);
     // console.log(doc.date);
     // db.collection('documents').save(doc); 
     // })
 
-    // this converts our keywords into an array
-    db.collection('documents').find().forEach(function(doc) {
-      if (doc.keywords !== null && doc.keywords.constructor === String) {
-        // console.log(doc.keywords);
-        doc.keywords = doc.keywords.split(',');
-        db.collection('documents').save(doc);
-      }
+    // fix bad date fields
+    db.collection('documents').update({'accession_number':'2008EVS70607P'}, {$set: {date : new Date('May 1 2008')}}, {w:1}, function(err, result){
+    console.log(result);
     });
+    
+    // this converts our keywords into an array
+    // db.collection('documents').find().forEach(function(doc) {
+    //   if (doc.keywords !== null && doc.keywords.constructor === String) {
+    //     // console.log(doc.keywords);
+    //     doc.keywords = doc.keywords.split(',');
+    //     db.collection('documents').save(doc);
+    //   }
+    // });
 
     // this inserts our JSON file into the db
     // fs.readFile('fullarchives.json', 'utf8', (err, data) => {
     //   if (err) throw err;
     //   const json = JSON.parse(data);
+    //   db.collection('documents').drop();
     //   db.collection('documents').insert(json, (error, result) => {
     //     if (error) {
     //       console.log('error');
