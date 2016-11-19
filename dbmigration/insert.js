@@ -23,9 +23,9 @@ MongoClient.connect(url, (err, db) => {
     // })
 
     // fix bad date fields
-    db.collection('documents').update({'accession_number':'2008EVS70607P'}, {$set: {date : new Date('May 1 2008')}}, {w:1}, function(err, result){
-    console.log(result);
-    });
+    // db.collection('documents').update({'accession_number':'2008EVS70607P'}, {$set: {date : new Date('May 1 2008')}}, {w:1}, function(err, result){
+    // console.log(result);
+    // });
     
     // this converts our keywords into an array
     // db.collection('documents').find().forEach(function(doc) {
@@ -35,6 +35,15 @@ MongoClient.connect(url, (err, db) => {
     //     db.collection('documents').save(doc);
     //   }
     // });
+
+    // remove HTML
+    db.collection('documents').find().forEach(function(doc) {
+      if (doc.field_content_description_value !== null) {
+        doc.field_content_description_value = doc.field_content_description_value.replace(/<(?:.|\n)*?>/gm, '');
+        // console.log(doc.field_content_description_value);
+        db.collection('documents').save(doc);
+      }
+    });
 
     // this inserts our JSON file into the db
     // fs.readFile('fullarchives.json', 'utf8', (err, data) => {
