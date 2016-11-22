@@ -20,15 +20,15 @@ class DocumentsList extends React.Component {
   }
 
   updateFilter() {
-    fetch('/documents', {
-      method: 'post',
-    headers: {
-      'Content-type': 'application/json',
-    },
-    body: JSON.stringify({
-      keyword: this.props.keyword,
-      year: this.props.year,
-    }),
+    let queries = '';
+    if (this.props.year !== 'all') {
+      queries += `?year=${this.props.year}`;
+    }
+    console.log(`/api/documents${queries}`);
+    fetch(`/api/documents${queries}`, {
+      headers: {
+        'Content-type': 'application/json',
+      },
     }).then((response) => {
       return response.json();
     }).then((json) => {
