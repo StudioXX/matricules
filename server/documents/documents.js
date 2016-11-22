@@ -6,7 +6,15 @@ const router = express.Router();
 // get all documents
 router.get('/', (req, res, next) => { // eslint-disable-line no-unused-vars
   const database = db.get();
-  database.collection('documents').find().toArray((err, result) => {
+  const year = req.param('year');
+  console.log(year);
+  let query = {};
+  if (year) {
+    const start = new Date(year, 1, 1);
+    const end = new Date(year, 12, 31);
+    query.date = { $gte: start, $lt: end, };
+  }
+  database.collection('documents').find(query).toArray((err, result) => {
     if (err) return console.log(err);
     res.send(result);
   });
@@ -33,7 +41,7 @@ router.get('/', (req, res, next) => { // eslint-disable-line no-unused-vars
 // get one document by its accession number
 router.get('/:accession', (req, res, next) => { // eslint-disable-line no-unused-vars
   const database = db.get();
-  const query = { 'accession_number': req.params.accession };
+  const query = { 'accession_number': req.params.accession, };
   database.collection('documents').findOne(query, (err, result) => {
     if (err) { return console.log(err); }
     res.send(result);
