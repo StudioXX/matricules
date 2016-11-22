@@ -3,3 +3,6 @@ node_modules
 # compiled webpack output
 public/*
 !public/index.html
+
+# secret
+config/secret.js
