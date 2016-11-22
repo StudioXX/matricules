@@ -42,5 +42,6 @@ module.exports = {
     modulesDirectories: [
       'node_modules'
     ],
+    unsafeCache: true,
   },
 };

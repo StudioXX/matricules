@@ -31,8 +31,13 @@ router.get('/', (req, res, next) => { // eslint-disable-line no-unused-vars
 // });
 
 // get one document by its accession number
-router.get('/:slug', (req, res, next) => { // eslint-disable-line no-unused-vars
-
+router.get('/:accession', (req, res, next) => { // eslint-disable-line no-unused-vars
+  const database = db.get();
+  const query = { 'accession_number': req.params.accession };
+  database.collection('documents').findOne(query, (err, result) => {
+    if (err) { return console.log(err); }
+    res.send(result);
+  });
 });
 
 // create one
