@@ -1,7 +1,7 @@
 node_modules
 
 # compiled next output
-.next
+.next/
 
 # secret
 config/secret.js
