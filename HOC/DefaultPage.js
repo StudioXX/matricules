@@ -1,6 +1,8 @@
 import React from 'react';
 import css from 'next/css';
+import axios from 'axios';
 import Header from '../components/Header/Header';
+
 
 const styles = {
   app: css({
@@ -16,9 +18,20 @@ const styles = {
 
 export default Page => class DefaultPage extends React.Component {
   static getInitialProps(ctx) {
-    return {
-      currentUrl: ctx.pathname,
-    };
+    const path = ctx.pathname;
+    // only make this call if we're on a documents page'
+    if (path.indexOf('/documents/') === 0) {
+      const url = `http://localhost:4000/api/documents/${path.split('/')[2]}`;
+      return new Promise((resolve, reject) => (
+      axios.get(url)
+          .then(response => (resolve(response.data)))
+          .catch(error => (reject(error)))
+      ))
+      .then(
+      (_data) => { return { _data, }; },
+      (err) => { return { doc: [], error: err, path: path, }; }
+      );
+    }
   }
 
   constructor(props) {
@@ -28,15 +41,6 @@ export default Page => class DefaultPage extends React.Component {
       isAuthenticated: false,
     };
   }
-
-//   componentDidMount () {
-//     const loggedUser = getCookie();
-//     const isAuthenticated = !!loggedUser
-//     this.setState({
-//       loggedUser: loggedUser,
-//       isAuthenticated: isAuthenticated
-//     })
-//   }
 
   render() {
     return (

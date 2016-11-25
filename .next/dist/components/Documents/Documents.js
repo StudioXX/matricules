@@ -52,26 +52,72 @@ var Documents = function (_React$Component) {
 
     _this.state = {
       year: 'all',
-      keyword: 'all'
+      keyword: 'all',
+      doclist: []
     };
     _this.handleYearChange = _this.handleYearChange.bind(_this);
     _this.handleKeywordChange = _this.handleKeywordChange.bind(_this);
+    _this.updateFilter = _this.updateFilter.bind(_this);
     return _this;
   }
 
   (0, _createClass3.default)(Documents, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      // set mounted property so we only set state if component is mounted
+      this.mounted = true;
+      this.updateFilter();
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.mounted = false;
+    }
+  }, {
+    key: 'updateFilter',
+    value: function updateFilter() {
+      var _this2 = this;
+
+      var queries = '';
+      queries += 'year=' + this.state.year;
+      queries += '&keyword=' + this.state.keyword;
+      fetch('http://localhost:4000/api/documents?' + queries, {
+        headers: {
+          'Content-type': 'application/json'
+        }
+      }).then(function (response) {
+        return response.json();
+      }).then(function (json) {
+        // only set state if component is mounted
+        if (_this2.mounted === true) {
+          _this2.setState({ doclist: json });
+        }
+      });
+    }
+
+    // these two functions require callbacks since setState is  asynchronous
+
+  }, {
     key: 'handleYearChange',
     value: function handleYearChange(yr) {
+      var _this3 = this;
+
       var year = yr.toString();
       this.setState({
         year: year
+      }, function () {
+        return _this3.updateFilter();
       });
     }
   }, {
     key: 'handleKeywordChange',
     value: function handleKeywordChange(kw) {
+      var _this4 = this;
+
       this.setState({
         keyword: kw
+      }, function () {
+        return _this4.updateFilter();
       });
     }
   }, {
@@ -82,7 +128,7 @@ var Documents = function (_React$Component) {
         null,
         _react2.default.createElement(_KeywordPicker2.default, { handleKeywordChange: this.handleKeywordChange }),
         _react2.default.createElement(_YearPicker2.default, { handleYearChange: this.handleYearChange }),
-        _react2.default.createElement(_DocumentsList2.default, { year: this.state.year, keyword: this.state.keyword })
+        _react2.default.createElement(_DocumentsList2.default, { doclist: this.state.doclist })
       );
     }
   }]);

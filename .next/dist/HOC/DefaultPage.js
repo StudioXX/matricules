@@ -12,6 +12,14 @@ var _getPrototypeOf = require('/Users/intern/Desktop/matricules/node_modules/bab
 
 var _getPrototypeOf2 = _interopRequireDefault(_getPrototypeOf);
 
+var _typeof2 = require('/Users/intern/Desktop/matricules/node_modules/babel-runtime/helpers/typeof');
+
+var _typeof3 = _interopRequireDefault(_typeof2);
+
+var _promise = require('/Users/intern/Desktop/matricules/node_modules/babel-runtime/core-js/promise');
+
+var _promise2 = _interopRequireDefault(_promise);
+
 var _classCallCheck2 = require('/Users/intern/Desktop/matricules/node_modules/babel-runtime/helpers/classCallCheck');
 
 var _classCallCheck3 = _interopRequireDefault(_classCallCheck2);
@@ -35,6 +43,10 @@ var _react2 = _interopRequireDefault(_react);
 var _css = require('/Users/intern/Desktop/matricules/node_modules/next/dist/lib/css.js');
 
 var _css2 = _interopRequireDefault(_css);
+
+var _axios = require('axios');
+
+var _axios2 = _interopRequireDefault(_axios);
 
 var _Header = require('../components/Header/Header');
 
@@ -60,9 +72,28 @@ exports.default = function (Page) {
     (0, _createClass3.default)(DefaultPage, null, [{
       key: 'getInitialProps',
       value: function getInitialProps(ctx) {
-        return {
-          currentUrl: ctx.pathname
-        };
+        var path = ctx.pathname;
+        // only make this call if we're on a documents page'
+        if (path.indexOf('/documents/') === 0) {
+          var _ret = function () {
+            var url = 'http://localhost:4000/api/documents/' + path.split('/')[2];
+            return {
+              v: new _promise2.default(function (resolve, reject) {
+                return _axios2.default.get(url).then(function (response) {
+                  return resolve(response.data);
+                }).catch(function (error) {
+                  return reject(error);
+                });
+              }).then(function (_data) {
+                return { _data: _data };
+              }, function (err) {
+                return { doc: [], error: err, path: path };
+              })
+            };
+          }();
+
+          if ((typeof _ret === 'undefined' ? 'undefined' : (0, _typeof3.default)(_ret)) === "object") return _ret.v;
+        }
       }
     }]);
 
@@ -77,15 +108,6 @@ exports.default = function (Page) {
       };
       return _this;
     }
-
-    //   componentDidMount () {
-    //     const loggedUser = getCookie();
-    //     const isAuthenticated = !!loggedUser
-    //     this.setState({
-    //       loggedUser: loggedUser,
-    //       isAuthenticated: isAuthenticated
-    //     })
-    //   }
 
     (0, _createClass3.default)(DefaultPage, [{
       key: 'render',
