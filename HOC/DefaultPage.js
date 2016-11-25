@@ -1,6 +1,6 @@
 import React from 'react';
 import css from 'next/css';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 
 const styles = {
   app: css({

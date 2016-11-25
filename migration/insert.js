@@ -48,27 +48,27 @@ MongoClient.connect(url, (err, db) => {
     // });
 
     // split notes
-    // db.collection('documents').find().forEach(function(doc) {
-    //   if (typeof doc.notes === 'string'){
-    //     console.log('fixing');
-    //     const splitted = doc.notes.split('+');
-    //     let notes = []
-    //     for (let i = 0; i < splitted.length; i += 1) {
-    //       if (splitted[i] !== '') {
-    //         notes.push(splitted[i]);
-    //       }
-    //     }
-    //     doc.notes = notes;
-    //     db.collection('documents').save(doc);
-    //   }
-    // });
+    db.collection('documents').find().forEach(function(doc) {
+      if (typeof doc.keywords === 'string'){
+        console.log('fixing');
+        const splitted = doc.keywords.split(', ');
+        let keywords = []
+        for (let i = 0; i < splitted.length; i += 1) {
+          if (splitted[i] !== '') {
+            keywords.push(splitted[i]);
+          }
+        }
+        doc.keywords = keywords;
+        db.collection('documents').save(doc);
+      }
+    });
 
     // rename fields
-    db.collection('documents').updateMany( {}, {$rename:{'field_content_description_value': 'description', 'field_sujet_value': 'sujet',
-   'field_physical_description_value': 'physical_description', 'field_content_description_french': 'description_fr', 'field_sujet_french': 'sujet_fr'} } )
-  //   db.collection('documents').update({}, { $rename: { 'formed_title': 'title', 'field_content_description_value': 'description', 'field_sujet_value': 'sujet',
-  //  'field_physical_description_value': 'physical_description', 'field_content_description_french': 'description_fr', 'field_sujet_french': 'sujet_fr',
-  // } }, false, true);
+  //   db.collection('documents').updateMany( {}, {$rename:{'field_content_description_value': 'description', 'field_sujet_value': 'sujet',
+  //  'field_physical_description_value': 'physical_description', 'field_content_description_french': 'description_fr', 'field_sujet_french': 'sujet_fr'} } )
+  // //   db.collection('documents').update({}, { $rename: { 'formed_title': 'title', 'field_content_description_value': 'description', 'field_sujet_value': 'sujet',
+  // //  'field_physical_description_value': 'physical_description', 'field_content_description_french': 'description_fr', 'field_sujet_french': 'sujet_fr',
+  // // } }, false, true);
 
     // remove HTML
     // db.collection('documents').find().forEach(function(doc) {
