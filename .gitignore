@@ -1,7 +1,3 @@
 node_modules
-
-# compiled next output
-.next/
-
-# secret
+.next
 config/secret.js
