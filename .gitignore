@@ -1,8 +1,7 @@
 node_modules
 
-# compiled webpack output
-public/*
-!public/index.html
+# compiled next output
+.next
 
 # secret
 config/secret.js
