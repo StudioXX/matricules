@@ -1,6 +1,7 @@
 import React from 'react';
 import css from 'next/css';
 import axios from 'axios';
+import Head from 'next/head';
 import Header from '../components/Header/Header';
 
 
@@ -45,6 +46,9 @@ export default Page => class DefaultPage extends React.Component {
   render() {
     return (
       <div>
+        <Head>
+          <link rel="stylesheet" href="../static/datepicker.css" />
+        </Head>
         <div className={styles.app}>
           <div className={styles.main}>
             <Header {...this.props} />
@@ -55,4 +59,5 @@ export default Page => class DefaultPage extends React.Component {
     );
   }
 };
+
 

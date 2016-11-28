@@ -1,7 +1,9 @@
 import React from 'react';
+import moment from 'moment';
 import TextInput from '../UI/TextInput';
 import CategoriePicker from '../UI/CategoriePicker';
 import DatePick from '../UI/DatePicker';
+import TextArea from '../UI/TextArea';
 
 class EditDocument extends React.Component {
   constructor(props) {
@@ -9,7 +11,7 @@ class EditDocument extends React.Component {
     this.state = {
       accession_number: this.props._data.accession_number,
       categorie: this.props._data.categorie,
-      date: this.props._data.date,
+      date: moment(this.props._data.date),
       description: this.props._data.description,
       keywords: this.props._data.keywords,
       link: this.props._data.links,
@@ -22,6 +24,8 @@ class EditDocument extends React.Component {
     };
     this.handleAccession = this.handleAccession.bind(this);
     this.handleCategorie = this.handleCategorie.bind(this);
+    this.handleDate = this.handleDate.bind(this);
+    this.handleDescription = this.handleDescription.bind(this);
   }
 
   handleAccession(event) {
@@ -32,7 +36,16 @@ class EditDocument extends React.Component {
     this.setState({ categorie: event.target.value });
   }
 
+  handleDate(date) {
+    this.setState({ date: date });
+  }
+
+  handleDescription(event) {
+    this.setState({ description: event.target.value });
+  }
+
   render() {
+    // TODO : create keywords db collection and pull from it
     return (<div>
       <div>
       Accession Number:
@@ -42,14 +55,16 @@ class EditDocument extends React.Component {
       categorie: <CategoriePicker handler={this.handleCategorie} value={this.state.categorie} />
       </div>
       <div>
-      date: {this.props._data.date}
-      <DatePick />
+      date: {this.state.date.toString()}
+      <DatePick date={this.state.date} handler={this.handleDate} />
       </div>
       <div>
-      description: {this.props._data.description}
+      description:
+      <TextArea handler={this.handleDescription} value={this.state.description} />
       </div>
       <div>
       keywords: {this.props._data.keywords}
+
       </div>
       <div>
       links: {this.props._data.links}

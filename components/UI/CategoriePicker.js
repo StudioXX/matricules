@@ -1,15 +1,4 @@
 import React from 'react';
-import css from 'next/css';
-
-const style = css({
-  height: '38px',
-  padding: '6px 10px',
-  backgroundColor: '#fff',
-  border: '1px solid #D1D1D1',
-  borderRadius: '4px',
-  boxShadow: 'none',
-  boxSizing: 'border-box',
-});
 
 class CategoriePicker extends React.Component {
   constructor(props) {
