@@ -15,6 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@mars/heroku-nextjs-build": "^1.0.0",
     "axios": "^0.15.2",
     "body-parser": "^1.15.2",
     "cors": "^2.8.1",
@@ -24,13 +25,14 @@
     "eslint-plugin-jsx-a11y": "^2.2.3",
     "eslint-plugin-react": "^6.6.0",
     "express": "^4.14.0",
-    "@mars/heroku-nextjs-build": "^1.0.0",
     "jsonfile": "^2.4.0",
     "module-alias": "^2.0.0",
+    "moment": "^2.17.0",
     "mongodb": "^2.2.11",
     "next": "file:./next",
     "react": "^15.3.2",
     "react-addons-test-utils": "^15.3.2",
+    "react-datepicker": "^0.34.0",
     "react-dom": "^15.3.1",
     "react-router": "^2.8.1",
     "request": "^2.74.0"

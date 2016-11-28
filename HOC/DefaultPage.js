@@ -20,7 +20,7 @@ export default Page => class DefaultPage extends React.Component {
   static getInitialProps(ctx) {
     const path = ctx.pathname;
     // only make this call if we're on a documents page'
-    if (path.indexOf('/documents/') === 0) {
+    if (path.indexOf('/documents/') === 0 || path.indexOf('/edit/') === 0) {
       const url = `http://localhost:4000/api/documents/${path.split('/')[2]}`;
       return new Promise((resolve, reject) => (
       axios.get(url)

@@ -1,9 +1,11 @@
 import React from 'react';
 import Head from 'next/head';
-import axios from 'axios';
+import Link from 'next/link';
+import Button from '../UI/Button';
 
 class Document extends React.Component {
   render() {
+    const editlink = `../edit/${this.props._data.accession_number}`;
     return (<div>
       <Head>
         <title>ffff</title>
@@ -47,6 +49,7 @@ class Document extends React.Component {
       <div>
       title: {this.props._data.title}
       </div>
+      <Button text="edit" link={editlink} />
     </div>
     );
   }
