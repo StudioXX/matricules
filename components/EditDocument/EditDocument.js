@@ -28,6 +28,7 @@ class EditDocument extends React.Component {
     this.handleCategorie = this.handleCategorie.bind(this);
     this.handleDate = this.handleDate.bind(this);
     this.handleDescription = this.handleDescription.bind(this);
+    this.handleTag = this.handleTag.bind(this);
   }
 
   handleAccession(event) {
@@ -44,6 +45,10 @@ class EditDocument extends React.Component {
 
   handleDescription(event) {
     this.setState({ description: event.target.value });
+  }
+
+  handleTag(value) {
+    this.setState({ keywords: value });
   }
 
   render() {
@@ -67,8 +72,8 @@ class EditDocument extends React.Component {
       <TextArea handler={this.handleDescription} value={this.state.description || ''} />
       </div>
       <div>
-      keywords: {this.props._data.keywords}
-      <TagPicker handler={this.handleTags} />
+      keywords:
+      <TagPicker keywords={this.state.keywords} handler={this.handleTag} />
       </div>
       <div>
       links: {this.props._data.links}
