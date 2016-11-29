@@ -47,6 +47,7 @@ export default Page => class DefaultPage extends React.Component {
     return (
       <div>
         <Head>
+          <link rel="stylesheet" href="../static/skeleton.css" />
           <link rel="stylesheet" href="../static/datepicker.css" />
         </Head>
         <div className={styles.app}>

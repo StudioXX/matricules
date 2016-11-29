@@ -2,8 +2,10 @@ import React from 'react';
 import moment from 'moment';
 import TextInput from '../UI/TextInput';
 import CategoriePicker from '../UI/CategoriePicker';
+import TagPicker from '../UI/TagPicker';
 import DatePick from '../UI/DatePicker';
 import TextArea from '../UI/TextArea';
+import Button from '../UI/Button';
 
 class EditDocument extends React.Component {
   constructor(props) {
@@ -45,8 +47,10 @@ class EditDocument extends React.Component {
   }
 
   render() {
+    const readlink = `../documents/${this.props._data.accession_number}`;
     // TODO : create keywords db collection and pull from it
     return (<div>
+      <Button text="Back" link={readlink} />
       <div>
       Accession Number:
       <TextInput handler={this.handleAccession} text={this.state.accession_number} />
@@ -60,11 +64,11 @@ class EditDocument extends React.Component {
       </div>
       <div>
       description:
-      <TextArea handler={this.handleDescription} value={this.state.description} />
+      <TextArea handler={this.handleDescription} value={this.state.description || ''} />
       </div>
       <div>
       keywords: {this.props._data.keywords}
-
+      <TagPicker handler={this.handleTags} />
       </div>
       <div>
       links: {this.props._data.links}
