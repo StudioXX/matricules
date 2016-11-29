@@ -5,6 +5,7 @@ import CategoriePicker from '../UI/CategoriePicker';
 import TagPicker from '../UI/TagPicker';
 import DatePick from '../UI/DatePicker';
 import TextArea from '../UI/TextArea';
+import LinkListEdit from '../UI/LinkListEdit';
 import Button from '../UI/Button';
 
 class EditDocument extends React.Component {
@@ -16,7 +17,7 @@ class EditDocument extends React.Component {
       date: moment(this.props._data.date),
       description: this.props._data.description,
       keywords: this.props._data.keywords,
-      link: this.props._data.links,
+      link: (this.props._data.links),
       medium: this.props._data.medium,
       notes: this.props._data.notes,
       physical_description: this.props._data.physical_description,
@@ -29,6 +30,7 @@ class EditDocument extends React.Component {
     this.handleDate = this.handleDate.bind(this);
     this.handleDescription = this.handleDescription.bind(this);
     this.handleTag = this.handleTag.bind(this);
+    this.handleLinks = this.handleLinks.bind(this);
   }
 
   handleAccession(event) {
@@ -49,6 +51,12 @@ class EditDocument extends React.Component {
 
   handleTag(value) {
     this.setState({ keywords: value });
+  }
+
+  handleLinks(iterator, event) {
+    const linkarray = this.state.link;
+    console.log(event);
+    console.log(iterator);
   }
 
   render() {
@@ -76,7 +84,8 @@ class EditDocument extends React.Component {
       <TagPicker keywords={this.state.keywords} handler={this.handleTag} />
       </div>
       <div>
-      links: {this.props._data.links}
+      links:
+      <LinkListEdit handler={this.handleLinks} links={this.state.link} />
       </div>
       <div>
       medium: {this.props._data.medium}

@@ -28,13 +28,13 @@ MongoClient.connect(url, (err, db) => {
     // });
     
     // this converts our keywords into an array
-    // db.collection('documents').find().forEach(function(doc) {
-    //   if (doc.keywords !== null && doc.keywords.constructor === String) {
-    //     // console.log(doc.keywords);
-    //     doc.keywords = doc.keywords.split(',');
-    //     db.collection('documents').save(doc);
-    //   }
-    // });
+    db.collection('documents').find().forEach(function(doc) {
+      if (doc.links !== null && doc.links.constructor === Array) {
+        doc.links = doc.links.join()
+        console.log(doc.links);
+        db.collection('documents').save(doc);
+      }
+    });
 
     // split languages in description
     // db.collection('documents').find().forEach(function(doc) {
@@ -48,20 +48,20 @@ MongoClient.connect(url, (err, db) => {
     // });
 
     // split notes
-    db.collection('documents').find().forEach(function(doc) {
-      if (typeof doc.keywords === 'string'){
-        console.log('fixing');
-        const splitted = doc.keywords.split(', ');
-        let keywords = []
-        for (let i = 0; i < splitted.length; i += 1) {
-          if (splitted[i] !== '') {
-            keywords.push(splitted[i]);
-          }
-        }
-        doc.keywords = keywords;
-        db.collection('documents').save(doc);
-      }
-    });
+    // db.collection('documents').find().forEach(function(doc) {
+    //   if (typeof doc.keywords === 'string'){
+    //     console.log('fixing');
+    //     const splitted = doc.keywords.split(', ');
+    //     let keywords = []
+    //     for (let i = 0; i < splitted.length; i += 1) {
+    //       if (splitted[i] !== '') {
+    //         keywords.push(splitted[i]);
+    //       }
+    //     }
+    //     doc.keywords = keywords;
+    //     db.collection('documents').save(doc);
+    //   }
+    // });
 
     // rename fields
   //   db.collection('documents').updateMany( {}, {$rename:{'field_content_description_value': 'description', 'field_sujet_value': 'sujet',

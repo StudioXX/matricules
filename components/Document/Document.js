@@ -29,7 +29,7 @@ class Document extends React.Component {
       keywords: {this.props._data.keywords}
       </div>
       <div>
-      links: {this.props._data.links}
+      links:
       </div>
       <div>
       medium: {this.props._data.medium}
