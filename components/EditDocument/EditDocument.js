@@ -17,7 +17,11 @@ class EditDocument extends React.Component {
       date: moment(this.props._data.date),
       description: this.props._data.description,
       keywords: this.props._data.keywords,
-      link: (this.props._data.links),
+      // links: this.props._data.links,
+      links: [
+        { url : "google.com", title: "google"},
+        { url: "yahoo.com", title: "yahoo"}
+      ],
       medium: this.props._data.medium,
       notes: this.props._data.notes,
       physical_description: this.props._data.physical_description,
@@ -30,7 +34,9 @@ class EditDocument extends React.Component {
     this.handleDate = this.handleDate.bind(this);
     this.handleDescription = this.handleDescription.bind(this);
     this.handleTag = this.handleTag.bind(this);
-    this.handleLinks = this.handleLinks.bind(this);
+    this.handleLinksURL = this.handleLinksURL.bind(this);
+    this.handleLinksDesc = this.handleLinksDesc.bind(this);
+    this.handleAddLink = this.handleAddLink.bind(this);
   }
 
   handleAccession(event) {
@@ -53,10 +59,28 @@ class EditDocument extends React.Component {
     this.setState({ keywords: value });
   }
 
-  handleLinks(iterator, event) {
-    const linkarray = this.state.link;
-    console.log(event);
-    console.log(iterator);
+  handleLinksURL(i, event) {
+    console.log(this.state.links);
+    console.log(i);
+    console.log(event.target.value);
+    const state = this.state.links;
+    state[i].url = event.target.value;
+    this.setState({links: state});
+  }
+
+  handleLinksDesc(i, event) {
+    console.log(this.state.links);
+    console.log(i);
+    console.log(event.target.value);
+    const state = this.state.links;
+    state[i].title = event.target.value;
+    this.setState({links: state});
+  }
+
+  handleAddLink() {
+    const state = this.state.links;
+    state.push({ url: '', title: '', });
+    this.setState({ links: state });
   }
 
   render() {
@@ -72,8 +96,8 @@ class EditDocument extends React.Component {
       categorie: <CategoriePicker handler={this.handleCategorie} value={this.state.categorie} />
       </div>
       <div>
-      date: {this.state.date.toString()}
-      <DatePick date={this.state.date} handler={this.handleDate} />
+      date:
+        <DatePick date={this.state.date} handler={this.handleDate} />
       </div>
       <div>
       description:
@@ -85,7 +109,7 @@ class EditDocument extends React.Component {
       </div>
       <div>
       links:
-      <LinkListEdit handler={this.handleLinks} links={this.state.link} />
+      <LinkListEdit addhandler={this.handleAddLink} urlhandler={this.handleLinksURL} deschandler={this.handleLinksDesc} links={this.state.links} />
       </div>
       <div>
       medium: {this.props._data.medium}
