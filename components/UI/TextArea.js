@@ -8,7 +8,7 @@ class TextArea extends React.Component {
   render() {
     return (
       <div>
-        <textarea value={this.props.value} onChange={this.props.handler} rows="10" cols="100" />
+        <textarea value={this.props.value} onChange={this.props.handler} rows="70" style={{width:'100%'}} />
       </div>
     );
   }
