@@ -1,5 +1,6 @@
 import React from 'react';
 import moment from 'moment';
+import axios from 'axios';
 import TextInput from '../UI/TextInput';
 import CategoriePicker from '../UI/CategoriePicker';
 import TagPicker from '../UI/TagPicker';
@@ -42,6 +43,7 @@ class EditDocument extends React.Component {
     this.handleSupport = this.handleSupport.bind(this);
     this.handleSujet = this.handleSujet.bind(this);
     this.handleSujetFrench = this.handleSujetFrench.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   handleAccession(event) {
@@ -116,6 +118,33 @@ class EditDocument extends React.Component {
     this.setState({ support: event.target.value });
   }
 
+  handleSubmit() {
+    console.log('submit');
+    const url = `http://localhost:4000/api/documents/${this.state.accession_number}`;
+    axios.post(url, {
+      accession_number: this.state.accession_number,
+      categorie: this.state.categorie,
+      date: this.state.date.toDate(),
+      description: this.state.description,
+      description_fr: this.state.descriptionFrench,
+      keywords: this.state.keywords,
+      links: this.state.links,
+      medium: this.state.medium,
+      notes: this.state.notes,
+      physical_description: this.state.physical_description,
+      sujet: this.state.sujet,
+      sujet_fr: this.state.sujetFrench,
+      support: this.state.support,
+      title: this.state.title,
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  }
+
   render() {
     const readlink = `../documents/${this.props._data.accession_number}`;
     // TODO : create keywords db collection and pull from it
@@ -174,6 +203,9 @@ class EditDocument extends React.Component {
       </div>
       <div>
       title: {this.props._data.title}
+      </div>
+      <div>
+        <button onClick={this.handleSubmit} className={"button-primary"}>Save</button>
       </div>
     </div>
     );

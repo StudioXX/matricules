@@ -37,48 +37,56 @@ MongoClient.connect(url, (err, db) => {
     // });
 
     // convert characters
+    // db.collection('documents').find().forEach(function(doc) {
+    //   if (typeof doc.description === 'string') {
+    //     doc.description = doc.description.replace('&eacute;', 'é');
+    //     doc.description = doc.description.replace('&Eacute;', 'É');
+    //     doc.description = doc.description.replace('&agrave;', 'à');
+    //     doc.description = doc.description.replace('<p>', '');
+    //     doc.description = doc.description.replace('</p>', '');
+    //   }
+
+    //   if (typeof doc.description_fr === 'string') {
+    //     doc.description_fr = doc.description_fr.replace('&eacute;', 'é');
+    //     doc.description_fr = doc.description_fr.replace('&Eacute;', 'É');
+    //     doc.description_fr = doc.description_fr.replace('&agrave;', 'à');
+    //     doc.description_fr = doc.description_fr.replace('<p>', '');
+    //     doc.description_fr = doc.description_fr.replace('</p>', '');
+    //   }
+
+    //   if (typeof doc.sujet === 'string') {
+    //     doc.sujet = doc.sujet.replace('&eacute;', 'é');
+    //     doc.sujet = doc.sujet.replace('&Eacute;', 'É');
+    //     doc.sujet = doc.sujet.replace('&agrave;', 'à');
+    //     doc.sujet = doc.sujet.replace('<p>', '');
+    //     doc.sujet = doc.sujet.replace('</p>', '');
+    //   }
+
+    //   if (typeof doc.sujet_fr === 'string') {
+    //     doc.sujet_fr = doc.sujet_fr.replace('&eacute;', 'é');
+    //     doc.sujet_fr = doc.sujet_fr.replace('&Eacute;', 'É');
+    //     doc.sujet_fr = doc.sujet_fr.replace('&agrave;', 'à');
+    //     doc.sujet_fr = doc.sujet_fr.replace('<p>', '');
+    //     doc.sujet_fr = doc.sujet_fr.replace('</p>', '');
+    //   }
+
+    //   if (typeof doc.notes === 'string') {
+    //     doc.notes = doc.notes.replace('&eacute;', 'é');
+    //     doc.notes = doc.notes.replace('&Eacute;', 'É');
+    //     doc.notes = doc.notes.replace('&agrave;', 'à');
+    //     doc.notes = doc.notes.replace('<p>', '');
+    //     doc.notes = doc.notes.replace('</p>', '');
+    //   }
+
+    //   db.collection('documents').save(doc);
+    // });
+
+    // insert null fields
     db.collection('documents').find().forEach(function(doc) {
-      if (typeof doc.description === 'string') {
-        doc.description = doc.description.replace('&eacute;', 'é');
-        doc.description = doc.description.replace('&Eacute;', 'É');
-        doc.description = doc.description.replace('&agrave;', 'à');
-        doc.description = doc.description.replace('<p>', '');
-        doc.description = doc.description.replace('</p>', '');
+      if (doc.sujet_fr === undefined) {
+        doc.sujet_fr = '';
+        db.collection('documents').save(doc);
       }
-
-      if (typeof doc.description_fr === 'string') {
-        doc.description_fr = doc.description_fr.replace('&eacute;', 'é');
-        doc.description_fr = doc.description_fr.replace('&Eacute;', 'É');
-        doc.description_fr = doc.description_fr.replace('&agrave;', 'à');
-        doc.description_fr = doc.description_fr.replace('<p>', '');
-        doc.description_fr = doc.description_fr.replace('</p>', '');
-      }
-
-      if (typeof doc.sujet === 'string') {
-        doc.sujet = doc.sujet.replace('&eacute;', 'é');
-        doc.sujet = doc.sujet.replace('&Eacute;', 'É');
-        doc.sujet = doc.sujet.replace('&agrave;', 'à');
-        doc.sujet = doc.sujet.replace('<p>', '');
-        doc.sujet = doc.sujet.replace('</p>', '');
-      }
-
-      if (typeof doc.sujet_fr === 'string') {
-        doc.sujet_fr = doc.sujet_fr.replace('&eacute;', 'é');
-        doc.sujet_fr = doc.sujet_fr.replace('&Eacute;', 'É');
-        doc.sujet_fr = doc.sujet_fr.replace('&agrave;', 'à');
-        doc.sujet_fr = doc.sujet_fr.replace('<p>', '');
-        doc.sujet_fr = doc.sujet_fr.replace('</p>', '');
-      }
-
-      if (typeof doc.notes === 'string') {
-        doc.notes = doc.notes.replace('&eacute;', 'é');
-        doc.notes = doc.notes.replace('&Eacute;', 'É');
-        doc.notes = doc.notes.replace('&agrave;', 'à');
-        doc.notes = doc.notes.replace('<p>', '');
-        doc.notes = doc.notes.replace('</p>', '');
-      }
-
-      db.collection('documents').save(doc);
     });
 
     // split languages in description

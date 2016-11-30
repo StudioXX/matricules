@@ -24,7 +24,7 @@ export default Page => class DefaultPage extends React.Component {
     if (path.indexOf('/documents/') === 0 || path.indexOf('/edit/') === 0) {
       const url = `http://localhost:4000/api/documents/${path.split('/')[2]}`;
       return new Promise((resolve, reject) => (
-      axios.get(url)
+        axios.get(url)
           .then(response => (resolve(response.data)))
           .catch(error => (reject(error)))
       ))

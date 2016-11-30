@@ -33,6 +33,35 @@ router.get('/:accession', (req, res, next) => { // eslint-disable-line no-unused
   });
 });
 
+// edit one document by its accession number
+router.post('/:accession', (req, res, next) => { // eslint-disable-line no-unused-vars
+  const database = db.get();
+  console.log(req.body.accession_number);
+  database.collection('documents').findOneAndUpdate({ accession_number: req.body.accession_number, }, {
+    $set: {
+      keywords: req.body.keywords,
+      medium: req.body.medium,
+      date: req.body.date,
+      categorie: req.body.categorie,
+      support: req.body.support,
+      links: req.body.links,
+      notes: req.body.notes,
+      title: req.body.title,
+      description: req.body.description,
+      sujet: req.body.sujet,
+      physical_description: req.body.physical_description,
+      description_fr: req.body.description_fr,
+      sujet_fr: req.body.sujet_fr,
+    },
+  }, {
+    sort: { _id: -1 },
+    upsert: true,
+  }, (err, result) => {
+    if (err) return res.send(err);
+    res.send(result);
+  });
+});
+
 // create one
 router.post('/', (req, res, next) => { // eslint-disable-line no-unused-vars
 });
