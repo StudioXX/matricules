@@ -15,20 +15,20 @@ class EditDocument extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      accession_number: this.props._data.accession_number,
-      categorie: this.props._data.categorie,
-      date: moment(this.props._data.date),
-      description: this.props._data.description,
-      descriptionFrench: this.props._data.description_fr,
-      keywords: this.props._data.keywords,
-      links: this.props._data.links,
-      medium: this.props._data.medium,
-      notes: this.props._data.notes,
-      physical_description: this.props._data.physical_description,
-      sujet: this.props._data.sujet,
-      sujetFrench: this.props._data.sujet_fr,
-      support: this.props._data.support,
-      title: this.props._data.title,
+      accession_number: '',
+      categorie: '',
+      date: moment(),
+      description: '',
+      descriptionFrench: '',
+      keywords: [],
+      links: [],
+      medium: '',
+      notes: '',
+      physical_description: '',
+      sujet: '',
+      sujetFrench: '',
+      support: '',
+      title: '',
     };
     this.handleAccession = this.handleAccession.bind(this);
     this.handleCategorie = this.handleCategorie.bind(this);
@@ -145,10 +145,8 @@ class EditDocument extends React.Component {
   }
 
   render() {
-    const readlink = `../documents/${this.props._data.accession_number}`;
     // TODO : create keywords db collection and pull from it
     return (<div>
-      <Button text="Back" link={readlink} />
       <div>
       Accession Number:
       <TextInput handler={this.handleAccession} text={this.state.accession_number} />

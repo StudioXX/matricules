@@ -1,10 +1,12 @@
 import React from 'react';
 import defaultPage from '../HOC/DefaultPage';
+import Button from '../components/UI/Button';
 
 const Index = () => (
   <div>
     Hello world!
-    <a href="/about">about</a>
+    <br />
+    <Button text="Add Document" link="/add" />
   </div>
 );
 

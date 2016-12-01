@@ -24,7 +24,7 @@ if (config.env === 'development') {
 // connect to db
 db.connect((err) => {
   if (err) {
-    console.log(err)
+    console.log(err);
   } else {
     console.log(`Connected to db`);
   }

@@ -82,11 +82,24 @@ MongoClient.connect(url, (err, db) => {
     // });
 
     // insert null fields
+    // db.collection('documents').find().forEach(function(doc) {
+    //   if (doc.sujet_fr === undefined) {
+    //     doc.sujet_fr = '';
+    //     db.collection('documents').save(doc);
+    //   }
+    // });
+
+    // find duplicates
+    // db.collection('documents').aggregate(
+    //   {"$group" : { "_id": "$accession_number", "count": { "$sum": 1 }, "docs": {$push: "$accession_number"} }, },
+    //   {"$match": {"_id" :{ "$ne" : null } , "count" : {"$gt": 1} } }, function(err, result) {console.log(result)}
+    // )
+
+    // create folders
     db.collection('documents').find().forEach(function(doc) {
-      if (doc.sujet_fr === undefined) {
-        doc.sujet_fr = '';
-        db.collection('documents').save(doc);
-      }
+      const number = doc.accession_number;
+      console.log(number);
+      fs.mkdirSync(`./server/public/files/${number}`);
     });
 
     // split languages in description
