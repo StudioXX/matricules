@@ -32,6 +32,8 @@ export default Page => class DefaultPage extends React.Component {
       (_data) => { return { _data, }; },
       (err) => { return { doc: [], error: err, path: path, }; }
       );
+    } else if (path.indexOf('/documents') === 0) {
+      // here
     }
   }
 

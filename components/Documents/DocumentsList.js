@@ -8,12 +8,18 @@ class DocumentsList extends React.Component {
 
   render() {
     const docs = this.props.doclist;
-    return (
-      <ul>
+    let list;
+    if (docs.length === 0) {
+      list = <div>loading...</div>;
+    } else {
+      list = (<ul>
         {docs.map((doc, i) => {
-          return <li key={i}><Link href={`/documents/${doc.accession_number}`}>{doc.accession_number}</Link>{doc.title}</li>;
+          return <li key={i}><Link href={`/documents/${doc.accession_number}`}>{doc.accession_number} || {doc.title} </Link>{doc.title}</li>;
         })}
-      </ul>
+      </ul>);
+    }
+    return (
+      list
     );
   }
 }
