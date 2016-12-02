@@ -17,14 +17,7 @@ const styles = {
 class Header extends React.Component {
   constructor(props) {
     super(props);
-    this.handleLogin = this.handleLogin.bind(this);
     this.handleLogout = this.handleLogout.bind(this);
-  }
-
-  handleLogin() {
-    console.log('logging in');
-    setToken('123');
-    this.props.url.pushTo('/');
   }
 
   handleLogout() {
@@ -39,7 +32,7 @@ class Header extends React.Component {
         <span className={styles.menuitem}><Link href="/documents">documents list</Link></span>
         <span className={styles.menuitem}><Link href="/about">about</Link></span>
 
-        <button onClick={this.handleLogin} className={'button-primary'}>Login</button>
+        <Link href="/login"><button className={'button-primary'}>Login</button></Link>
         <button onClick={this.handleLogout} className={'button-primary'}>Logout</button>
       </div>
     );

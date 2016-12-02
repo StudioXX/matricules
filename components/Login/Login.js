@@ -1,4 +1,5 @@
 import React from 'react';
+import { setToken, unsetToken } from '../../utils/auth';
 
 class Login extends React.Component {
   constructor(props) {
@@ -26,6 +27,8 @@ class Login extends React.Component {
 
   handleLogin(event) {
     // login here
+    setToken('123');
+    this.props.url.pushTo('/');
   }
   render() {
     return (
