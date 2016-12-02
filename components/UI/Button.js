@@ -9,7 +9,7 @@ class Button extends React.Component {
   render() {
     return (
       <Link href={this.props.link}>
-        <button className={"button-primary"}>{this.props.text}</button>
+        <button className={'button-primary'}>{this.props.text}</button>
       </Link>
     );
   }

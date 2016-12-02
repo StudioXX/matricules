@@ -3,7 +3,7 @@ import css from 'next/css';
 import axios from 'axios';
 import Head from 'next/head';
 import Header from '../components/Header/Header';
-
+import { getUserFromCookie, getUserFromLocalStorage } from '../utils/auth';
 
 const styles = {
   app: css({
@@ -20,6 +20,7 @@ const styles = {
 export default Page => class DefaultPage extends React.Component {
   static getInitialProps(ctx) {
     const path = ctx.pathname;
+    const loggedUser = process.browser ? getUserFromLocalStorage() : getUserFromCookie(ctx.req);
     // only make this call if we're on a documents page'
     if (path.indexOf('/documents/') === 0 || path.indexOf('/edit/') === 0) {
       const url = `http://localhost:4000/api/documents/${path.split('/')[2]}`;
@@ -29,7 +30,7 @@ export default Page => class DefaultPage extends React.Component {
           .catch(error => (reject(error)))
       ))
       .then(
-      (_data) => { return { _data, }; },
+      (_data) => { return { _data, path, loggedUser, }; },
       (err) => { return { doc: [], error: err, path: path, }; }
       );
     } else if (path.indexOf('/documents') === 0) {
@@ -39,10 +40,10 @@ export default Page => class DefaultPage extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      loggedUser: false,
-      isAuthenticated: false,
-    };
+    // this.state = {
+    //   loggedUser: false,
+    //   isAuthenticated: false,
+    // };
   }
 
   render() {
@@ -56,7 +57,7 @@ export default Page => class DefaultPage extends React.Component {
         <div className={styles.app}>
           <div className={styles.main}>
             <Header {...this.props} />
-            <Page {...this.props} isAuthenticated={this.state.isAuthenticated} loggedUser={this.state.loggedUser} />
+            <Page {...this.props} />
           </div>
         </div>
       </div>
