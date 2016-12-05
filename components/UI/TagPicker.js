@@ -1,4 +1,5 @@
 import React from 'react';
+import { WithContext as ReactTags } from 'react-tag-input';
 import { Multiselect } from 'react-widgets';
 
 class TagPicker extends React.Component {
@@ -12,9 +13,20 @@ class TagPicker extends React.Component {
   }
 
   render() {
-    const allkeywords = ['art', 'radio', 'feminist', 'HTMLles'];
+    let tags = [];
+    for (let i=0;i<this.props.keywords.length;i++) {
+      tags.push({
+        id: i,
+        text: this.props.keywords[i],
+      });
+    }
+    let suggestions = ['art', 'radio', 'feminist', 'HTMLles'];
     return (
-      <Multiselect onChange={this.props.handler} defaultValue={this.props.keywords} data={allkeywords} />
+      <div>
+          <ReactTags tags={tags}
+              suggestions={suggestions}
+          />
+      </div>
     );
   }
 }

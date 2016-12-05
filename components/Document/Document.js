@@ -106,7 +106,7 @@ class Document extends React.Component {
       <div>
       title: {this.state.title}
       </div>
-      <Button text="edit" link="../edit/2007FOR70411O" />
+      <Button text="edit" link={editlink} />
     </div>
     );
   }

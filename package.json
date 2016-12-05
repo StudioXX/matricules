@@ -43,7 +43,7 @@
     "react-dates": "^4.1.0",
     "react-dom": "^15.4.1",
     "react-router": "^2.8.1",
-    "react-tag-input": "^4.4.0",
+    "react-tag-input": "^4.6.0",
     "react-widgets": "^3.4.5",
     "request": "^2.74.0"
   },
