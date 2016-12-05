@@ -15,20 +15,20 @@ class EditDocument extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      accession_number: this.props._data.accession_number,
-      categorie: this.props._data.categorie,
-      date: moment(this.props._data.date),
-      description: this.props._data.description,
-      descriptionFrench: this.props._data.description_fr,
-      keywords: this.props._data.keywords,
-      links: this.props._data.links,
-      medium: this.props._data.medium,
-      notes: this.props._data.notes,
-      physical_description: this.props._data.physical_description,
-      sujet: this.props._data.sujet,
-      sujetFrench: this.props._data.sujet_fr,
-      support: this.props._data.support,
-      title: this.props._data.title,
+      accession_number: '',
+      categorie: '',
+      date: moment(),
+      description: '',
+      descriptionFrench: '',
+      keywords: [],
+      links: [],
+      medium: '',
+      notes: '',
+      physical_description: '',
+      sujet: '',
+      sujetFrench: '',
+      support: '',
+      title: '',
     };
     this.handleAccession = this.handleAccession.bind(this);
     this.handleCategorie = this.handleCategorie.bind(this);
@@ -144,8 +144,65 @@ class EditDocument extends React.Component {
     });
   }
 
+  componentDidMount() {
+    this.mounted = true;
+    if (this.props._data) {
+      console.log('rednered by server');
+      if (this.mounted === true) {
+        this.setState({
+          accession_number: this.props._data.accession_number,
+          categorie: this.props._data.categorie,
+          date: moment(this.props._data.date),
+          description: this.props._data.description,
+          descriptionFrench: this.props._data.description_fr,
+          keywords: this.props._data.keywords,
+          links: this.props._data.links,
+          medium: this.props._data.medium,
+          notes: this.props._data.notes,
+          physical_description: this.props._data.physical_description,
+          sujet: this.props._data.sujet,
+          sujetFrench: this.props._data.sujet_fr,
+          support: this.props._data.support,
+          title: this.props._data.title,
+        });
+      }
+    } else {
+      console.log('rednered by client');
+      const url = `http://localhost:4000/api/documents/${this.props.path.split('/')[2]}`;
+      console.log(url);
+      return new Promise((resolve, reject) => (
+        axios.get(url)
+          .then(response => (resolve(response.data)))
+          .catch(error => (reject(error)))
+      ))
+      .then(
+      (_data) => { this.setState({
+        accession_number: _data.accession_number,
+        categorie: _data.categorie,
+        date: moment(_data.date),
+        description: _data.description,
+        descriptionFrench: _data.description_fr,
+        keywords: _data.keywords,
+        links: _data.links,
+        medium: _data.medium,
+        notes: _data.notes,
+        physical_description: _data.physical_description,
+        sujet: _data.sujet,
+        sujetFrench: _data.sujet_fr,
+        support: _data.support,
+        title: _data.title,
+      }); },
+      (err) => { return { doc: [], error: err, }; }
+      );
+    }
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+
   render() {
-    const readlink = `../documents/${this.props._data.accession_number}`;
+    const readlink = `../documents/${this.state.accession_number}`;
     // TODO : create keywords db collection and pull from it
     return (<div>
       <Button text="Back" link={readlink} />
