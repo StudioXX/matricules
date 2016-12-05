@@ -8,46 +8,26 @@ class Document extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      accession_number: '',
-      categorie: '',
-      date: '',
-      description: '',
-      descriptionFrench: '',
-      keywords: [],
-      links: [],
-      medium: '',
-      notes: '',
-      physical_description: '',
-      sujet: '',
-      sujetFrench: '',
-      support: '',
-      title: '',
+      accession_number: this.props.accession_number || '',
+      categorie: this.props.categorie || '',
+      date: this.props.date || '',
+      description: this.props.description || '',
+      descriptionFrench: this.props.description_fr || '',
+      keywords: this.props.keywords || [],
+      links: this.props.links || [],
+      medium: this.props.medium || '',
+      notes: this.props.notes || '',
+      physical_description: this.props.physical_description || '',
+      sujet: this.props.sujet || '',
+      sujetFrench: this.props.sujet_fr || '',
+      support: this.props.support || '',
+      title: this.props.title || '',
     };
   }
 
   componentDidMount() {
     this.mounted = true;
-    if (this.props._data) {
-      console.log('rednered by server');
-      if (this.mounted === true) {
-        this.setState({
-          accession_number: this.props._data.accession_number,
-          categorie: this.props._data.categorie,
-          date: this.props._data.date,
-          description: this.props._data.description,
-          descriptionFrench: this.props._data.description_fr,
-          keywords: this.props._data.keywords,
-          links: this.props._data.links,
-          medium: this.props._data.medium,
-          notes: this.props._data.notes,
-          physical_description: this.props._data.physical_description,
-          sujet: this.props._data.sujet,
-          sujetFrench: this.props._data.sujet_fr,
-          support: this.props._data.support,
-          title: this.props._data.title,
-        });
-      }
-    } else {
+    if (!this.props._data) {
       console.log('rednered by client');
       const url = `http://localhost:4000/api/documents/${this.props.path.split('/')[2]}`;
       return new Promise((resolve, reject) => (

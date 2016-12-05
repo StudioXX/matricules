@@ -6,6 +6,11 @@ class TagPicker extends React.Component {
     super(props);
   }
 
+  componentWillReceiveProps() {
+    console.log('new props');
+    this.forceUpdate();
+  }
+
   render() {
     const allkeywords = ['art', 'radio', 'feminist', 'HTMLles'];
     return (

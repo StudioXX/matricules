@@ -150,20 +150,20 @@ class EditDocument extends React.Component {
       console.log('rednered by server');
       if (this.mounted === true) {
         this.setState({
-          accession_number: this.props._data.accession_number,
-          categorie: this.props._data.categorie,
-          date: moment(this.props._data.date),
-          description: this.props._data.description,
-          descriptionFrench: this.props._data.description_fr,
-          keywords: this.props._data.keywords,
-          links: this.props._data.links,
-          medium: this.props._data.medium,
-          notes: this.props._data.notes,
-          physical_description: this.props._data.physical_description,
-          sujet: this.props._data.sujet,
-          sujetFrench: this.props._data.sujet_fr,
-          support: this.props._data.support,
-          title: this.props._data.title,
+          accession_number: this.props.accession_number || '',
+          categorie: this.props.categorie || '',
+          date: moment(this.props.date),
+          description: this.props.description || '',
+          descriptionFrench: this.props.description_fr || '',
+          keywords: this.props.keywords || [],
+          links: this.props.links || [],
+          medium: this.props.medium || '',
+          notes: this.props.notes || '',
+          physical_description: this.props.physical_description || '',
+          sujet: this.props.sujet || '',
+          sujetFrench: this.props.sujet_fr || '',
+          support: this.props.support || '',
+          title: this.props.title || '',
         });
       }
     } else {
@@ -177,20 +177,20 @@ class EditDocument extends React.Component {
       ))
       .then(
       (_data) => { this.setState({
-        accession_number: _data.accession_number,
-        categorie: _data.categorie,
+        accession_number: _data.accession_number || '',
+        categorie: _data.categorie || '',
         date: moment(_data.date),
-        description: _data.description,
-        descriptionFrench: _data.description_fr,
-        keywords: _data.keywords,
-        links: _data.links,
-        medium: _data.medium,
-        notes: _data.notes,
-        physical_description: _data.physical_description,
-        sujet: _data.sujet,
-        sujetFrench: _data.sujet_fr,
-        support: _data.support,
-        title: _data.title,
+        description: _data.description || '',
+        descriptionFrench: _data.description_fr || '',
+        keywords: _data.keywords || [],
+        links: _data.links || [],
+        medium: _data.medium || '',
+        notes: _data.notes || '',
+        physical_description: _data.physical_description || '',
+        sujet: _data.sujet || '',
+        sujetFrench: _data.sujet_fr || '',
+        support: _data.support || '',
+        title: _data.title || '',
       }); },
       (err) => { return { doc: [], error: err, }; }
       );

@@ -31,7 +31,7 @@ export default Page => class DefaultPage extends React.Component {
           .catch(error => (reject(error)))
       ))
       .then(
-      (_data) => { return { _data, path, loggedUser, }; },
+      (_data) => { return { ..._data, path, loggedUser, }; },
       (err) => { return { doc: [], error: err, path: path, }; }
       );
     } else if (path.indexOf('/documents') === 0) {
