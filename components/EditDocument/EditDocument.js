@@ -35,7 +35,8 @@ class EditDocument extends React.Component {
     this.handleDate = this.handleDate.bind(this);
     this.handleDescription = this.handleDescription.bind(this);
     this.handleDescriptionFrench = this.handleDescriptionFrench.bind(this);
-    this.handleTag = this.handleTag.bind(this);
+    this.handleTagAdd = this.handleTagAdd.bind(this);
+    this.handleTagDelete = this.handleTagDelete.bind(this);
     this.handleLinksURL = this.handleLinksURL.bind(this);
     this.handleLinksDesc = this.handleLinksDesc.bind(this);
     this.handleAddLink = this.handleAddLink.bind(this);
@@ -67,8 +68,16 @@ class EditDocument extends React.Component {
     this.setState({ descriptionFrench: event.target.value });
   }
 
-  handleTag(value) {
-    this.setState({ keywords: value });
+  handleTagAdd(value) {
+    const tags = this.state.keywords;
+    tags.push(value);
+    this.setState({ keywords: tags });
+  }
+
+  handleTagDelete(i) {
+    let tags = this.state.tags;
+    tags.splice(i, 1);
+    this.setState({tags: tags});
   }
 
   handleLinksURL(i, event) {
@@ -229,7 +238,7 @@ class EditDocument extends React.Component {
       </div>
       <div>
       keywords:
-      <TagPicker keywords={this.state.keywords} handler={this.handleTag} />
+      <TagPicker keywords={this.state.keywords} handleAdd={this.handleTagAdd} handleDelete={this.handleTagDelete} />
       </div>
       <div>
       links:

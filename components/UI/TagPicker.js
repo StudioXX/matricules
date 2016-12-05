@@ -7,11 +7,6 @@ class TagPicker extends React.Component {
     super(props);
   }
 
-  componentWillReceiveProps() {
-    console.log('new props');
-    this.forceUpdate();
-  }
-
   render() {
     let tags = [];
     for (let i=0;i<this.props.keywords.length;i++) {
@@ -24,6 +19,7 @@ class TagPicker extends React.Component {
     return (
       <div>
           <ReactTags tags={tags}
+          handleAddition={this.props.handleAdd}
               suggestions={suggestions}
           />
       </div>
