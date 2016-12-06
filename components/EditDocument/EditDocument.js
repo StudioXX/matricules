@@ -231,6 +231,7 @@ class EditDocument extends React.Component {
 
   render() {
     const readlink = `../documents/${this.state.accession_number}`;
+    const mediauploadlink = `http://localhost:4000/api/documents/media/${this.state.accession_number}`;
     // TODO : create keywords db collection and pull from it
     return (<div>
       <Button text="Back" link={readlink} />
@@ -290,7 +291,7 @@ class EditDocument extends React.Component {
       </div>
       <div>
         <XHRUploader
-        url="http://localhost:4000/api/documents/media"
+        url={mediauploadlink}
         auto
         maxFiles={25}
         accession_number={this.state.accession_number}

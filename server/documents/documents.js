@@ -1,5 +1,6 @@
 const express = require('express');
 const fs = require('fs-extra'); //File System - for file manipulation
+const multer = require('multer');
 const Busboy = require('busboy'); //middleware for form/file upload
 const db = require('../db');
 
@@ -25,29 +26,42 @@ router.get('/', (req, res, next) => { // eslint-disable-line no-unused-vars
 });
 
 // post media to server and return URL
-router.post('/media', (req, res, next) => {
-    var fstream;
-    var files = [];
-    var busboy = new Busboy({headers: req.headers});
-    busboy.on('accession_number', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
-      console.log('Field [' + fieldname + ']: value: ' + inspect(val));
+router.post('/media/:accession', (req, res, next) => {
+  // second attempt
+  console.log(req.params.accession);
+  let fstream;
+  let files = [];
+  let accession_number = '';
+  const busboy = new Busboy({headers: req.headers});
+  // busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
+  //   console.log(val);
+  // });
+  const dir = __dirname + `/../media/${req.params.accession}`;
+  console.log(dir);
+  if (!fs.existsSync(dir)) {
+    console.log('making dir');
+    fs.mkdirSync(dir);
+  }
+  else { console.log ('dir exists')}
+  busboy.on('file', function (fieldname, file, filename) {
+    fstream = fs.createWriteStream(__dirname + '/../media/' + filename);
+    file.pipe(fstream);
+    fstream.on('close', function(){
+      // console.log('file ' + filename + ' uploaded');
+      files.push(filename);
     });
-    busboy.on('file', function (fieldname, file, filename) {
-      fstream = fs.createWriteStream(__dirname + '/../media/' + filename);
-      file.pipe(fstream);
-      fstream.on('close', function(){
-        console.log('file ' + filename + ' uploaded');
-        files.push(filename);
-      });
-    });
+  });
 
-    busboy.on('end', function(){console.log('END')});
+  busboy.on('end', function(){console.log('END')});
 
-    busboy.on('finish', function(){
-        console.log('finish, files uploaded ', files);
-        // res.redirect('back');
-    });
-    req.pipe(busboy);
+  busboy.on('finish', function(){
+      // console.log('finish, files uploaded ', files);
+      // res.redirect('back');
+  });
+  req.pipe(busboy);
+
+
+    // first attempt
   // console.log('incoming file');
   // const database = db.get();
   // let fstream;

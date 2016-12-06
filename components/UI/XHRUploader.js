@@ -221,7 +221,7 @@ class XHRUploader extends React.Component {
       const xhr = new XMLHttpRequest();
 
       formData.append(this.props.fieldName, file, file.name);
-      formData.append(this.props.accession_number, 'accession_number');
+      formData.append('accession_number', this.props.accession_number);
 
       xhr.onload = () => {
         progressCallback(100);
@@ -237,7 +237,9 @@ class XHRUploader extends React.Component {
           console.log(xhr.responseText);
         }
       };
-      console.log(formData);
+      for (var pair of formData.entries()) {
+    console.log(pair[0]+ ', ' + pair[1]); 
+}
       xhr.open('POST', this.props.url, true);
       xhr.send(formData);
       this.xhrs[file.index] = xhr;
