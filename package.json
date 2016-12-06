@@ -18,6 +18,7 @@
     "@mars/heroku-nextjs-build": "^1.0.0",
     "axios": "^0.15.2",
     "body-parser": "^1.15.2",
+    "busboy": "^0.2.13",
     "connect-busboy": "0.0.2",
     "cors": "^2.8.1",
     "eslint": "^3.9.1",
@@ -42,9 +43,13 @@
     "react-datepicker": "^0.34.0",
     "react-dates": "^4.1.0",
     "react-dom": "^15.4.1",
+    "react-dropzone": "^3.7.3",
+    "react-fileupload": "^2.4.0",
+    "react-fileupload-progress": "^0.4.0",
     "react-router": "^2.8.1",
     "react-tag-input": "^4.6.0",
     "react-widgets": "^3.4.5",
+    "react-xhr-uploader": "^0.3.1",
     "request": "^2.74.0"
   },
   "devDependencies": {

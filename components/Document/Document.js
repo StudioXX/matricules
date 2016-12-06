@@ -62,7 +62,8 @@ class Document extends React.Component {
   }
 
   render() {
-    const editlink = `../edit/${this.state.accession_number}`;
+    // only display edit button to logged in user
+    const editlink = (this.props.loggedUser) ? <Button text="edit" link={`../edit/${this.state.accession_number}`} /> : null;
     return (<div>
       <Head>
         <title>ffff</title>
@@ -106,7 +107,9 @@ class Document extends React.Component {
       <div>
       title: {this.state.title}
       </div>
-      <Button text="edit" link={editlink} />
+      <div>
+        {editlink}
+      </div>
     </div>
     );
   }

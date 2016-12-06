@@ -43,4 +43,10 @@ apiRouter.use((req, res, next) => {
 // connect our api router to our main app
 app.use('/api', apiRouter);
 
+app.all('/api', function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+  next();
+ });
+
 module.exports = { app, server, };

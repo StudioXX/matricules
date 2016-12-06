@@ -10,6 +10,7 @@ import LinkListEdit from '../UI/LinkListEdit';
 import MediumPicker from '../UI/MediumPicker';
 import SupportPicker from '../UI/SupportPicker';
 import Button from '../UI/Button';
+import XHRUploader from '../UI/XHRUploader';
 
 class EditDocument extends React.Component {
   constructor(props) {
@@ -46,111 +47,7 @@ class EditDocument extends React.Component {
     this.handleSujetFrench = this.handleSujetFrench.bind(this);
     this.handleTitle = this.handleTitle.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-
-  handleAccession(event) {
-    this.setState({ accession_number: event.target.value });
-  }
-
-  handleCategorie(event) {
-    this.setState({ categorie: event.target.value });
-  }
-
-  handleDate(date) {
-    this.setState({ date: date });
-  }
-
-  handleDescription(event) {
-    this.setState({ description: event.target.value });
-  }
-
-  handleDescriptionFrench(event) {
-    this.setState({ descriptionFrench: event.target.value });
-  }
-
-  handleTagAdd(value) {
-    const tags = this.state.keywords;
-    tags.push(value);
-    this.setState({ keywords: tags });
-  }
-
-  handleTagDelete(i) {
-    let tags = this.state.tags;
-    tags.splice(i, 1);
-    this.setState({tags: tags});
-  }
-
-  handleLinksURL(i, event) {
-    const state = this.state.links;
-    state[i].url = event.target.value;
-    this.setState({links: state});
-  }
-
-  handleLinksDesc(i, event) {
-    const state = this.state.links;
-    state[i].title = event.target.value;
-    this.setState({links: state});
-  }
-
-  handleAddLink() {
-    const state = this.state.links;
-    state.push({ url: '', title: '', });
-    this.setState({ links: state });
-  }
-
-  handleMedium(event) {
-    this.setState({ medium: event.target.value });
-  }
-
-  handleNotes(event) {
-    this.setState({ notes: event.target.value });
-  }
-
-  handlePhysDesc(event) {
-    this.setState({ physical_description: event.target.value });
-  }
-
-  handleSujet(event) {
-    this.setState({ sujet: event.target.value });
-  }
-
-  handleSujetFrench(event) {
-    this.setState({ sujetFrench: event.target.value });
-  }
-
-  handleSupport(event) {
-    this.setState({ support: event.target.value });
-  }
-
-  handleTitle(event) {
-    this.setState({ title: event.target.value });
-  }
-
-  handleSubmit() {
-    console.log('submit');
-    const url = `http://localhost:4000/api/documents/${this.state.accession_number}`;
-    axios.post(url, {
-      accession_number: this.state.accession_number,
-      categorie: this.state.categorie,
-      date: this.state.date.toDate(),
-      description: this.state.description,
-      description_fr: this.state.descriptionFrench,
-      keywords: this.state.keywords,
-      links: this.state.links,
-      medium: this.state.medium,
-      notes: this.state.notes,
-      physical_description: this.state.physical_description,
-      sujet: this.state.sujet,
-      sujet_fr: this.state.sujetFrench,
-      support: this.state.support,
-      title: this.state.title,
-    })
-    .then(function (response) {
-      console.log(response);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+    this.handleMediaUpload = this.handleMediaUpload.bind(this);
   }
 
   componentDidMount() {
@@ -208,6 +105,128 @@ class EditDocument extends React.Component {
 
   componentWillUnmount() {
     this.mounted = false;
+  }
+
+  handleAccession(event) {
+    this.setState({ accession_number: event.target.value });
+  }
+
+  handleCategorie(event) {
+    this.setState({ categorie: event.target.value });
+  }
+
+  handleDate(date) {
+    this.setState({ date: date });
+  }
+
+  handleDescription(event) {
+    this.setState({ description: event.target.value });
+  }
+
+  handleDescriptionFrench(event) {
+    this.setState({ descriptionFrench: event.target.value });
+  }
+
+  handleTagAdd(value) {
+    const tags = this.state.keywords;
+    tags.push(value);
+    this.setState({ keywords: tags });
+  }
+
+  handleTagDelete(i) {
+    let tags = this.state.keywords;
+    tags.splice(i, 1);
+    this.setState({keywords: tags});
+  }
+
+  handleLinksURL(i, event) {
+    const state = this.state.links;
+    state[i].url = event.target.value;
+    this.setState({links: state});
+  }
+
+  handleLinksDesc(i, event) {
+    const state = this.state.links;
+    state[i].title = event.target.value;
+    this.setState({links: state});
+  }
+
+  handleAddLink() {
+    const state = this.state.links;
+    state.push({ url: '', title: '', });
+    this.setState({ links: state });
+  }
+
+  handleMedium(event) {
+    this.setState({ medium: event.target.value });
+  }
+
+  handleNotes(event) {
+    this.setState({ notes: event.target.value });
+  }
+
+  handlePhysDesc(event) {
+    this.setState({ physical_description: event.target.value });
+  }
+
+  handleSujet(event) {
+    this.setState({ sujet: event.target.value });
+  }
+
+  handleSujetFrench(event) {
+    this.setState({ sujetFrench: event.target.value });
+  }
+
+  handleSupport(event) {
+    this.setState({ support: event.target.value });
+  }
+
+  handleTitle(event) {
+    this.setState({ title: event.target.value });
+  }
+
+  handleSubmit() {
+    const url = `http://localhost:4000/api/documents/${this.state.accession_number}`;
+    axios.post(url, {
+      accession_number: this.state.accession_number,
+      categorie: this.state.categorie,
+      date: this.state.date.toDate(),
+      description: this.state.description,
+      description_fr: this.state.descriptionFrench,
+      keywords: this.state.keywords,
+      links: this.state.links,
+      medium: this.state.medium,
+      notes: this.state.notes,
+      physical_description: this.state.physical_description,
+      sujet: this.state.sujet,
+      sujet_fr: this.state.sujetFrench,
+      support: this.state.support,
+      title: this.state.title,
+    })
+    .then((response) => {
+      const viewurl = `../documents/${this.state.accession_number}`;
+      this.props.url.pushTo(viewurl);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
+  handleMediaUpload(file) {
+    return new Promise((resolve, reject) => {
+      let formData = new FormData();
+      formData.append('file', file); 
+      const xhr = new XMLHttpRequest();
+      xhr.open('post', 'http://localhost:4000/api/documents/media', true);
+      xhr.onload = function () {
+        if (this.status === 200) {
+          resolve(this.response);
+        } else {
+          reject(this.statusText);
+        }
+      };
+      xhr.send(formData);
+    });
   }
 
   render() {
@@ -268,6 +287,14 @@ class EditDocument extends React.Component {
       </div>
       <div>
       title: <TextInput handler={this.handleTitle} text={this.state.title} />
+      </div>
+      <div>
+        <XHRUploader
+        url="http://localhost:4000/api/documents/media"
+        auto
+        maxFiles={25}
+        accession_number={this.state.accession_number}
+      />
       </div>
       <div>
         <button onClick={this.handleSubmit} className={'button-primary'}>Save</button>

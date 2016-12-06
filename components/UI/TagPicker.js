@@ -1,6 +1,5 @@
 import React from 'react';
 import { WithContext as ReactTags } from 'react-tag-input';
-import { Multiselect } from 'react-widgets';
 
 class TagPicker extends React.Component {
   constructor(props) {
@@ -18,10 +17,12 @@ class TagPicker extends React.Component {
     let suggestions = ['art', 'radio', 'feminist', 'HTMLles'];
     return (
       <div>
-          <ReactTags tags={tags}
+        <ReactTags
+          tags={tags}
           handleAddition={this.props.handleAdd}
-              suggestions={suggestions}
-          />
+          handleDelete={this.props.handleDelete}
+          suggestions={suggestions}
+        />
       </div>
     );
   }
