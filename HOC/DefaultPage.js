@@ -20,6 +20,26 @@ const styles = {
 export default Page => class DefaultPage extends React.Component {
   static getInitialProps(ctx) {
     const path = ctx.pathname;
+    // check for language - if server rendered, use request headers
+    // if client rendered, use navigator.language
+    let language = 'fr';
+    if (process.browser) {
+      if (window.localStorage.language) {
+        console.log('found language in local storage');
+        language = window.localStorage.language;
+      } else { language = navigator.language.includes('fr') ? 'fr' : 'eng';
+      }
+    } else {
+      if (ctx.req.headers.cookie) {
+        const lang = ctx.req.headers.cookie.split(';').find(c => c.trim().startsWith('language='));
+        if (lang) {
+          console.log('found language in cookies');
+          language = lang.split('=')[1];
+        }
+      } else {
+        language = ctx.req.headers['accept-language'].includes('fr') ? 'fr' : 'eng';
+      }
+    }
     const loggedUser = process.browser ? getUserFromLocalStorage() : getUserFromCookie(ctx.req);
     console.log(`loggedUser = ${loggedUser}`)
     // only make this call if we're on a documents page'
@@ -31,13 +51,14 @@ export default Page => class DefaultPage extends React.Component {
           .catch(error => (reject(error)))
       ))
       .then(
-      (_data) => { return { ..._data, path, loggedUser, }; },
+      (_data) => { return { ..._data, path, loggedUser, language, }; },
       (err) => { return { doc: [], error: err, path: path, }; }
-      );
-    } else if (path.indexOf('/documents') === 0) {
-      // here
-    } else {
-      return { path, loggedUser, };
+      );} 
+      // else if (path.indexOf('/documents') === 0) {
+    //   // here
+    // } 
+    else {
+      return { path, loggedUser, language, };
     }
   }
 

@@ -64,6 +64,8 @@ class Document extends React.Component {
   render() {
     // only display edit button to logged in user
     const editlink = (this.props.loggedUser) ? <Button text="edit" link={`../edit/${this.state.accession_number}`} /> : null;
+    const language = this.props.language;
+    const titlestring = (language === 'fr') ? 'Titre forgé' : 'Formed Title';
     return (<div>
       <Head>
         <title>ffff</title>
@@ -75,13 +77,13 @@ class Document extends React.Component {
       accession number: {this.state.accession_number}
       </div>
       <div>
-      categorie: {this.state.categorie}
+        {(language === 'fr') ? 'Categorie' : 'Category' }: {this.state.categorie}
       </div>
       <div>
       date: {this.state.date}
       </div>
       <div>
-      description: {this.state.description}
+      description: {(language === 'fr' && this.state.descriptionFrench !== '') ? this.state.descriptionFrench : this.state.description }
       </div>
       <div>
       keywords: {this.state.keywords}
@@ -99,13 +101,13 @@ class Document extends React.Component {
       physical description: {this.state.physical_description}
       </div>
       <div>
-      sujet: {this.state.sujet}
+        {(language === 'fr') ? 'Sujet' : 'Subject' }: {(language === 'fr' && this.state.sujetFrench !== '') ? this.state.sujetFrench : this.state.sujet }
       </div>
       <div>
       support: {this.state.support}
       </div>
       <div>
-      title: {this.state.title}
+        {titlestring}: {this.state.title}
       </div>
       <div>
         {editlink}
