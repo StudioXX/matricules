@@ -2,6 +2,7 @@ const express = require('express');
 const fs = require('fs-extra'); //File System - for file manipulation
 const fileType = require('file-type');
 const Busboy = require('busboy'); //middleware for form/file upload
+const ObjectId = require('mongodb').ObjectID;
 const db = require('../db');
 
 const router = express.Router();
@@ -12,8 +13,10 @@ router.get('/', (req, res, next) => { // eslint-disable-line no-unused-vars
   const keyword = req.param('keyword');
   const query = {};
   if (year !== 'all') {
-    const start = new Date(year, 1, 1);
-    const end = new Date(year, 12, 31);
+    const start = new Date(Date.UTC(year, 0, 1, 0, 0, 0));
+    const end = new Date(Date.UTC(year, 11, 31, 23, 59, 59));
+    console.log(start);
+    console.log(end);
     query.date = { $gte: start, $lt: end, };
   }
   if (keyword !== 'all') {
@@ -64,6 +67,7 @@ router.post('/media/:accession', (req, res, next) => {
   // req.pipe(busboy);
 
   const busboy = new Busboy({ headers: req.headers });
+  let photos = [];
   let numfiles = 0;
   let finished = false;
   const dir = __dirname + `/../media/${req.params.accession}`;
@@ -103,15 +107,16 @@ router.get('/:accession', (req, res, next) => { // eslint-disable-line no-unused
   });
 });
 
-// edit one document by its accession number
-router.post('/:accession', (req, res, next) => { // eslint-disable-line no-unused-vars
+// edit one document by its id
+router.post('/:id', (req, res, next) => { // eslint-disable-line no-unused-vars
   const database = db.get();
-  console.log(req.body.accession_number);
-  database.collection('documents').findOneAndUpdate({ accession_number: req.body.accession_number, }, {
+  console.log(req.params.id);
+  database.collection('documents').findOneAndUpdate({ "_id": ObjectId(req.params.id), }, {
     $set: {
+      accession_number: req.body.accession_number,
       keywords: req.body.keywords,
       medium: req.body.medium,
-      date: req.body.date,
+      date: new Date(req.body.date),
       categorie: req.body.categorie,
       support: req.body.support,
       links: req.body.links,

@@ -16,6 +16,7 @@ class EditDocument extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      _id: '',
       accession_number: '',
       categorie: '',
       date: moment(),
@@ -57,9 +58,10 @@ class EditDocument extends React.Component {
       console.log('rednered by server');
       if (this.mounted === true) {
         this.setState({
+          _id: this.props._id || '',
           accession_number: this.props.accession_number || '',
           categorie: this.props.categorie || '',
-          date: moment(this.props.date),
+          date: moment(this.props.date).zone(this.props.date),
           description: this.props.description || '',
           descriptionFrench: this.props.description_fr || '',
           keywords: this.props.keywords || [],
@@ -84,9 +86,10 @@ class EditDocument extends React.Component {
       ))
       .then(
       (_data) => { this.setState({
+        _id: _data._id || '',
         accession_number: _data.accession_number || '',
         categorie: _data.categorie || '',
-        date: moment(_data.date),
+        date: moment(_data.date).zone(_data.date),
         description: _data.description || '',
         descriptionFrench: _data.description_fr || '',
         keywords: _data.keywords || [],
@@ -187,7 +190,7 @@ class EditDocument extends React.Component {
   }
 
   handleSubmit() {
-    const url = `http://localhost:4000/api/documents/${this.state.accession_number}`;
+    const url = `http://localhost:4000/api/documents/${this.state._id}`;
     axios.post(url, {
       accession_number: this.state.accession_number,
       categorie: this.state.categorie,
@@ -205,6 +208,7 @@ class EditDocument extends React.Component {
       title: this.state.title,
     })
     .then((response) => {
+      console.log(response);
       const viewurl = `../documents/${this.state.accession_number}`;
       this.props.url.pushTo(viewurl);
     })
