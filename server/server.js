@@ -11,7 +11,7 @@ const server = require('http').Server(app);
 
 app.use(bodyParser.urlencoded({ extended: true, }));
 app.use(bodyParser.json());
-app.use(express.static(path.resolve(__dirname, 'public')));
+app.use(express.static(path.resolve(__dirname, 'media')));
 app.use(cors());
 
 // our logger settings

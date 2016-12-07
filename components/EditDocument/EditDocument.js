@@ -47,7 +47,8 @@ class EditDocument extends React.Component {
     this.handleSujetFrench = this.handleSujetFrench.bind(this);
     this.handleTitle = this.handleTitle.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleMediaUpload = this.handleMediaUpload.bind(this);
+    // this.handleMediaUpload = this.handleMediaUpload.bind(this);
+    this.handleUploadResponse = this.handleUploadResponse.bind(this);
   }
 
   componentDidMount() {
@@ -212,21 +213,26 @@ class EditDocument extends React.Component {
     });
   }
 
-  handleMediaUpload(file) {
-    return new Promise((resolve, reject) => {
-      let formData = new FormData();
-      formData.append('file', file); 
-      const xhr = new XMLHttpRequest();
-      xhr.open('post', 'http://localhost:4000/api/documents/media', true);
-      xhr.onload = function () {
-        if (this.status === 200) {
-          resolve(this.response);
-        } else {
-          reject(this.statusText);
-        }
-      };
-      xhr.send(formData);
-    });
+  // handleMediaUpload(file) {
+  //   return new Promise((resolve, reject) => {
+  //     let formData = new FormData();
+  //     formData.append('file', file); 
+  //     const xhr = new XMLHttpRequest();
+  //     xhr.open('post', 'http://localhost:4000/api/documents/media', true);
+  //     xhr.onload = function () {
+  //       if (this.status === 200) {
+  //         resolve(this.response);
+  //       } else {
+  //         reject(this.statusText);
+  //       }
+  //     };
+  //     xhr.send(formData);
+  //   });
+  // }
+
+// this handler is called when XHR returns a response, we use this to update the UI to include the new images
+  handleUploadResponse() {
+    console.log('upload complete');
   }
 
   render() {
@@ -295,6 +301,7 @@ class EditDocument extends React.Component {
         auto
         maxFiles={25}
         accession_number={this.state.accession_number}
+        handleUploadResponse={this.handleUploadResponse}
       />
       </div>
       <div>

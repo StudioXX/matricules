@@ -234,7 +234,7 @@ class XHRUploader extends React.Component {
       };
       xhr.onreadystatechange = () => {
         if (xhr.readyState === XMLHttpRequest.DONE) {
-          console.log(xhr.responseText);
+          this.props.handleUploadResponse();
         }
       };
       for (var pair of formData.entries()) {

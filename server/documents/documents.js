@@ -1,6 +1,6 @@
 const express = require('express');
 const fs = require('fs-extra'); //File System - for file manipulation
-const multer = require('multer');
+const fileType = require('file-type');
 const Busboy = require('busboy'); //middleware for form/file upload
 const db = require('../db');
 
@@ -28,58 +28,69 @@ router.get('/', (req, res, next) => { // eslint-disable-line no-unused-vars
 // post media to server and return URL
 router.post('/media/:accession', (req, res, next) => {
   // second attempt
-  console.log(req.params.accession);
-  let fstream;
-  let files = [];
-  let accession_number = '';
-  const busboy = new Busboy({headers: req.headers});
-  // busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
-  //   console.log(val);
-  // });
-  const dir = __dirname + `/../media/${req.params.accession}`;
-  console.log(dir);
-  if (!fs.existsSync(dir)) {
-    console.log('making dir');
-    fs.mkdirSync(dir);
-  }
-  else { console.log ('dir exists')}
-  busboy.on('file', function (fieldname, file, filename) {
-    fstream = fs.createWriteStream(__dirname + '/../media/' + filename);
-    file.pipe(fstream);
-    fstream.on('close', function(){
-      // console.log('file ' + filename + ' uploaded');
-      files.push(filename);
-    });
-  });
-
-  busboy.on('end', function(){console.log('END')});
-
-  busboy.on('finish', function(){
-      // console.log('finish, files uploaded ', files);
-      // res.redirect('back');
-  });
-  req.pipe(busboy);
-
-
-    // first attempt
-  // console.log('incoming file');
-  // const database = db.get();
+  // console.log(req.params.accession);
   // let fstream;
-  // req.pipe(req.busboy);
-  // req.busboy.on('file', function (fieldname, file, filename) {
-  //   console.log("Uploading: " + filename);
-  //   //Path where image will be uploaded
-  //   let saveTo = __dirname + '/../media/' + fieldname + '-' + filename + Date.now();
-  //   file.pipe(fs.createWriteStream(saveTo));
-  //   req.busboy.on('finish', function () {    
-  //     console.log("Upload Finished of " + filename);     
-  //     console.log(saveTo);         
+  // let files = [];
+  // let numfiles = 0,
+  // finished = false;
+  // const busboy = new Busboy({ headers: req.headers });
+  // // busboy.on('field', function(fieldname, val, fieldnameTruncated, valTruncated, encoding, mimetype) {
+  // //   console.log(val);
+  // // });
+  // const dir = __dirname + `/../media/${req.params.accession}`;
+  // console.log(dir);
+  // if (!fs.existsSync(dir)) {
+  //   console.log('making dir');
+  //   fs.mkdirSync(dir);
+  // } else { console.log('dir exists'); }
+  // busboy.on('file', function (fieldname, file, filename) {
+  //   ++numfiles;
+  //   fstream = fs.createWriteStream(__dirname + '/../media/' + filename);
+  //   file.pipe(fstream);
+  //   fstream.on('close', function(){
+  //     // console.log('file ' + filename + ' uploaded');
+  //     res.writeHead(200, { 'Connection': 'close', });
+  //     res.end('we done');
+  //     files.push(filename);
   //   });
-  //   console.log(file);
-  //   console.log(filename);
-  //   // res.writeHead(200, { 'Connection': 'close', });
-  //   // res.end('we done all files');
   // });
+
+  // busboy.on('end', function(){console.log('END')});
+
+  // busboy.on('finish', function(){
+  //     console.log('finish, files uploaded ', files);
+  //     // res.redirect('back');
+  // });
+  // req.pipe(busboy);
+
+  const busboy = new Busboy({ headers: req.headers });
+  let numfiles = 0;
+  let finished = false;
+  const dir = __dirname + `/../media/${req.params.accession}`;
+    console.log(dir);
+    if (!fs.existsSync(dir)) {
+      console.log('making dir');
+      fs.mkdirSync(dir);
+    } else { console.log('dir exists'); }
+  busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
+    console.log(encoding);
+    console.log(mimetype);
+    console.log('Uploading: ' + filename);
+    ++numfiles;
+    const fstream = fs.createWriteStream(dir + '/' + filename);
+    console.log(fileType(fstream));
+    fstream.on('finish', function() {
+      if (--numfiles === 0 && finished) {
+        res.writeHead(200, { 'Connection': 'close' });
+        res.end('');
+      }
+    });
+    file.pipe(fstream);
+  });
+  busboy.on('finish', () => {
+    finished = true;
+  });
+  return req.pipe(busboy);
 });
 
 // get one document by its accession number

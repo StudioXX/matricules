@@ -96,11 +96,11 @@ MongoClient.connect(url, (err, db) => {
     // )
 
     // create folders
-    db.collection('documents').find().forEach(function(doc) {
-      const number = doc.accession_number;
-      console.log(number);
-      fs.mkdirSync(`./server/public/files/${number}`);
-    });
+    // db.collection('documents').find().forEach(function(doc) {
+    //   const number = doc.accession_number;
+    //   console.log(number);
+    //   fs.mkdirSync(`./server/media/${number}`);
+    // });
 
     // split languages in description
     // db.collection('documents').find().forEach(function(doc) {
@@ -118,6 +118,15 @@ MongoClient.connect(url, (err, db) => {
     //     doc.notes = doc.notes.toString();
     //     db.collection('documents').save(doc);
     // });
+
+        // // create media fields
+    db.collection('documents').find().forEach(function(doc) {
+      doc.videos = [];
+      doc.photos = [];
+      doc.audio = [];
+      doc.otherfiles = [];
+      db.collection('documents').save(doc);
+    });
 
     // rename fields
   //   db.collection('documents').updateMany( {}, {$rename:{'field_content_description_value': 'description', 'field_sujet_value': 'sujet',
