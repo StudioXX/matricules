@@ -67,7 +67,7 @@ router.post('/media/:accession', (req, res, next) => {
   // req.pipe(busboy);
 
   const busboy = new Busboy({ headers: req.headers });
-  let photos = [];
+  const files = [1, 2, 3];
   let numfiles = 0;
   let finished = false;
   const dir = __dirname + `/../media/${req.params.accession}`;
@@ -77,15 +77,15 @@ router.post('/media/:accession', (req, res, next) => {
       fs.mkdirSync(dir);
     } else { console.log('dir exists'); }
   busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
-    console.log(encoding);
-    console.log(mimetype);
     console.log('Uploading: ' + filename);
     ++numfiles;
     const fstream = fs.createWriteStream(dir + '/' + filename);
-    console.log(fileType(fstream));
     fstream.on('finish', function() {
+      files.push(filename);
+      console.log(files + 'completed uploads');
       if (--numfiles === 0 && finished) {
-        res.writeHead(200, { 'Connection': 'close' });
+        res.writeHead(200, { Connection: 'close', });
+        // use this to send response text
         res.end('');
       }
     });

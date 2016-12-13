@@ -131,20 +131,40 @@ MongoClient.connect(url, (err, db) => {
   // '.zip' ]
 
     // create file lists
+    // const imgexts = ['.JPG', '.jpg', '.jpeg', '.gif', '.tif', '.png'];
+    // db.collection('documents').find().forEach(function(doc) {
+    //   const folderpath = `./server/media/${doc.accession_number}`;
+    //   let images = [];
+    //   fs.readdirSync(folderpath).map(function (file) {
+    //     if (imgexts.indexOf(path.extname(file)) > -1) {
+    //       // fs.unlink(`./server/media/${doc.accession_number}/${file}`);
+    //       // console.log(`./server/media/${doc.accession_number}/${file}`);
+    //       images.push(file);
+    //     }
+    //   });
+    //   doc.images = images;
+    //   db.collection('documents').save(doc);
+    // });
+
+    // do same for audio
     const imgexts = ['.JPG', '.jpg', '.jpeg', '.gif', '.tif', '.png'];
     db.collection('documents').find().forEach(function(doc) {
       const folderpath = `./server/media/${doc.accession_number}`;
-      let images = [];
+      let audio = [];
       fs.readdirSync(folderpath).map(function (file) {
-        if (imgexts.indexOf(path.extname(file)) > -1) {
+        if ((path.extname(file) === '.mp3') > -1) {
           // fs.unlink(`./server/media/${doc.accession_number}/${file}`);
           // console.log(`./server/media/${doc.accession_number}/${file}`);
-          images.push(file);
+          audio.push(file);
         }
       });
-      doc.images = images;
+      doc.audio = audio;
       db.collection('documents').save(doc);
     });
+
+
+
+
     // fix dates
     // db.collection('documents').find().forEach(function(doc) {
     //     doc.date = new Date(doc.date);

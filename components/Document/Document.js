@@ -4,6 +4,7 @@ import Head from 'next/head';
 import Link from 'next/link';
 import Button from '../UI/Button';
 import ImageGallery from './ImageGallery';
+import AudioGallery from './AudioGallery';
 
 class Document extends React.Component {
   constructor(props) {
@@ -24,6 +25,8 @@ class Document extends React.Component {
       sujetFrench: this.props.sujet_fr || '',
       support: this.props.support || '',
       title: this.props.title || '',
+      audio: this.props.audio || [],
+      video: this.props.video || [],
     };
   }
 
@@ -54,6 +57,8 @@ class Document extends React.Component {
         sujetFrench: _data.sujet_fr,
         support: _data.support,
         title: _data.title,
+        videos: _data.videos,
+        audio: _data.audio,
        }) },
       (err) => { console.log(err); }
       );
@@ -70,6 +75,7 @@ class Document extends React.Component {
     const language = this.props.language;
     const titlestring = (language === 'fr') ? 'Titre forgé' : 'Formed Title';
     const images = <div>images: <ImageGallery accession={this.state.accession_number} images={this.state.images} /></div>;
+    const audios = <div>audio: <AudioGallery accession={this.state.accession_number} audio={this.state.audio} /></div>;
 
     return (<div>
       <Head>
@@ -117,6 +123,7 @@ class Document extends React.Component {
       <div>
         {editlink}
       </div>
+      {(this.state.audio.length > 0) ? audios : null}
       {(this.state.images.length > 0) ? images : null}
     </div>
     );
