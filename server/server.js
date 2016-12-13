@@ -34,6 +34,7 @@ db.connect((err) => {
 const apiRouter = express.Router();
 
 apiRouter.use('/documents', require('./documents/documents'));
+apiRouter.use('/document', require('./document/document'));
 
 apiRouter.use((req, res, next) => {
   res.setHeader('Content-Type', 'application/json');
@@ -43,9 +44,9 @@ apiRouter.use((req, res, next) => {
 // connect our api router to our main app
 app.use('/api', apiRouter);
 
-app.all('/api', function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Headers", "X-Requested-With, Content-Type");
+app.all('/api', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type');
   next();
  });
 

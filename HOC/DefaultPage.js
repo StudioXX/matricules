@@ -1,6 +1,7 @@
 import React from 'react';
 import css from 'next/css';
 import axios from 'axios';
+import fetch from 'isomorphic-fetch';
 import Head from 'next/head';
 import Header from '../components/Header/Header';
 import { getUserFromCookie, getUserFromLocalStorage } from '../utils/auth';
@@ -41,10 +42,10 @@ export default Page => class DefaultPage extends React.Component {
       }
     }
     const loggedUser = process.browser ? getUserFromLocalStorage() : getUserFromCookie(ctx.req);
-    console.log(`loggedUser = ${loggedUser}`)
+    console.log(`loggedUser = ${loggedUser}`);
     // only make this call if we're on a documents page'
-    if (path.indexOf('/documents/') === 0 || path.indexOf('/edit/') === 0) {
-      const url = `http://localhost:4000/api/documents/${path.split('/')[2]}`;
+    if (path.indexOf('/document/') === 0 || path.indexOf('/edit/') === 0) {
+      const url = `http://localhost:4000/api/document/${path.split('/')[2]}`;
       return new Promise((resolve, reject) => (
         axios.get(url)
           .then(response => (resolve(response.data)))
@@ -53,21 +54,29 @@ export default Page => class DefaultPage extends React.Component {
       .then(
       (_data) => { return { ..._data, path, loggedUser, language, }; },
       (err) => { return { doc: [], error: err, path: path, }; }
-      );} 
+      );}
       // else if (path.indexOf('/documents') === 0) {
     //   // here
-    // } 
+    // }
     else {
       return { path, loggedUser, language, };
     }
-  }
 
-  constructor(props) {
-    super(props);
-    // this.state = {
-    //   loggedUser: false,
-    //   isAuthenticated: false,
-    // };
+    // if (path.indexOf('/document/') === 0 || path.indexOf('/edit/') === 0) {
+    //   const url = `http://localhost:4000/api/documents/${path.split('/')[2]}`;
+    //   console.log(url);
+    //   fetch(url, {
+    //     headers: {
+    //       'Content-type': 'application/json',
+    //     },
+    //   }).then((response) => {
+    //     return response.json();
+    //     // return { ...response, path, loggedUser, language }
+    //   }).then((_data) => {
+    //     return { ..._data, path, loggedUser, language }
+    // });
+    // }
+     // end getInitialProps
   }
 
   render() {
@@ -81,7 +90,6 @@ export default Page => class DefaultPage extends React.Component {
         <div className={styles.app}>
           <div className={styles.main}>
             <Header {...this.props} />
-            {this.props.loggedUser ? 'logged in' : 'not logged in'}
             <Page {...this.props} />
           </div>
         </div>

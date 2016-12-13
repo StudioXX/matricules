@@ -77,7 +77,7 @@ class EditDocument extends React.Component {
       }
     } else {
       console.log('rednered by client');
-      const url = `http://localhost:4000/api/documents/${this.props.path.split('/')[2]}`;
+      const url = `http://localhost:4000/api/document/${this.props.path.split('/')[2]}`;
       console.log(url);
       return new Promise((resolve, reject) => (
         axios.get(url)
@@ -240,7 +240,7 @@ class EditDocument extends React.Component {
   }
 
   render() {
-    const readlink = `../documents/${this.state.accession_number}`;
+    const readlink = `../document/${this.state.accession_number}`;
     const mediauploadlink = `http://localhost:4000/api/documents/media/${this.state.accession_number}`;
     // TODO : create keywords db collection and pull from it
     return (<div>

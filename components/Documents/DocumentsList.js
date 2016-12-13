@@ -14,7 +14,7 @@ class DocumentsList extends React.Component {
     } else {
       list = (<ul>
         {docs.map((doc, i) => {
-          return <li key={i}><Link href={`/documents/${doc.accession_number}`}>{doc.accession_number} || {doc.title} </Link>{doc.title}</li>;
+          return <li key={i}><Link href={`/document/${doc.accession_number}`}>{doc.accession_number} || {doc.title} </Link>{doc.title}</li>;
         })}
       </ul>);
     }

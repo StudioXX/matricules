@@ -97,16 +97,59 @@ MongoClient.connect(url, (err, db) => {
 
     // create folders
     // db.collection('documents').find().forEach(function(doc) {
-    //   const number = doc.accession_number;
+    //   const filespath = doc.accession_number;
     //   console.log(number);
     //   fs.mkdirSync(`./server/media/${number}`);
     // });
 
-    // fix dates
+  // FILE TYPES
+  //   [ '.mpg',
+  // '.JPG',
+  // '.jpg',
+  // '.mp3',
+  // '',
+  // '.jpeg',
+  // '.gif',
+  // '.sb-b08a6466-3VgJYt',
+  // '.sb-b08a6466-v1OkyM',
+  // '.txt',
+  // '.sb-4c46bb26-MHQE65',
+  // '.sb-4c46bb26-NYkQSZ',
+  // '.sb-4c46bb26-tF4w57',
+  // '.sb-4c46bb26-OuAjS4',
+  // '.tif',
+  // '.pdf',
+  // '.mp4',
+  // '.MOV',
+  // '.eps',
+  // '.ai',
+  // '.indd',
+  // '.png',
+  // '.docx',
+  // '.DS_Store',
+  // '.CR2',
+  // '.zip' ]
+
+    // create file lists
+    const imgexts = ['.JPG', '.jpg', '.jpeg', '.gif', '.tif', '.png'];
     db.collection('documents').find().forEach(function(doc) {
-        doc.date = new Date(doc.date);
-        db.collection('documents').save(doc);
+      const folderpath = `./server/media/${doc.accession_number}`;
+      let images = [];
+      fs.readdirSync(folderpath).map(function (file) {
+        if (imgexts.indexOf(path.extname(file)) > -1) {
+          // fs.unlink(`./server/media/${doc.accession_number}/${file}`);
+          // console.log(`./server/media/${doc.accession_number}/${file}`);
+          images.push(file);
+        }
+      });
+      doc.images = images;
+      db.collection('documents').save(doc);
     });
+    // fix dates
+    // db.collection('documents').find().forEach(function(doc) {
+    //     doc.date = new Date(doc.date);
+    //     db.collection('documents').save(doc);
+    // });
 
     // split languages in description
     // db.collection('documents').find().forEach(function(doc) {

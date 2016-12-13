@@ -1,5 +1,4 @@
-import React from 'react';
 import defaultPage from '../../HOC/DefaultPage';
-import Document from '../../components/Document/Document';
+import Documents from '../../components/Documents/Documents';
 
-export default defaultPage(Document);
+export default defaultPage(Documents);

@@ -3,6 +3,7 @@ import axios from 'axios';
 import Head from 'next/head';
 import Link from 'next/link';
 import Button from '../UI/Button';
+import ImageGallery from './ImageGallery';
 
 class Document extends React.Component {
   constructor(props) {
@@ -14,6 +15,7 @@ class Document extends React.Component {
       description: this.props.description || '',
       descriptionFrench: this.props.description_fr || '',
       keywords: this.props.keywords || [],
+      images: this.props.images || [],
       links: this.props.links || [],
       medium: this.props.medium || '',
       notes: this.props.notes || '',
@@ -29,7 +31,7 @@ class Document extends React.Component {
     this.mounted = true;
     if (!this.props._data) {
       console.log('rednered by client');
-      const url = `http://localhost:4000/api/documents/${this.props.path.split('/')[2]}`;
+      const url = `http://localhost:4000/api/document/${this.props.path.split('/')[2]}`;
       return new Promise((resolve, reject) => (
         axios.get(url)
           .then(response => (resolve(response.data)))
@@ -43,6 +45,7 @@ class Document extends React.Component {
         description: _data.description,
         descriptionFrench: _data.description_fr,
         keywords: _data.keywords,
+        images: _data.images,
         links: _data.links,
         medium: _data.medium,
         notes: _data.notes,
@@ -66,6 +69,8 @@ class Document extends React.Component {
     const editlink = (this.props.loggedUser) ? <Button text="edit" link={`../edit/${this.state.accession_number}`} /> : null;
     const language = this.props.language;
     const titlestring = (language === 'fr') ? 'Titre forgé' : 'Formed Title';
+    const images = <div>images: <ImageGallery accession={this.state.accession_number} images={this.state.images} /></div>;
+
     return (<div>
       <Head>
         <title>ffff</title>
@@ -74,37 +79,37 @@ class Document extends React.Component {
         <meta name="description" content={this.state.description} />
       </Head>
       <div>
-      accession number: {this.state.accession_number}
+        {(language === 'fr') ? 'Numéro d\'accession' : 'Accession Number' }: {this.state.accession_number}
       </div>
       <div>
         {(language === 'fr') ? 'Categorie' : 'Category' }: {this.state.categorie}
       </div>
       <div>
-      date: {this.state.date}
+      Date: {this.state.date}
       </div>
       <div>
-      description: {(language === 'fr' && this.state.descriptionFrench !== '') ? this.state.descriptionFrench : this.state.description }
+      Description: {(language === 'fr' && this.state.descriptionFrench !== '') ? this.state.descriptionFrench : this.state.description }
       </div>
       <div>
-      keywords: {this.state.keywords}
+      Keywords: {this.state.keywords}
       </div>
       <div>
-      links:
+      Links:
       </div>
       <div>
-      medium: {this.state.medium}
+        {(language === 'fr') ? 'Médium' : 'Medium' }: {this.state.medium}
       </div>
       <div>
-      notes: {this.state.notes}
+      Notes: {this.state.notes}
       </div>
       <div>
-      physical description: {this.state.physical_description}
+        {(language === 'fr') ? 'Description physique' : 'Physical Description' }: {this.state.physical_description}
       </div>
       <div>
         {(language === 'fr') ? 'Sujet' : 'Subject' }: {(language === 'fr' && this.state.sujetFrench !== '') ? this.state.sujetFrench : this.state.sujet }
       </div>
       <div>
-      support: {this.state.support}
+      Support: {this.state.support}
       </div>
       <div>
         {titlestring}: {this.state.title}
@@ -112,6 +117,7 @@ class Document extends React.Component {
       <div>
         {editlink}
       </div>
+      {(this.state.images.length > 0) ? images : null}
     </div>
     );
   }
