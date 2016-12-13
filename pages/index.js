@@ -1,6 +1,5 @@
 import React from 'react';
 import defaultPage from '../HOC/DefaultPage';
-import Button from '../components/UI/Button';
 
 const SuperSecretDiv = () => (
   <div>
@@ -16,7 +15,6 @@ class Index extends React.Component {
         <br />
         {this.props.loggedUser && <SuperSecretDiv />}
         <br />
-        <Button text="Add Document" link="/add" />
       </div>
     );
   }

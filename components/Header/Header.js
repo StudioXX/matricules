@@ -3,6 +3,7 @@ import css from 'next/css';
 import Link from 'next/link';
 import Cookie from 'js-cookie';
 import { setToken, unsetToken } from '../../utils/auth';
+import Button from '../UI/Button';
 
 const styles = {
   menu: css({
@@ -43,6 +44,7 @@ class Header extends React.Component {
   render() {
     const logButton = this.props.loggedUser ? <button onClick={this.handleLogout} className={'button-primary'}>Logout</button> : <Link href="/login"><button className={'button-primary'}>Login</button></Link>;
     const langButton = this.props.language === 'fr' ? <button onClick={this.changeLang} className={'button-primary'}>English</button> : <button onClick={this.changeLang} className={'button-primary'}>French</button>;
+    const addButton = this.props.loggedUser ? <Button text="Add Document" link="/add" /> : null;
     return (
       <div className={styles.menu}>
         <span className={styles.menuitem}><Link href="/">studio xx matricules app</Link></span>
@@ -50,6 +52,7 @@ class Header extends React.Component {
         <span className={styles.menuitem}><Link href="/about">about</Link></span>
         {logButton}
         {langButton}
+        {addButton}
       </div>
     );
   }
