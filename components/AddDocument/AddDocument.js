@@ -10,11 +10,15 @@ import LinkListEdit from '../UI/LinkListEdit';
 import MediumPicker from '../UI/MediumPicker';
 import SupportPicker from '../UI/SupportPicker';
 import Button from '../UI/Button';
+import XHRUploader from '../UI/XHRUploader';
+import ImageList from '..//EditDocument/ImageList';
+import AudioList from '..//EditDocument/AudioList';
 
 class EditDocument extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      _id: '',
       accession_number: '',
       categorie: '',
       date: moment(),
@@ -29,13 +33,17 @@ class EditDocument extends React.Component {
       sujetFrench: '',
       support: '',
       title: '',
+      images: [],
+      audio: [],
+      video: [],
     };
     this.handleAccession = this.handleAccession.bind(this);
     this.handleCategorie = this.handleCategorie.bind(this);
     this.handleDate = this.handleDate.bind(this);
     this.handleDescription = this.handleDescription.bind(this);
     this.handleDescriptionFrench = this.handleDescriptionFrench.bind(this);
-    this.handleTag = this.handleTag.bind(this);
+    this.handleTagAdd = this.handleTagAdd.bind(this);
+    this.handleTagDelete = this.handleTagDelete.bind(this);
     this.handleLinksURL = this.handleLinksURL.bind(this);
     this.handleLinksDesc = this.handleLinksDesc.bind(this);
     this.handleAddLink = this.handleAddLink.bind(this);
@@ -45,6 +53,9 @@ class EditDocument extends React.Component {
     this.handleSujetFrench = this.handleSujetFrench.bind(this);
     this.handleTitle = this.handleTitle.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleMediaAdd = this.handleMediaAdd.bind(this);
+    this.handleImgDelete = this.handleImgDelete.bind(this);
+    this.handleAudioDelete = this.handleAudioDelete.bind(this);
   }
 
   handleAccession(event) {
@@ -67,8 +78,16 @@ class EditDocument extends React.Component {
     this.setState({ descriptionFrench: event.target.value });
   }
 
-  handleTag(value) {
-    this.setState({ keywords: value });
+  handleTagAdd(value) {
+    const tags = this.state.keywords;
+    tags.push(value);
+    this.setState({ keywords: tags });
+  }
+
+  handleTagDelete(i) {
+    let tags = this.state.keywords;
+    tags.splice(i, 1);
+    this.setState({keywords: tags});
   }
 
   handleLinksURL(i, event) {
@@ -118,8 +137,8 @@ class EditDocument extends React.Component {
   }
 
   handleSubmit() {
-    console.log('submit');
-    const url = `http://localhost:4000/api/documents/${this.state.accession_number}`;
+    // in AddDocument, we send post request
+    const url = `http://localhost:4000/api/document`;
     axios.post(url, {
       accession_number: this.state.accession_number,
       categorie: this.state.categorie,
@@ -135,18 +154,55 @@ class EditDocument extends React.Component {
       sujet_fr: this.state.sujetFrench,
       support: this.state.support,
       title: this.state.title,
+      images: this.state.images,
+      audio: this.state.audio,
     })
-    .then(function (response) {
+    .then((response) => {
       console.log(response);
+      const viewurl = `../document/${this.state.accession_number}`;
+      this.props.url.pushTo(viewurl);
     })
-    .catch(function (error) {
+    .catch((error) => {
       console.log(error);
     });
   }
 
+
+// this handler is called when XHR returns a response, we use this to update the UI to include the new images
+  handleMediaAdd(file) {
+    if (file.type.indexOf('image') > -1) {
+      console.log('this is an image');
+      const imgs = this.state.images;
+      imgs.push(file.name);
+      this.setState({ images: imgs, });
+    } else if (file.type.indexOf('audio') > -1) {
+      console.log('this is an audio');
+      const audios = this.state.audio;
+      audios.push(file.name);
+      this.setState({ audio: audios, });
+    }
+  }
+
+  handleImgDelete(key) {
+    console.log('deleting img' + key);
+    const imgs = this.state.images;
+    imgs.splice(key, 1);
+    this.setState({ images: imgs, });
+  }
+
+  handleAudioDelete(key) {
+    console.log('deleting audio' + key);
+    const audios = this.state.audio;
+    audios.splice(key, 1);
+    this.setState({ audio: audios, });
+  }
+
   render() {
+    const readlink = `../document/${this.state.accession_number}`;
+    const mediauploadlink = `http://localhost:4000/api/document/media/${this.state.accession_number}`;
     // TODO : create keywords db collection and pull from it
     return (<div>
+      <Button text="Back" link={readlink} />
       <div>
       Accession Number:
       <TextInput handler={this.handleAccession} text={this.state.accession_number} />
@@ -170,7 +226,7 @@ class EditDocument extends React.Component {
       </div>
       <div>
       keywords:
-      <TagPicker keywords={this.state.keywords} handler={this.handleTag} />
+      <TagPicker keywords={this.state.keywords} handleAdd={this.handleTagAdd} handleDelete={this.handleTagDelete} />
       </div>
       <div>
       links:
@@ -200,6 +256,22 @@ class EditDocument extends React.Component {
       </div>
       <div>
       title: <TextInput handler={this.handleTitle} text={this.state.title} />
+      </div>
+      <div>
+        <XHRUploader
+        url={mediauploadlink}
+        auto
+        maxFiles={25}
+        accession_number={this.state.accession_number}
+        handleMediaAdd={this.handleMediaAdd}
+      />
+      </div>
+      <div>
+        <ImageList handleImgDelete={this.handleImgDelete} accession={this.state.accession_number} images={this.state.images} />
+      </div>
+      <div>
+        {(this.state.audio.length > 0) ? <AudioList handleAudioDelete={this.handleAudioDelete} accession={this.state.accession_number} audio={this.state.audio} />
+        : null }
       </div>
       <div>
         <button onClick={this.handleSubmit} className={'button-primary'}>Save</button>

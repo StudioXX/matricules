@@ -56,6 +56,7 @@ class EditDocument extends React.Component {
     this.handleMediaAdd = this.handleMediaAdd.bind(this);
     this.handleImgDelete = this.handleImgDelete.bind(this);
     this.handleAudioDelete = this.handleAudioDelete.bind(this);
+    this.handleDocumentDelete = this.handleDocumentDelete.bind(this);
   }
 
   componentDidMount() {
@@ -202,8 +203,11 @@ class EditDocument extends React.Component {
   }
 
   handleSubmit() {
+    // in EditDocument, we send PUT request by mongodb id
+    // in case of duplicate accession numbers
+    // or the need to change accession numbers
     const url = `http://localhost:4000/api/document/${this.state._id}`;
-    axios.post(url, {
+    axios.put(url, {
       accession_number: this.state.accession_number,
       categorie: this.state.categorie,
       date: this.state.date.toDate(),
@@ -218,6 +222,8 @@ class EditDocument extends React.Component {
       sujet_fr: this.state.sujetFrench,
       support: this.state.support,
       title: this.state.title,
+      images: this.state.images,
+      audio: this.state.audio,
     })
     .then((response) => {
       console.log(response);
@@ -259,12 +265,27 @@ class EditDocument extends React.Component {
     this.setState({ audio: audios, });
   }
 
+  handleDocumentDelete() {
+    const url = `http://localhost:4000/api/document/${this.state._id}`;
+    axios.delete(url, {
+    })
+    .then((response) => {
+      console.log(response);
+      const viewurl = '../';
+      this.props.url.pushTo(viewurl);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
   render() {
     const readlink = `../document/${this.state.accession_number}`;
     const mediauploadlink = `http://localhost:4000/api/document/media/${this.state.accession_number}`;
     // TODO : create keywords db collection and pull from it
     return (<div>
       <Button text="Back" link={readlink} />
+      <button onClick={this.handleDocumentDelete}>Delete</button>
       <div>
       Accession Number:
       <TextInput handler={this.handleAccession} text={this.state.accession_number} />

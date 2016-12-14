@@ -147,12 +147,12 @@ MongoClient.connect(url, (err, db) => {
     // });
 
     // do same for audio
-    const imgexts = ['.JPG', '.jpg', '.jpeg', '.gif', '.tif', '.png'];
+    // const imgexts = ['.JPG', '.jpg', '.jpeg', '.gif', '.tif', '.png'];
     db.collection('documents').find().forEach(function(doc) {
       const folderpath = `./server/media/${doc.accession_number}`;
       let audio = [];
       fs.readdirSync(folderpath).map(function (file) {
-        if ((path.extname(file) === '.mp3') > -1) {
+        if ((path.extname(file) === '.mp3')) {
           // fs.unlink(`./server/media/${doc.accession_number}/${file}`);
           // console.log(`./server/media/${doc.accession_number}/${file}`);
           audio.push(file);
