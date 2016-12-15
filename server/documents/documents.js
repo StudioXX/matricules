@@ -7,6 +7,7 @@ router.get('/', (req, res, next) => { // eslint-disable-line no-unused-vars
   const database = db.get();
   const year = req.param('year');
   const keyword = req.param('keyword');
+  const searchterm = req.param('searchterm');
   const query = {};
   if (year !== 'all') {
     const start = new Date(Date.UTC(year, 0, 1, 0, 0, 0));
@@ -15,8 +16,14 @@ router.get('/', (req, res, next) => { // eslint-disable-line no-unused-vars
     console.log(end);
     query.date = { $gte: start, $lt: end, };
   }
-  if (keyword !== 'all') {
+  if (keyword !== '') {
     query.keywords = keyword;
+  }
+  if (searchterm !== '') {
+    query.$text = {
+      $search: searchterm,
+      $caseSensitive: false,
+    };
   }
   database.collection('documents').find(query).toArray((err, result) => {
     if (err) return console.log(err);

@@ -1,52 +1,24 @@
 const express = require('express');
-const fs = require('fs-extra'); //File System - for file manipulation
-const fileType = require('file-type');
-const Busboy = require('busboy'); //middleware for form/file upload
+const fs = require('fs-extra'); // File System - for file manipulation
+const Busboy = require('busboy'); // middleware for form/file upload
 const ObjectId = require('mongodb').ObjectID;
 const db = require('../db');
 
 const router = express.Router();
-// get all documents
-router.get('/', (req, res, next) => { // eslint-disable-line no-unused-vars
-  const database = db.get();
-  const year = req.param('year');
-  const keyword = req.param('keyword');
-  const query = {};
-  if (year !== 'all') {
-    const start = new Date(Date.UTC(year, 0, 1, 0, 0, 0));
-    const end = new Date(Date.UTC(year, 11, 31, 23, 59, 59));
-    console.log(start);
-    console.log(end);
-    query.date = { $gte: start, $lt: end, };
-  }
-  if (keyword !== 'all') {
-    query.keywords = keyword;
-  }
-  database.collection('documents').find(query).toArray((err, result) => {
-    if (err) return console.log(err);
-    res.send(result);
-  });
-});
 
 // post media to server and return URL
 router.post('/media/:accession', (req, res, next) => {
   const busboy = new Busboy({ headers: req.headers });
-  const files = [1, 2, 3];
   let numfiles = 0;
   let finished = false;
   const dir = __dirname + `/../media/${req.params.accession}`;
-    console.log(dir);
-    if (!fs.existsSync(dir)) {
-      console.log('making dir');
-      fs.mkdirSync(dir);
-    } else { console.log('dir exists'); }
-  busboy.on('file', function (fieldname, file, filename, encoding, mimetype) {
-    console.log('Uploading: ' + filename);
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir);
+  } else { console.log('dir exists'); }
+  busboy.on('file', (fieldname, file, filename, encoding, mimetype) => {
     ++numfiles;
     const fstream = fs.createWriteStream(dir + '/' + filename);
-    fstream.on('finish', function() {
-      files.push(filename);
-      console.log(files + 'completed uploads');
+    fstream.on('finish', () => {
       if (--numfiles === 0 && finished) {
         res.writeHead(200, { Connection: 'close', });
         // use this to send response text

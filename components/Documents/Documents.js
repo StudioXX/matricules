@@ -3,16 +3,19 @@ import React from 'react';
 import DocumentsList from './DocumentsList';
 import YearPicker from './YearPicker';
 import KeywordPicker from './KeywordPicker';
+import SearchTermPicker from './SearchTermPicker';
 
 class Documents extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      year: 'all',
-      keyword: 'all',
+      year: '2016',
+      keyword: '',
       doclist: [],
+      searchterm: '',
     };
     this.handleYearChange = this.handleYearChange.bind(this);
+    this.handleSearchChange = this.handleSearchChange.bind(this);
     this.handleKeywordChange = this.handleKeywordChange.bind(this);
     this.updateFilter = this.updateFilter.bind(this);
   }
@@ -31,6 +34,7 @@ class Documents extends React.Component {
     let queries = '';
     queries += `year=${this.state.year}`;
     queries += `&keyword=${this.state.keyword}`;
+    queries += `&searchterm=${this.state.searchterm}`;
     fetch(`http://localhost:4000/api/documents?${queries}`, {
       headers: {
         'Content-type': 'application/json',
@@ -45,7 +49,7 @@ class Documents extends React.Component {
     });
   }
 
-// these two functions require callbacks since setState is  asynchronous
+// these two functions require callbacks since setState is asynchronous
   handleYearChange(yr) {
     const year = yr.toString();
     this.setState({
@@ -59,10 +63,17 @@ class Documents extends React.Component {
     }, () => this.updateFilter());
   }
 
+  handleSearchChange(term) {
+    this.setState({
+      searchterm: term,
+    }, () => this.updateFilter());
+  }
+
   render() {
     return (<div>
+      <SearchTermPicker handleSearchChange={this.handleSearchChange} />
       <KeywordPicker handleKeywordChange={this.handleKeywordChange} />
-      <YearPicker handleYearChange={this.handleYearChange} />
+      <YearPicker year={this.state.year} handleYearChange={this.handleYearChange} />
       <DocumentsList doclist={this.state.doclist} />
     </div>);
   }

@@ -11,7 +11,7 @@ class AudioGallery extends React.Component {
       <div>
         {this.props.audio.map((file, i) => {
           return (
-            <div>
+            <div key={i}>
               <audio id="player" controls>
                 <source
                   src={`http://localhost:4000/${this.props.accession}/${file}`}

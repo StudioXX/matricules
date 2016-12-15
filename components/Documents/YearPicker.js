@@ -24,7 +24,7 @@ class YearPicker extends React.Component {
       <div>
         {years.map((year) => {
           return (
-            <span onClick={() => this.props.handleYearChange(year)} style={{ padding: '5px 5px 5px 5px', }} key={year}>
+            <span onClick={() => this.props.handleYearChange(year)} style={{ padding: '5px 5px 5px 5px', backgroundColor: this.props.year === year.toString() ? 'yellow' : 'white', }} key={year}>
               {year}
             </span>
           );
