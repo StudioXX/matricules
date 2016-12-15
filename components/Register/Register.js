@@ -1,7 +1,7 @@
 import React from 'react';
-import { setToken, unsetToken } from '../../utils/auth';
+import axios from 'axios';
 
-class Login extends React.Component {
+class Register extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -10,7 +10,7 @@ class Login extends React.Component {
     };
     this.handleUser = this.handleUser.bind(this);
     this.handlePass = this.handlePass.bind(this);
-    this.handleLogin = this.handleLogin.bind(this);
+    this.handleRegister = this.handleRegister.bind(this);
   }
 
   handleUser(event) {
@@ -25,15 +25,23 @@ class Login extends React.Component {
     });
   }
 
-  handleLogin(event) {
-    // login here
-    setToken('123');
-    this.props.url.pushTo('/');
+  handleRegister(event) {
+    axios.get('http://localhost:4000/auth/register', {
+      username: this.state.userfield,
+      password: this.state.passfield,
+    })
+    .then((response) => {
+      console.log(response);
+      // this.props.url.pushTo(viewurl);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
   render() {
     return (
       <div>
-      <h1>Login</h1>
+      <h1>Register</h1>
         <div>
           <input type="text" onChange={this.handleUser} value={this.state.userfield} placeholder="username" />
         </div>
@@ -41,11 +49,11 @@ class Login extends React.Component {
           <input type="text" onChange={this.handlePass} value={this.state.passfield} placeholder="password" />
         </div>
         <div>
-          <button onClick={this.handleLogin} className={'button-primary'}>Login</button>
+          <button onClick={this.handleRegister} className={'button-primary'}>Register</button>
         </div>
       </div>
     );
   }
 }
 
-export default Login;
+export default Register;

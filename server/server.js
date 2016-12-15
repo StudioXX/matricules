@@ -42,4 +42,22 @@ app.all('/api', (req, res, next) => {
   next();
  });
 
+ // handle auth router
+const authRouter = express.Router();
+
+authRouter.use('/register', require('./auth/register'));
+
+apiRouter.use((req, res, next) => {
+  res.setHeader('Content-Type', 'application/json');
+  next();
+});
+
+app.use('/auth', authRouter);
+app.all('/auth', (req, res, next) => {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type');
+  next();
+ });
+
+
 module.exports = { app, server, };
