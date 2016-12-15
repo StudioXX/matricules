@@ -4,7 +4,8 @@ const path = require('path');
 const cors = require('cors');
 const logger = require('morgan');
 const config = require('../config/config');
-const db = require('./db');
+const secret = require('../config/secret');
+const db = require('./db').connect(secret.mongo);
 
 const app = express();
 const server = require('http').Server(app);
@@ -20,15 +21,6 @@ if (config.env === 'development') {
 } else {
   app.use(logger(config.morgan_log_level));
 }
-
-// connect to db
-db.connect((err) => {
-  if (err) {
-    console.log(err);
-  } else {
-    console.log(`Connected to db`);
-  }
-});
 
 // handle API Router
 const apiRouter = express.Router();

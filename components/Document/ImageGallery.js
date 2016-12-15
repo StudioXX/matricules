@@ -18,7 +18,7 @@ class ImageGallery extends React.Component {
       <div>
         {this.props.images.map((image, i) => {
           return (
-            <img className={styles.galleryimage} alt={image} src={`http://localhost:4000/${this.props.accession}/${image}`} />
+            <img key={i} className={styles.galleryimage} alt={image} src={`http://localhost:4000/${this.props.accession}/${image}`} />
           );
         })}
       </div>

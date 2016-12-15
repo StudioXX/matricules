@@ -1,8 +1,7 @@
 const express = require('express');
 const fs = require('fs-extra'); // File System - for file manipulation
 const Busboy = require('busboy'); // middleware for form/file upload
-const ObjectId = require('mongodb').ObjectID;
-const db = require('../db');
+const Document = require('../models/documents-model.js');
 
 const router = express.Router();
 
@@ -35,86 +34,45 @@ router.post('/media/:accession', (req, res, next) => {
 
 // get one document by its accession number
 router.get('/:accession', (req, res, next) => { // eslint-disable-line no-unused-vars
-  const database = db.get();
-  const query = { 'accession_number': req.params.accession, };
-  database.collection('documents').findOne(query, (err, result) => {
-    if (err) { return console.log(err); }
-    res.send(result);
+  Document.readOne(req.params.accession)
+  .then((doc) => {
+    res.json(doc);
+  })
+  .catch((err) => {
+    next(err);
   });
 });
 
 // edit one document by its id
 router.put('/:id', (req, res, next) => { // eslint-disable-line no-unused-vars
-  const database = db.get();
-  console.log(req.params.id);
-  database.collection('documents').findOneAndUpdate({ "_id": ObjectId(req.params.id), }, {
-    $set: {
-      accession_number: req.body.accession_number,
-      keywords: req.body.keywords,
-      medium: req.body.medium,
-      date: new Date(req.body.date),
-      categorie: req.body.categorie,
-      support: req.body.support,
-      links: req.body.links,
-      notes: req.body.notes,
-      title: req.body.title,
-      description: req.body.description,
-      sujet: req.body.sujet,
-      physical_description: req.body.physical_description,
-      description_fr: req.body.description_fr,
-      sujet_fr: req.body.sujet_fr,
-      audio: req.body.audio,
-      images: req.body.images,
-    },
-  }, {
-    sort: { _id: -1 },
-    upsert: true,
-  }, (err, result) => {
-    if (err) return res.send(err);
-    res.send(result);
+  Document.updateById(req.params.id, req.body)
+  .then((doc) => {
+    res.json(doc);
+  })
+  .catch((err) => {
+    next(err);
   });
 });
 
 // delete one document by its id
 router.delete('/:id', (req, res, next) => { // eslint-disable-line no-unused-vars
-  const database = db.get();
-  console.log(req.params.id);
-  database.collection('documents').remove({ _id: ObjectId(req.params.id), }, {
-    sort: { _id: -1 },
-    upsert: true,
-  }, (err, result) => {
-    if (err) return res.send(err);
-    res.send(result);
+  Document.deleteById(req.params.id)
+  .then((doc) => {
+    res.json(doc);
+  })
+  .catch((err) => {
+    next(err);
   });
 });
 
 // create one
 router.post('/', (req, res, next) => { // eslint-disable-line no-unused-vars
-  const database = db.get();
-  console.log(req.body);
-  database.collection('documents').insert({
-    accession_number: req.body.accession_number,
-    keywords: req.body.keywords,
-    medium: req.body.medium,
-    date: new Date(req.body.date),
-    categorie: req.body.categorie,
-    support: req.body.support,
-    links: req.body.links,
-    notes: req.body.notes,
-    title: req.body.title,
-    description: req.body.description,
-    sujet: req.body.sujet,
-    physical_description: req.body.physical_description,
-    description_fr: req.body.description_fr,
-    sujet_fr: req.body.sujet_fr,
-    audio: req.body.audio,
-    images: req.body.images,
-  }, {
-    sort: { _id: -1 },
-    upsert: true,
-  }, (err, result) => {
-    if (err) return res.send(err);
-    res.send(result);
+  Document.createOne(req.body)
+  .then((doc) => {
+    res.json(doc);
+  })
+  .catch((err) => {
+    next(err);
   });
 });
 

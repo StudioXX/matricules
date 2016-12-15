@@ -4,20 +4,76 @@ mongoose.Promise = require('bluebird');
 
 const Schema = mongoose.Schema;
 const documentSchema = new Schema({
-  name: {
+  accession_number: {
     type: String,
     required: true,
   },
-  'background-image': {
+  keywords: {
+    type: Array,
+    required: false,
+  },
+  medium: {
     type: String,
     required: true,
   },
-  'button-link': {
+  date: {
+    type: Date,
+    required: true,
+  },
+  categorie: {
     type: String,
     required: true,
   },
-  'button-css': {
+  support: {
     type: String,
+    required: false,
+  },
+  links: {
+    type: Array,
+    required: false,
+  },
+  notes: {
+    type: String,
+    required: false,
+  },
+  title: {
+    type: String,
+    required: false,
+  },
+  description: {
+    type: String,
+    required: false,
+  },
+  description_fr: {
+    type: String,
+    required: false,
+  },
+  sujet_fr: {
+    type: String,
+    required: false,
+  },
+  sujet: {
+    type: String,
+    required: false,
+  },
+  physical_description: {
+    type: String,
+    required: false,
+  },
+  videos: {
+    type: Array,
+    required: false,
+  },
+  images: {
+    type: Array,
+    required: false,
+  },
+  audio: {
+    type: Array,
+    required: false,
+  },
+  otherfiles: {
+    type: Array,
     required: false,
   },
 });
@@ -27,33 +83,33 @@ const DocumentModel = db.get().model('Document', documentSchema);
 
 module.exports = {
 
-  // create an a shop item object
+  // create an a document item object
   createOne: (properties) => {
-    const model = new ShopModel(properties);
+    const model = new DocumentModel(properties);
     return model.save();
   },
 
-  // return one shop item by id
-  readOne: (id) => {
-    return ShopModel.findOne({
-      _id: id,
+  // return one document item by accession_number
+  readOne: (accession) => {
+    return DocumentModel.findOne({
+      accession_number: accession,
     }).exec();
   },
 
-  // return all shop items in an array
-  readAll: () => {
-    return ShopModel.find({}).exec();
+  // return all document items in an array
+  readSelect: (properties) => {
+      console.log('read select');
+    return DocumentModel.find(properties).exec();
   },
 
   // find & delete from id
   deleteById: (id) => {
-    return ShopModel.findByIdAndRemove(id).exec();
+    return DocumentModel.findByIdAndRemove(id).exec();
   },
 
   // retrieve one by id, then update other fields
   updateById: (id, properties) => {
-    debug(properties);
-    return ShopModel.findOneAndUpdate({
+    return DocumentModel.findOneAndUpdate({
       _id: id,
     }, {
       $set: properties,

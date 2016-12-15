@@ -1,16 +1,15 @@
 // Database config
-
-const MongoClient = require('mongodb').MongoClient;
-const mongourl = require('../config/secret').mongo;
+const mongoose = require('mongoose');
+mongoose.Promise = require('bluebird');
 
 // We store our full database object in here
 let dbstate;
 
-const connect = (callback) => {
-  MongoClient.connect(mongourl, (err, db) => {
-    dbstate = db;
-    return callback(err);
-  });
+const connect = (uri) => {
+  dbstate = dbstate
+    ? dbstate
+    : mongoose.createConnection(uri);
+  return dbstate;
 };
 
 // this method returns reference the the db

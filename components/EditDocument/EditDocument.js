@@ -224,6 +224,7 @@ class EditDocument extends React.Component {
       title: this.state.title,
       images: this.state.images,
       audio: this.state.audio,
+      video: this.state.video,
     })
     .then((response) => {
       console.log(response);
