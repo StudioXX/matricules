@@ -53,6 +53,7 @@ class EditDocument extends React.Component {
     this.handleSujetFrench = this.handleSujetFrench.bind(this);
     this.handleTitle = this.handleTitle.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleMedium = this.handleMedium.bind(this);
     this.handleMediaAdd = this.handleMediaAdd.bind(this);
     this.handleImgDelete = this.handleImgDelete.bind(this);
     this.handleAudioDelete = this.handleAudioDelete.bind(this);

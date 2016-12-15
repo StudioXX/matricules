@@ -72,6 +72,7 @@ router.post('/', (req, res, next) => { // eslint-disable-line no-unused-vars
     res.json(doc);
   })
   .catch((err) => {
+    console.log(err);
     next(err);
   });
 });

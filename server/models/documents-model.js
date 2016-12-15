@@ -3,6 +3,7 @@ const db = require('../db');
 mongoose.Promise = require('bluebird');
 
 const Schema = mongoose.Schema;
+
 const documentSchema = new Schema({
   accession_number: {
     type: String,
@@ -18,7 +19,7 @@ const documentSchema = new Schema({
   },
   date: {
     type: Date,
-    required: true,
+    required: false,
   },
   categorie: {
     type: String,
