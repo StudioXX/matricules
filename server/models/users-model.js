@@ -1,60 +1,64 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt-nodejs');
+const db = require('../db');
+mongoose.Promise = require('bluebird');
 
 const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
-  email: {
+const userSchema = new Schema({
+  username: {
     type: String,
-    lowercase: true,
-    unique: true,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
     required: true,
   },
-  profile: {
-    firstName: { type: String, },
-    lastName: { type: String, },
-  },
-  role: {
-    type: String,
-    enum: ['Editor', 'Admin'],
-    default: 'Member',
-  },
-  resetPasswordToken: { type: String, },
-  resetPasswordExpires: { type: Date, },
+  // role: {
+  //   type: String,
+  //   enum: ['Editor', 'Admin', 'Member'],
+  //   default: 'Member',
+  // },
 },
   {
     timestamps: true,
   });
 
-// Pre-save of user to database, hash password if password is modified or new
-UserSchema.pre('save', (next) => {
-  const user = this;
-  const SALT_FACTOR = 5;
+const UserModel = db.get().model('User', userSchema);
 
-  if (!user.isModified('password')) return next();
+module.exports = {
+  // create an a document item object
+  createOne: (properties) => {
+    const model = new UserModel(properties);
+    return model.save();
+  },
 
-  bcrypt.genSalt(SALT_FACTOR, (err, salt) => {
-    if (err) return next(err);
+  // return one document item by accession_number
+  readOne: (username) => {
+    return UserModel.findOne({
+      username,
+    }).exec();
+  },
 
-    bcrypt.hash(user.password, salt, null, (err, hash) => {
-      if (err) return next(err);
-      user.password = hash;
-      next();
-    });
-  });
-});
+  // // return all document items in an array
+  // readSelect: (properties) => {
+  //     console.log('read select');
+  //   return DocumentModel.find(properties).exec();
+  // },
 
-// Method to compare password for login
-UserSchema.methods.comparePassword = (candidatePassword, cb) => {
-  bcrypt.compare(candidatePassword, this.password, (err, isMatch) => {
-    if (err) { return cb(err); }
+  // // find & delete from id
+  // deleteById: (id) => {
+  //   return DocumentModel.findByIdAndRemove(id).exec();
+  // },
 
-    cb(null, isMatch);
-  });
+  // // retrieve one by id, then update other fields
+  // updateById: (id, properties) => {
+  //   return DocumentModel.findOneAndUpdate({
+  //     _id: id,
+  //   }, {
+  //     $set: properties,
+  //   }, {
+  //     new: true, // return the modified object
+  //   }).exec();
+  // },
 };
-
-module.exports = mongoose.model('User', UserSchema);

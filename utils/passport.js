@@ -1,43 +1,30 @@
 const passport = require('passport');
-const User = require('../server/models/users-model');
-const config = require('../config/secret');
-const JwtStrategy = require('passport-jwt').Strategy;
-const ExtractJwt = require('passport-jwt').ExtractJwt;
-const LocalStrategy = require('passport-local');
+const bcrypt = require('bcrypt');
+const LocalStrategy = require('passport-local').Strategy;
+const config = require('../config/config');
+const User = require('../server/models/users-model.js');
 
-const localOptions = { usernameField: 'email', };
-
-// Setting up local login strategy
-const localLogin = new LocalStrategy(localOptions, (email, password, done) => {  
-  User.findOne({ email, }, (err, user) => {
-    if (err) { return done(err); }
-    if (!user) { return done(null, false, { error: 'Your login details could not be verified. Please try again.', }); }
-
-    user.comparePassword(password, (err, isMatch) => {
-      if (err) { return done(err); }
-      if (!isMatch) { return done(null, false, { error: 'Your login details could not be verified. Please try again.', }); }
-
-      return done(null, user);
-    });
+passport.use(new LocalStrategy((username, password, cb) => {
+  console.log('authing');
+  console.log(username);
+  console.log(password);
+  User.readOne(username)
+  .then((doc) => {
+      bcrypt.compare(password, doc.password, (err, res) => {
+        if (err) return cb(err);
+        if (res === false) {
+          console.log('bad password');
+          return cb(null, false);
+        } else {
+          console.log('good password');
+          return cb(null, doc);
+        }
+      });
+      console.log(doc);
+  })
+  .catch((err) => {
+    next(err);
   });
-});
+}));
 
-const jwtOptions = {
-  // Telling Passport to check authorization headers for JWT
-  jwtFromRequest: ExtractJwt.fromAuthHeader(),
-  // Telling Passport where to find the secret
-  secretOrKey: config.secret,
-};
 
-// Setting up JWT login strategy
-const jwtLogin = new JwtStrategy(jwtOptions, (payload, done) => {
-  console.log(payload);
-  User.findById(payload._id, (err, user) => {
-    if (err) { return done(err, false); }
-    if (user) {
-      done(null, user);
-    } else {
-      done(null, false);
-    }
-  });
-});

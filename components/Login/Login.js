@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { setToken, unsetToken } from '../../utils/auth';
 
 class Login extends React.Component {
@@ -27,8 +28,19 @@ class Login extends React.Component {
 
   handleLogin(event) {
     // login here
-    setToken('123');
-    this.props.url.pushTo('/');
+    axios.post('http://localhost:4000/auth/login', {
+      username: this.state.userfield,
+      password: this.state.passfield,
+    })
+    .then((response) => {
+      console.log(response);
+      // setToken('123');
+      // this.props.url.pushTo('/');
+      // this.props.url.pushTo(viewurl);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
   }
   render() {
     return (

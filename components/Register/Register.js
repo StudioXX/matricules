@@ -26,7 +26,7 @@ class Register extends React.Component {
   }
 
   handleRegister(event) {
-    axios.get('http://localhost:4000/auth/register', {
+    axios.post('http://localhost:4000/auth/register', {
       username: this.state.userfield,
       password: this.state.passfield,
     })
