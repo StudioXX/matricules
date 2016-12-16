@@ -1,5 +1,6 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
+const jwt = require('jwt-simple');
 const passport = require('passport');
 const User = require('../models/users-model.js');
 
@@ -29,18 +30,17 @@ router.post('/register', (req, res, next) => { // eslint-disable-line no-unused-
   });
 });
 
+const tokenSecret = 'hoohah';
+
 router.post('/login', (req, res, next) => { // eslint-disable-line no-unused-vars
-  passport.authenticate('local', (err, user, info) => {
+  passport.authenticate('local', { session: false, }, (err, user, info) => {
     if (err) { return next(err); }
-    if (!user) {
-      return res.json(401, { error: 'message', });
+    if (user === false) {
+      res.status(401).send('bad login');
     }
-    // user has authenticated correctly thus we create a JWT token 
-    // const token = jwt.encode({ username: 'somedata'}, tokenSecret);
-    // res.json({ token : token });
-    console.log('login success');
-    res.send(200);
-    res.end('hua')
+    // user has authenticated correctly thus we create a JWT token
+    const token = jwt.encode({ username: 'somedata', }, tokenSecret);
+    res.json(200, { token, });
   })(req, res, next);
 });
 

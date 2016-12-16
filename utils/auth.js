@@ -1,4 +1,3 @@
-import jwtDecode from 'jwt-decode';
 import Cookie from 'js-cookie';
 
 export const setToken = (token) => {
@@ -31,13 +30,11 @@ export const getUserFromCookie = (req) => {
     return undefined;
   }
   const tokened = token.split('=')[1];
-  console.log(tokened);
   return (tokened);
 };
 
 export const getUserFromLocalStorage = () => {
   console.log('got user from localstorage');
   const json = window.localStorage.token;
-  console.log(json);
   return json;
 };

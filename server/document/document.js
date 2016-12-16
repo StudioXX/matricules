@@ -1,7 +1,9 @@
 const express = require('express');
 const fs = require('fs-extra'); // File System - for file manipulation
 const Busboy = require('busboy'); // middleware for form/file upload
+const expressJwt = require('express-jwt');
 const Document = require('../models/documents-model.js');
+const tokenSecret = require('../../config/secret').secret;
 
 const router = express.Router();
 

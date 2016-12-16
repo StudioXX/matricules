@@ -33,13 +33,18 @@ class Login extends React.Component {
       password: this.state.passfield,
     })
     .then((response) => {
-      console.log(response);
-      // setToken('123');
-      // this.props.url.pushTo('/');
+      // console.log(response);
+      if (response.status === 200) {
+        setToken(response.data.token);
+        this.props.url.pushTo('/');
       // this.props.url.pushTo(viewurl);
+      } else {
+        console.log(response);
+        alert('unknown response, see console');
+      }
     })
     .catch((error) => {
-      console.log(error);
+      alert('unauthorized');
     });
   }
   render() {
