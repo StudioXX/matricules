@@ -61,22 +61,6 @@ export default Page => class DefaultPage extends React.Component {
     else {
       return { path, loggedUser, language, };
     }
-
-    // if (path.indexOf('/document/') === 0 || path.indexOf('/edit/') === 0) {
-    //   const url = `http://localhost:4000/api/documents/${path.split('/')[2]}`;
-    //   console.log(url);
-    //   fetch(url, {
-    //     headers: {
-    //       'Content-type': 'application/json',
-    //     },
-    //   }).then((response) => {
-    //     return response.json();
-    //     // return { ...response, path, loggedUser, language }
-    //   }).then((_data) => {
-    //     return { ..._data, path, loggedUser, language }
-    // });
-    // }
-     // end getInitialProps
   }
 
   render() {

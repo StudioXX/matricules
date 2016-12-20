@@ -157,6 +157,7 @@ class EditDocument extends React.Component {
       title: this.state.title,
       images: this.state.images,
       audio: this.state.audio,
+      token: localStorage.token,
     })
     .then((response) => {
       console.log(response);

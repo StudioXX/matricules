@@ -46,7 +46,10 @@ router.get('/:accession', (req, res, next) => { // eslint-disable-line no-unused
 });
 
 // edit one document by its id
-router.put('/:id', (req, res, next) => { // eslint-disable-line no-unused-vars
+router.put('/:id', expressJwt({
+  secret: tokenSecret,
+  getToken: req => req.body.token,
+}), (req, res, next) => { // eslint-disable-line no-unused-vars
   Document.updateById(req.params.id, req.body)
   .then((doc) => {
     res.json(doc);
@@ -57,7 +60,10 @@ router.put('/:id', (req, res, next) => { // eslint-disable-line no-unused-vars
 });
 
 // delete one document by its id
-router.delete('/:id', (req, res, next) => { // eslint-disable-line no-unused-vars
+router.delete('/:id', expressJwt({
+  secret: tokenSecret,
+  getToken: req => req.body.token,
+}), (req, res, next) => { // eslint-disable-line no-unused-vars
   Document.deleteById(req.params.id)
   .then((doc) => {
     res.json(doc);
@@ -68,7 +74,10 @@ router.delete('/:id', (req, res, next) => { // eslint-disable-line no-unused-var
 });
 
 // create one
-router.post('/', (req, res, next) => { // eslint-disable-line no-unused-vars
+router.post('/', expressJwt({
+  secret: tokenSecret,
+  getToken: req => req.body.token,
+}), (req, res, next) => { // eslint-disable-line no-unused-vars
   Document.createOne(req.body)
   .then((doc) => {
     res.json(doc);

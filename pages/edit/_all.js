@@ -1,5 +1,4 @@
-import React from 'react';
-import defaultPage from '../../HOC/DefaultPage';
+import SecurePage from '../../HOC/SecurePage';
 import EditDocument from '../../components/EditDocument/EditDocument';
 
-export default defaultPage(EditDocument);
+export default SecurePage(EditDocument);

@@ -31,11 +31,17 @@ class Register extends React.Component {
       password: this.state.passfield,
     })
     .then((response) => {
-      console.log(response);
-      // this.props.url.pushTo(viewurl);
+      console.log(response.status);
+      if (response.status === 200) {
+        this.props.url.pushTo('/');
+      } else {
+        // TODO show error in UI
+        alert('error');
+      }
     })
     .catch((error) => {
-      console.log(error);
+      // TODO show error in UI
+      alert(error);
     });
   }
   render() {
