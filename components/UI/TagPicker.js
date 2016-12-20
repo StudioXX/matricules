@@ -22,6 +22,7 @@ class TagPicker extends React.Component {
           handleAddition={this.props.handleAdd}
           handleDelete={this.props.handleDelete}
           suggestions={suggestions}
+          minQueryLength={1}
         />
       </div>
     );
