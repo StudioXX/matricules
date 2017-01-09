@@ -14,7 +14,7 @@ import XHRUploader from '../UI/XHRUploader';
 import ImageList from '..//EditDocument/ImageList';
 import AudioList from '..//EditDocument/AudioList';
 
-class EditDocument extends React.Component {
+class AddDocument extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -162,7 +162,7 @@ class EditDocument extends React.Component {
     .then((response) => {
       console.log(response);
       const viewurl = `../document/${this.state.accession_number}`;
-      this.props.url.pushTo(viewurl);
+      this.props.url.push(viewurl);
     })
     .catch((error) => {
       console.log(error);
@@ -200,15 +200,14 @@ class EditDocument extends React.Component {
   }
 
   render() {
-    const readlink = `../document/${this.state.accession_number}`;
     const mediauploadlink = `http://localhost:4000/api/document/media/${this.state.accession_number}`;
     // TODO : create keywords db collection and pull from it
     return (<div>
-      <Button text="Back" link={readlink} />
       <div>
       Accession Number:
       <TextInput handler={this.handleAccession} text={this.state.accession_number} />
       </div>
+      
       <div>
       categorie: <CategoriePicker handler={this.handleCategorie} value={this.state.categorie} />
       </div>
@@ -259,6 +258,7 @@ class EditDocument extends React.Component {
       <div>
       title: <TextInput handler={this.handleTitle} text={this.state.title} />
       </div>
+      
       <div>
         <XHRUploader
         url={mediauploadlink}
@@ -278,9 +278,10 @@ class EditDocument extends React.Component {
       <div>
         <button onClick={this.handleSubmit} className={'button-primary'}>Save</button>
       </div>
+      
     </div>
     );
   }
 }
 
-export default EditDocument;
+export default AddDocument;

@@ -88,8 +88,7 @@ class EditDocument extends React.Component {
       }
     } else {
       console.log('rednered by client');
-      const url = `http://localhost:4000/api/document/${this.props.path.split('/')[2]}`;
-      console.log(url);
+      const url = `http://localhost:4000/api/document/${this.props.id}`;
       return new Promise((resolve, reject) => (
         axios.get(url)
           .then(response => (resolve(response.data)))
@@ -231,7 +230,7 @@ class EditDocument extends React.Component {
     .then((response) => {
       console.log(response);
       const viewurl = `../document/${this.state.accession_number}`;
-      this.props.url.pushTo(viewurl);
+      this.props.url.push(viewurl);
     })
     .catch((error) => {
       console.log(error);
@@ -275,7 +274,7 @@ class EditDocument extends React.Component {
     .then((response) => {
       console.log(response);
       const viewurl = '../';
-      this.props.url.pushTo(viewurl);
+      this.props.url.push(viewurl);
     })
     .catch((error) => {
       console.log(error);

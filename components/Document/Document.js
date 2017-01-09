@@ -34,32 +34,35 @@ class Document extends React.Component {
     this.mounted = true;
     if (!this.props._data) {
       console.log('rednered by client');
-      const url = `http://localhost:4000/api/document/${this.props.path.split('/')[2]}`;
+      const url = `http://localhost:4000/api/document/${this.props.id}`;
+      console.log(url);
       return new Promise((resolve, reject) => (
         axios.get(url)
           .then(response => (resolve(response.data)))
           .catch(error => (reject(error)))
       ))
       .then(
-      (_data) => { this.setState({ 
-        accession_number: _data.accession_number,
-        categorie: _data.categorie,
-        date: _data.date,
-        description: _data.description,
-        descriptionFrench: _data.description_fr,
-        keywords: _data.keywords,
-        images: _data.images,
-        links: _data.links,
-        medium: _data.medium,
-        notes: _data.notes,
-        physical_description: _data.physical_description,
-        sujet: _data.sujet,
-        sujetFrench: _data.sujet_fr,
-        support: _data.support,
-        title: _data.title,
-        videos: _data.videos,
-        audio: _data.audio,
-       }) },
+      (_data) => {
+        console.log(_data);
+        this.setState({ 
+          accession_number: _data.accession_number,
+          categorie: _data.categorie,
+          date: _data.date,
+          description: _data.description,
+          descriptionFrench: _data.description_fr,
+          keywords: _data.keywords,
+          images: _data.images,
+          links: _data.links,
+          medium: _data.medium,
+          notes: _data.notes,
+          physical_description: _data.physical_description,
+          sujet: _data.sujet,
+          sujetFrench: _data.sujet_fr,
+          support: _data.support,
+          title: _data.title,
+          videos: _data.videos,
+          audio: _data.audio,
+        }) },
       (err) => { console.log(err); }
       );
     }
@@ -71,7 +74,7 @@ class Document extends React.Component {
 
   render() {
     // only display edit button to logged in user
-    const editlink = (this.props.loggedUser) ? <Button text="edit" link={`../edit/${this.state.accession_number}`} /> : null;
+    const editlink = (this.props.loggedUser) ? <Link href={`/edit?id=${this.state.accession_number}`} as={`/edit/${this.state.accession_number}`}><button className={'button-primary'}>Edit</button></Link> : null;
     const language = this.props.language;
     const titlestring = (language === 'fr') ? 'Titre forgé' : 'Formed Title';
     const images = <div>images: <ImageGallery accession={this.state.accession_number} images={this.state.images} /></div>;

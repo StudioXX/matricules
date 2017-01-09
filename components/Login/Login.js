@@ -36,7 +36,7 @@ class Login extends React.Component {
       // console.log(response);
       if (response.status === 200) {
         setToken(response.data.token);
-        this.props.url.pushTo('/');
+        this.props.url.push('/');
       // this.props.url.pushTo(viewurl);
       } else {
         console.log(response);

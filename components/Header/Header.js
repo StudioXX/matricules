@@ -26,7 +26,7 @@ class Header extends React.Component {
   handleLogout() {
     console.log('logging out');
     unsetToken();
-    this.props.url.pushTo('/logout');
+    this.props.url.push('/logout');
   }
 
   changeLang() {
