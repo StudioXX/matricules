@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { setToken, unsetToken } from '../../utils/auth';
+import { setToken, unsetToken } from '../../utils/client-auth';
 
 class Login extends React.Component {
   constructor(props) {

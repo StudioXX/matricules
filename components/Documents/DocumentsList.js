@@ -8,16 +8,11 @@ class DocumentsList extends React.Component {
 
   render() {
     const docs = this.props.doclist;
-    let list;
-    if (docs.length === 0) {
-      list = <div>loading...</div>;
-    } else {
-      list = (<ul>
+    const list = (<ul>
         {docs.map((doc, i) => {
-          return <li key={i}><Link href={`/document?id=${doc.accession_number}`} as={`/document/${doc.accession_number}`}>{doc.accession_number} || {doc.title} </Link>{doc.title}</li>;
+          return <li key={i}><Link href={`/document?id=${doc.accession_number}`} as={`/document/${doc.accession_number}`}><a>{doc.accession_number} || {doc.title}</a></Link>{doc.title}</li>;
         })}
       </ul>);
-    }
     return (
       list
     );

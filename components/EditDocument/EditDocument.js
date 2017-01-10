@@ -1,4 +1,5 @@
 import React from 'react';
+import Router from 'next/router';
 import moment from 'moment';
 import axios from 'axios';
 import TextInput from '../UI/TextInput';
@@ -229,8 +230,9 @@ class EditDocument extends React.Component {
     })
     .then((response) => {
       console.log(response);
-      const viewurl = `../document/${this.state.accession_number}`;
-      this.props.url.push(viewurl);
+      const viewurl = `/document/id=${this.state.accession_number}`;
+      // href={`/edit?id=${this.state.accession_number}`} as={`/edit/${this.state.accession_number}`}
+      Router.push(`/document?id=${this.state.accession_number}`, `/document/${this.state.accession_number}`);
     })
     .catch((error) => {
       console.log(error);
@@ -239,8 +241,8 @@ class EditDocument extends React.Component {
 
 
 // this handler is called when XHR returns a response, we use this to update the UI to include the new images
-  handleMediaAdd(file) {
-    if (file.type.indexOf('image') > -1) {
+  handleMediaAdd(filetype) {
+    if (file.indexOf('image') > -1) {
       console.log('this is an image');
       const imgs = this.state.images;
       imgs.push(file.name);

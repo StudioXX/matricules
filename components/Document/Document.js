@@ -74,7 +74,7 @@ class Document extends React.Component {
 
   render() {
     // only display edit button to logged in user
-    const editlink = (this.props.loggedUser) ? <Link href={`/edit?id=${this.state.accession_number}`} as={`/edit/${this.state.accession_number}`}><button className={'button-primary'}>Edit</button></Link> : null;
+    const editlink = (this.props.loggedUser) ? <Link href={`/edit?id=${this.state.accession_number}`} as={`/edit/${this.state.accession_number}`}><a><button className={'button-primary'}>Edit</button></a></Link> : null;
     const language = this.props.language;
     const titlestring = (language === 'fr') ? 'Titre forgé' : 'Formed Title';
     const images = <div>images: <ImageGallery accession={this.state.accession_number} images={this.state.images} /></div>;

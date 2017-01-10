@@ -11,6 +11,7 @@ class Documents extends React.Component {
     this.state = {
       year: '2016',
       keyword: '',
+      loading: true,
       doclist: [],
       searchterm: '',
     };
@@ -31,6 +32,7 @@ class Documents extends React.Component {
   }
 
   updateFilter() {
+    this.setState({ loading: true, });
     let queries = '';
     queries += `year=${this.state.year}`;
     queries += `&keyword=${this.state.keyword}`;
@@ -44,7 +46,7 @@ class Documents extends React.Component {
     }).then((json) => {
       // only set state if component is mounted
       if (this.mounted === true) {
-        this.setState({ doclist: json, });
+        this.setState({ doclist: json, loading: false, });
       }
     });
   }
@@ -70,13 +72,22 @@ class Documents extends React.Component {
   }
 
   render() {
+    let doclist;
+    if (this.state.loading === true) {
+      doclist = 'loading';
+    } else if (this.state.loading === false && this.state.doclist.length === 0) {
+      doclist = 'no matching docs';
+    } else {
+      doclist = <DocumentsList doclist={this.state.doclist} />;
+    }
     return (<div>
       <SearchTermPicker handleSearchChange={this.handleSearchChange} />
       <KeywordPicker handleKeywordChange={this.handleKeywordChange} />
       <YearPicker year={this.state.year} handleYearChange={this.handleYearChange} />
-      <DocumentsList doclist={this.state.doclist} />
+      {doclist}
     </div>);
   }
 }
 
 export default Documents;
+

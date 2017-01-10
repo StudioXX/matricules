@@ -4,7 +4,7 @@ import axios from 'axios';
 import fetch from 'isomorphic-fetch';
 import Head from 'next/head';
 import Header from '../components/Header/Header';
-import { getUserFromCookie, getUserFromLocalStorage } from '../utils/auth';
+import { getUserFromCookie, getUserFromLocalStorage } from '../utils/client-auth';
 
 const styles = {
   app: css({
@@ -20,7 +20,6 @@ const styles = {
 
 export default Page => class DefaultPage extends React.Component {
   static getInitialProps(ctx) {
-    console.log(ctx)
     const path = ctx.pathname;
     // check for language - if server rendered, use request headers
     // if client rendered, use navigator.language

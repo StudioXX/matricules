@@ -1,5 +1,4 @@
 import React from 'react';
-import css from 'next/css';
 
 class AudioGallery extends React.Component {
   constructor(props) {

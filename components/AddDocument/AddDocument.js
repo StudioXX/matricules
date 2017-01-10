@@ -14,6 +14,9 @@ import XHRUploader from '../UI/XHRUploader';
 import ImageList from '..//EditDocument/ImageList';
 import AudioList from '..//EditDocument/AudioList';
 
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
+
 class AddDocument extends React.Component {
   constructor(props) {
     super(props);
@@ -57,6 +60,7 @@ class AddDocument extends React.Component {
     this.handleMediaAdd = this.handleMediaAdd.bind(this);
     this.handleImgDelete = this.handleImgDelete.bind(this);
     this.handleAudioDelete = this.handleAudioDelete.bind(this);
+    this.onDrop = this.onDrop.bind(this);
   }
 
   handleAccession(event) {
@@ -172,17 +176,16 @@ class AddDocument extends React.Component {
 
 // this handler is called when XHR returns a response, we use this to update the UI to include the new images
   handleMediaAdd(file) {
-    if (file.type.indexOf('image') > -1) {
-      console.log('this is an image');
+    if (file.type === 'image') {
       const imgs = this.state.images;
       imgs.push(file.name);
       this.setState({ images: imgs, });
-    } else if (file.type.indexOf('audio') > -1) {
-      console.log('this is an audio');
-      const audios = this.state.audio;
-      audios.push(file.name);
-      this.setState({ audio: audios, });
     }
+    // } else if (file.type.indexOf('audio') > -1) {
+    //   const audios = this.state.audio;
+    //   audios.push(file.name);
+    //   this.setState({ audio: audios, });
+    // }
   }
 
   handleImgDelete(key) {
@@ -199,8 +202,39 @@ class AddDocument extends React.Component {
     this.setState({ audio: audios, });
   }
 
+  onDrop(acceptedFiles, rejectedFiles) {
+    console.log('Accepted files: ', acceptedFiles);
+      console.log('Rejected files: ', rejectedFiles);
+      var file = new FormData();
+      file.append('datafile', acceptedFiles)
+      var req = request
+                .post(`http://localhost:4000/api/document/media/${this.state.accession_number}`)
+  .send(file)
+  .end(function(error, response){
+    if(error) { 
+       console.log("Error: " + error);
+    } else {console.log('done')}
+  });
+  }
+
   render() {
-    const mediauploadlink = `http://localhost:4000/api/document/media/${this.state.accession_number}`;
+  const mediauploadlink = `http://localhost:4000/api/document/media/${this.state.accession_number}`;
+  // const uploader = (this.state.accession_number === '') ? null : (<div>
+  //   <XHRUploader
+  //     url={mediauploadlink}
+  //     auto
+  //     maxFiles={25}
+  //     accession_number={this.state.accession_number}
+  //     handleMediaAdd={this.handleMediaAdd}
+  //   />
+  // </div>);
+
+const uploader = <Dropzone onDrop={this.onDrop}>
+              <div>Try dropping some files here, or click to select files to upload.</div>
+            </Dropzone>;
+
+
+
     // TODO : create keywords db collection and pull from it
     return (<div>
       <div>
@@ -258,16 +292,7 @@ class AddDocument extends React.Component {
       <div>
       title: <TextInput handler={this.handleTitle} text={this.state.title} />
       </div>
-      
-      <div>
-        <XHRUploader
-        url={mediauploadlink}
-        auto
-        maxFiles={25}
-        accession_number={this.state.accession_number}
-        handleMediaAdd={this.handleMediaAdd}
-      />
-      </div>
+      {uploader}
       <div>
         <ImageList handleImgDelete={this.handleImgDelete} accession={this.state.accession_number} images={this.state.images} />
       </div>
