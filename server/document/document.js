@@ -14,14 +14,14 @@ const imgProc = require('./imgProcessor');
 
 const router = express.Router();
 
-router.post('/media/:accession', upload.array('datafile'), (req, res, next)=>{
-  console.log(req);
-    //Call the convertImgs method and pass the image files as its argument
-    // imgProc.convertImgs(req.files, req.params.accession).then((imageStringArray) => {
-    //   console.log(imageStringArray);
-    //     //After all image processing finished, send the base64 image string to client
-    //   res.json(imageStringArray);
-    // });
+router.post('/media/:accession', upload.array('datafile'), (req, res, next) => {
+    console.log(req.files);
+    // Call the convertImgs method and pass the image files as its argument
+    imgProc.convertImgs(req.files, req.params.accession).then((imageStringArray) => {
+      console.log(imageStringArray);
+        //After all image processing finished, send the base64 image string to client
+      res.json(imageStringArray);
+    });
 });
 
 // post media to server and return URL

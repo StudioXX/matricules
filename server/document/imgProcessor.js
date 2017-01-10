@@ -21,6 +21,7 @@ module.exports = {
 
             //Create a jimp instance for this image
             new Jimp(file.buffer, (err, image)=>{
+                console.log('creating image');
                 const path = `server/media/${accession}/${file.originalname}`;
                 //Resize this image
                 image.resize(777, 777)

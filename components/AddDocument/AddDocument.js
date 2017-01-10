@@ -203,18 +203,43 @@ class AddDocument extends React.Component {
   }
 
   onDrop(acceptedFiles, rejectedFiles) {
-    console.log('Accepted files: ', acceptedFiles);
-      console.log('Rejected files: ', rejectedFiles);
-      var file = new FormData();
-      file.append('datafile', acceptedFiles)
-      var req = request
-                .post(`http://localhost:4000/api/document/media/${this.state.accession_number}`)
-  .send(file)
-  .end(function(error, response){
-    if(error) { 
-       console.log("Error: " + error);
-    } else {console.log('done')}
-  });
+    const formData = new FormData();
+    const xhr = new XMLHttpRequest();
+
+    acceptedFiles.map(file => formData.append('datafile', file));
+
+    xhr.open("POST", `http://localhost:4000/api/document/media/${this.state.accession_number}`, true);
+
+    xhr.onreadystatechange = function () {  
+        if (xhr.readyState === 4) {  
+            if (xhr.status === 200) {  
+                console.log(xhr.responseText);
+            } else {  
+                console.error(xhr.statusText);  
+            }  
+        }  
+    };
+
+    xhr.send(formData);
+
+
+
+
+
+
+  //   console.log(acceptedFiles);
+  //   const imgs = acceptedFiles.filter(file => file.type.includes('image'));
+  //   console.log(imgs);
+  //     var file = new FormData();
+  //     file.append('datafile', imgs);
+  //     var req = request
+  //               .post(`http://localhost:4000/api/document/media/${this.state.accession_number}`)
+  // .send(file)
+  // .end(function(error, response){
+  //   if(error) { 
+  //      console.log("Error: " + error);
+  //   } else {console.log('done')}
+  // });
   }
 
   render() {
