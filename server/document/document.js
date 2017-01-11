@@ -1,11 +1,8 @@
 const express = require('express');
 const fs = require('fs-extra'); // File System - for file manipulation
-const Busboy = require('busboy'); // middleware for form/file upload
+// const Busboy = require('busboy'); // middleware for form/file upload
 const expressJwt = require('express-jwt');
 const multer = require('multer');
-const toArray = require('stream-to-array');
-const Jimp = require('jimp');
-const imagesize = require('imagesize');
 const Document = require('../models/documents-model.js');
 const tokenSecret = require('../../config/secret').secret;
 
@@ -14,15 +11,70 @@ const imgProc = require('./imgProcessor');
 
 const router = express.Router();
 
-router.post('/media/:accession', upload.array('datafile'), (req, res, next) => {
-    console.log(req.files);
-    // Call the convertImgs method and pass the image files as its argument
-    imgProc.convertImgs(req.files, req.params.accession).then((imageStringArray) => {
-      console.log(imageStringArray);
-        //After all image processing finished, send the base64 image string to client
-      res.json(imageStringArray);
-    });
+router.post('/photos/:accession', upload.array('datafile'), (req, res, next) => {
+  // console.log(req.files);
+  // let imgs = [];
+  // let audio = [];
+  // let other = [];
+  // for (let i = 0; i < req.files.length; i += 1) {
+  //   const type = req.files[i].mimetype;
+  //   if (type.includes('image')) {
+  //     imgs.push(req.files[i]);
+  //   } else if (type.includes('audio')) {
+  //     audio.push(req.files[i]);
+  //   } else {
+  //     other.push(req.files[i]);
+  //   }
+  // }
+  const dir = __dirname + `/../media/${req.params.accession}`;
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir);
+  } else { console.log('dir exists'); }
+  // Call the convertImgs method and pass the image files as its argument
+  imgProc.convertImgs(req.files, req.params.accession).then((imageStringArray) => {
+    // After all image processing finished, send the base64 image string to client
+    console.log(imageStringArray);
+    res.json(imageStringArray);
+  });
+  // audioProc.saveAudio(audio, dir, req, res).then((audioArray) => {
+  //   res.json(audioArray);
+  // });
 });
+
+const storage = multer.diskStorage({
+  destination: function (req, file, callback) {
+    callback(null, __dirname + `/../media/${req.params.accession}`);
+  },
+  filename: function (req, file, callback) {
+    callback(null, file.originalname);
+  },
+});
+
+const mediaupload = multer({ storage, }).array('datafile', 2);
+router.post('/media/:accession', mediaupload, (req, res, next) => {
+  const filenames = req.files;
+  const dir = __dirname + `/../media/${req.params.accession}`;
+  if (!fs.existsSync(dir)) {
+    fs.mkdirSync(dir);
+  } else { console.log('dir exists'); }
+  // Call the convertImgs method and pass the image files as its argument
+  // imgProc.convertImgs(req.files, req.params.accession).then((imageStringArray) => {
+  //   // After all image processing finished, send the base64 image string to client
+  //   res.json(imageStringArray);
+  // });
+  mediaupload(req, res, function(err) {
+    if (err) {
+        console.log("Error uploading file.");
+    }
+    console.log(filenames);
+    res.json(filenames);
+  });
+  // audioProc.saveAudio(audio, dir, req, res).then((audioArray) => {
+  //   res.json(audioArray);
+  // });
+});
+
+
 
 // post media to server and return URL
 // router.post('/media/:accession', (req, res, next) => {

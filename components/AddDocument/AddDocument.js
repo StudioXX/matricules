@@ -176,16 +176,16 @@ class AddDocument extends React.Component {
 
 // this handler is called when XHR returns a response, we use this to update the UI to include the new images
   handleMediaAdd(file) {
-    if (file.type === 'image') {
+    if (file.mimetype.indexOf('image') > -1) {
       const imgs = this.state.images;
-      imgs.push(file.name);
+      imgs.push(file.originalname);
       this.setState({ images: imgs, });
+    } else if (file.mimetype.indexOf('audio') > -1) {
+      const audios = this.state.audio;
+      audios.push(file.originalname);
+      this.setState({ audio: audios, });
     }
-    // } else if (file.type.indexOf('audio') > -1) {
-    //   const audios = this.state.audio;
-    //   audios.push(file.name);
-    //   this.setState({ audio: audios, });
-    // }
+// TODO: OTHER
   }
 
   handleImgDelete(key) {
@@ -203,28 +203,47 @@ class AddDocument extends React.Component {
   }
 
   onDrop(acceptedFiles, rejectedFiles) {
-    const formData = new FormData();
-    const xhr = new XMLHttpRequest();
+    const imgsform = new FormData();
+    const imgsxhr = new XMLHttpRequest();
+    const otherform = new FormData();
+    const otherxhr = new XMLHttpRequest();
+    const isImg = file => file.type.includes('image');
+    const imgs = acceptedFiles.filter(isImg);
+    const other = acceptedFiles.filter(file => !isImg(file));
 
-    acceptedFiles.map(file => formData.append('datafile', file));
+    if (imgs.length > 0) {
+      imgs.map(file => imgsform.append('datafile', file));
+      imgsxhr.open('POST', `http://localhost:4000/api/document/photos/${this.state.accession_number}`, true);
+      imgsxhr.onreadystatechange = () => {
+        if (imgsxhr.readyState === 4) {
+          if (imgsxhr.status === 200) {
+            const files = JSON.parse(imgsxhr.responseText);
+            console.log(files);
+            files.map(file => this.handleMediaAdd(file));
+          } else {
+            console.error(imgsxhr.statusText);
+          }
+        }
+      };
+      imgsxhr.send(imgsform);
+    }
 
-    xhr.open("POST", `http://localhost:4000/api/document/media/${this.state.accession_number}`, true);
-
-    xhr.onreadystatechange = function () {  
-        if (xhr.readyState === 4) {  
-            if (xhr.status === 200) {  
-                console.log(xhr.responseText);
-            } else {  
-                console.error(xhr.statusText);  
-            }  
-        }  
-    };
-
-    xhr.send(formData);
-
-
-
-
+    if (other.length > 0) {
+      other.map(file => otherform.append('datafile', file));
+      otherxhr.open('POST', `http://localhost:4000/api/document/media/${this.state.accession_number}`, true);
+      otherxhr.onreadystatechange = () => {
+        if (otherxhr.readyState === 4) {
+          if (otherxhr.status === 200) {
+            const files = JSON.parse(otherxhr.responseText);
+            console.log(files);
+            files.map(file => this.handleMediaAdd(file));
+          } else {
+            console.error(otherxhr.statusText);
+          }
+        }
+      };
+      otherxhr.send(otherform);
+    }
 
 
   //   console.log(acceptedFiles);
