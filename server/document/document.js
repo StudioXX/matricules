@@ -50,7 +50,7 @@ const storage = multer.diskStorage({
   },
 });
 
-const mediaupload = multer({ storage, }).array('datafile', 2);
+const mediaupload = multer({ storage, }).array('datafile');
 router.post('/media/:accession', mediaupload, (req, res, next) => {
   const filenames = req.files;
   const dir = __dirname + `/../media/${req.params.accession}`;
