@@ -3,7 +3,7 @@ const bcrypt = require('bcrypt');
 const jwt = require('jwt-simple');
 const passport = require('passport');
 const User = require('../models/users-model.js');
-const tokenSecret = require('../../config/secret').secret;
+const tokenSecret = require('../../config/config').secret;
 
 require('../../utils/passport.js');
 

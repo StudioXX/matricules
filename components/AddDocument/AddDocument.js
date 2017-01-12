@@ -14,7 +14,10 @@ import XHRUploader from '../UI/XHRUploader';
 import ImageList from '..//EditDocument/ImageList';
 import AudioList from '..//EditDocument/AudioList';
 
-class EditDocument extends React.Component {
+import Dropzone from 'react-dropzone';
+import request from 'superagent';
+
+class AddDocument extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -57,6 +60,7 @@ class EditDocument extends React.Component {
     this.handleMediaAdd = this.handleMediaAdd.bind(this);
     this.handleImgDelete = this.handleImgDelete.bind(this);
     this.handleAudioDelete = this.handleAudioDelete.bind(this);
+    this.onDrop = this.onDrop.bind(this);
   }
 
   handleAccession(event) {
@@ -162,7 +166,7 @@ class EditDocument extends React.Component {
     .then((response) => {
       console.log(response);
       const viewurl = `../document/${this.state.accession_number}`;
-      this.props.url.pushTo(viewurl);
+      this.props.url.push(viewurl);
     })
     .catch((error) => {
       console.log(error);
@@ -172,17 +176,16 @@ class EditDocument extends React.Component {
 
 // this handler is called when XHR returns a response, we use this to update the UI to include the new images
   handleMediaAdd(file) {
-    if (file.type.indexOf('image') > -1) {
-      console.log('this is an image');
+    if (file.mimetype.indexOf('image') > -1) {
       const imgs = this.state.images;
-      imgs.push(file.name);
+      imgs.push(file.originalname);
       this.setState({ images: imgs, });
-    } else if (file.type.indexOf('audio') > -1) {
-      console.log('this is an audio');
+    } else if (file.mimetype.indexOf('audio') > -1) {
       const audios = this.state.audio;
-      audios.push(file.name);
+      audios.push(file.originalname);
       this.setState({ audio: audios, });
     }
+// TODO: OTHER
   }
 
   handleImgDelete(key) {
@@ -199,16 +202,90 @@ class EditDocument extends React.Component {
     this.setState({ audio: audios, });
   }
 
+  onDrop(acceptedFiles, rejectedFiles) {
+    const imgsform = new FormData();
+    const imgsxhr = new XMLHttpRequest();
+    const otherform = new FormData();
+    const otherxhr = new XMLHttpRequest();
+    const isImg = file => file.type.includes('image');
+    const imgs = acceptedFiles.filter(isImg);
+    const other = acceptedFiles.filter(file => !isImg(file));
+
+    if (imgs.length > 0) {
+      imgs.map(file => imgsform.append('datafile', file));
+      imgsxhr.open('POST', `http://localhost:4000/api/document/photos/${this.state.accession_number}`, true);
+      imgsxhr.onreadystatechange = () => {
+        if (imgsxhr.readyState === 4) {
+          if (imgsxhr.status === 200) {
+            const files = JSON.parse(imgsxhr.responseText);
+            console.log(files);
+            files.map(file => this.handleMediaAdd(file));
+          } else {
+            console.error(imgsxhr.statusText);
+          }
+        }
+      };
+      imgsxhr.send(imgsform);
+    }
+
+    if (other.length > 0) {
+      other.map(file => otherform.append('datafile', file));
+      otherxhr.open('POST', `http://localhost:4000/api/document/media/${this.state.accession_number}`, true);
+      otherxhr.onreadystatechange = () => {
+        if (otherxhr.readyState === 4) {
+          if (otherxhr.status === 200) {
+            const files = JSON.parse(otherxhr.responseText);
+            console.log(files);
+            files.map(file => this.handleMediaAdd(file));
+          } else {
+            console.error(otherxhr.statusText);
+          }
+        }
+      };
+      otherxhr.send(otherform);
+    }
+
+
+  //   console.log(acceptedFiles);
+  //   const imgs = acceptedFiles.filter(file => file.type.includes('image'));
+  //   console.log(imgs);
+  //     var file = new FormData();
+  //     file.append('datafile', imgs);
+  //     var req = request
+  //               .post(`http://localhost:4000/api/document/media/${this.state.accession_number}`)
+  // .send(file)
+  // .end(function(error, response){
+  //   if(error) { 
+  //      console.log("Error: " + error);
+  //   } else {console.log('done')}
+  // });
+  }
+
   render() {
-    const readlink = `../document/${this.state.accession_number}`;
-    const mediauploadlink = `http://localhost:4000/api/document/media/${this.state.accession_number}`;
+  const mediauploadlink = `http://localhost:4000/api/document/media/${this.state.accession_number}`;
+  // const uploader = (this.state.accession_number === '') ? null : (<div>
+  //   <XHRUploader
+  //     url={mediauploadlink}
+  //     auto
+  //     maxFiles={25}
+  //     accession_number={this.state.accession_number}
+  //     handleMediaAdd={this.handleMediaAdd}
+  //   />
+  // </div>);
+
+const uploader = <Dropzone onDrop={this.onDrop}>
+              <div>Try dropping some files here, or click to select files to upload.</div>
+            </Dropzone>;
+
+
+
     // TODO : create keywords db collection and pull from it
     return (<div>
-      <Button text="Back" link={readlink} />
       <div>
       Accession Number:
       <TextInput handler={this.handleAccession} text={this.state.accession_number} />
       </div>
+      
       <div>
       categorie: <CategoriePicker handler={this.handleCategorie} value={this.state.categorie} />
       </div>
@@ -259,15 +336,7 @@ class EditDocument extends React.Component {
       <div>
       title: <TextInput handler={this.handleTitle} text={this.state.title} />
       </div>
-      <div>
-        <XHRUploader
-        url={mediauploadlink}
-        auto
-        maxFiles={25}
-        accession_number={this.state.accession_number}
-        handleMediaAdd={this.handleMediaAdd}
-      />
-      </div>
+      {uploader}
       <div>
         <ImageList handleImgDelete={this.handleImgDelete} accession={this.state.accession_number} images={this.state.images} />
       </div>
@@ -278,9 +347,10 @@ class EditDocument extends React.Component {
       <div>
         <button onClick={this.handleSubmit} className={'button-primary'}>Save</button>
       </div>
+      
     </div>
     );
   }
 }
 
-export default EditDocument;
+export default AddDocument;

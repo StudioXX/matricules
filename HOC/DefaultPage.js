@@ -4,7 +4,7 @@ import axios from 'axios';
 import fetch from 'isomorphic-fetch';
 import Head from 'next/head';
 import Header from '../components/Header/Header';
-import { getUserFromCookie, getUserFromLocalStorage } from '../utils/auth';
+import { getUserFromCookie, getUserFromLocalStorage } from '../utils/client-auth';
 
 const styles = {
   app: css({
@@ -42,19 +42,20 @@ export default Page => class DefaultPage extends React.Component {
       }
     }
     const loggedUser = process.browser ? getUserFromLocalStorage() : getUserFromCookie(ctx.req);
-    console.log(`loggedUser = ${loggedUser}`);
     // only make this call if we're on a documents page'
-    if (path.indexOf('/document/') === 0 || path.indexOf('/edit/') === 0) {
-      const url = `http://localhost:4000/api/document/${path.split('/')[2]}`;
+    if (path === '/document' || path === '/edit') {
+      const id = ctx.query.id;
+      console.log(id);
+      const url = `http://localhost:4000/api/document/${id}`;
       return new Promise((resolve, reject) => (
         axios.get(url)
           .then(response => (resolve(response.data)))
           .catch(error => (reject(error)))
       ))
       .then(
-      (_data) => { return { ..._data, path, loggedUser, language, }; },
-      (err) => { return { doc: [], error: err, path: path, }; }
-      );}
+      (_data) => { return { ..._data, path, loggedUser, language, id, }; },
+      (err) => { return { doc: [], error: err, path, id, }; }
+      ); }
       // else if (path.indexOf('/documents') === 0) {
     //   // here
     // }

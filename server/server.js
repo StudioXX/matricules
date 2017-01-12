@@ -5,7 +5,7 @@ const cors = require('cors');
 const logger = require('morgan');
 const config = require('../config/config');
 const secret = require('../config/secret');
-const db = require('./db').connect(secret.mongo);
+const db = require('./db').connect(config.mongo);
 
 const app = express();
 const server = require('http').Server(app);

@@ -33,7 +33,7 @@ class Register extends React.Component {
     .then((response) => {
       console.log(response.status);
       if (response.status === 200) {
-        this.props.url.pushTo('/');
+        this.props.url.push('/');
       } else {
         // TODO show error in UI
         alert('error');

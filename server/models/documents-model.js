@@ -99,7 +99,6 @@ module.exports = {
 
   // return all document items in an array
   readSelect: (properties) => {
-      console.log('read select');
     return DocumentModel.find(properties).exec();
   },
 

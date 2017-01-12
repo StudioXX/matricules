@@ -2,7 +2,7 @@ import React from 'react';
 import css from 'next/css';
 import Link from 'next/link';
 import Cookie from 'js-cookie';
-import { setToken, unsetToken } from '../../utils/auth';
+import { setToken, unsetToken } from '../../utils/client-auth';
 import Button from '../UI/Button';
 
 const styles = {
@@ -26,7 +26,7 @@ class Header extends React.Component {
   handleLogout() {
     console.log('logging out');
     unsetToken();
-    this.props.url.pushTo('/logout');
+    this.props.url.push('/logout');
   }
 
   changeLang() {

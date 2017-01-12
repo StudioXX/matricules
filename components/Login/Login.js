@@ -1,6 +1,6 @@
 import React from 'react';
 import axios from 'axios';
-import { setToken, unsetToken } from '../../utils/auth';
+import { setToken, unsetToken } from '../../utils/client-auth';
 
 class Login extends React.Component {
   constructor(props) {
@@ -36,7 +36,7 @@ class Login extends React.Component {
       // console.log(response);
       if (response.status === 200) {
         setToken(response.data.token);
-        this.props.url.pushTo('/');
+        this.props.url.push('/');
       // this.props.url.pushTo(viewurl);
       } else {
         console.log(response);
