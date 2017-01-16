@@ -27,6 +27,7 @@ const apiRouter = express.Router();
 
 apiRouter.use('/documents', require('./documents/documents'));
 apiRouter.use('/document', require('./document/document'));
+apiRouter.use('/keywords', require('./keywords/keywords'));
 
 apiRouter.use((req, res, next) => {
   res.setHeader('Content-Type', 'application/json');

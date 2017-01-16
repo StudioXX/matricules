@@ -4,7 +4,7 @@ const fs = require('fs-extra'); // File System - for file manipulation
 const expressJwt = require('express-jwt');
 const multer = require('multer');
 const Document = require('../models/documents-model.js');
-const tokenSecret = require('../../config/secret').secret;
+const tokenSecret = require('../../config/config').secret;
 
 const upload = multer();
 const imgProc = require('./imgProcessor');

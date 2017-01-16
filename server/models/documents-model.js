@@ -97,7 +97,7 @@ module.exports = {
     }).exec();
   },
 
-  // return all document items in an array
+  // return all document items matcing properties in an array
   readSelect: (properties) => {
     return DocumentModel.find(properties).exec();
   },
