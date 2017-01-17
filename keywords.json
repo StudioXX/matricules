@@ -1,0 +1,707 @@
+[
+ {
+   "key": 1,
+   "french": "action",
+   "english": "action"
+ },
+ {
+   "key": 2,
+   "french": "animation",
+   "english": "animation"
+ },
+ {
+   "key": 3,
+   "french": "audio",
+   "english": "audio"
+ },
+ {
+   "key": 4,
+   "french": "interactivité",
+   "english": "interactivity"
+ },
+ {
+   "key": 5,
+   "french": "photo",
+   "english": "photo"
+ },
+ {
+   "key": 6,
+   "french": "texte",
+   "english": "text"
+ },
+ {
+   "key": 7,
+   "french": "vidéo",
+   "english": "video"
+ },
+ {
+   "key": 8,
+   "french": "collage",
+   "english": "collge"
+ },
+ {
+   "key": 9,
+   "french": "dessin",
+   "english": "drawing"
+ },
+ {
+   "key": 10,
+   "french": "imprimé",
+   "english": "print"
+ },
+ {
+   "key": 11,
+   "french": "vieillissement",
+   "english": "aging"
+ },
+ {
+   "key": 12,
+   "french": "activisme",
+   "english": "activism"
+ },
+ {
+   "key": 13,
+   "french": "agentivité",
+   "english": "agency"
+ },
+ {
+   "key": 14,
+   "french": "affiche",
+   "english": "poster"
+ },
+ {
+   "key": 15,
+   "french": "alphabétisation numérique",
+   "english": "digital literacy"
+ },
+ {
+   "key": 16,
+   "french": "anonymat",
+   "english": "anonymity"
+ },
+ {
+   "key": 17,
+   "french": "archives",
+   "english": "archive"
+ },
+ {
+   "key": 18,
+   "french": "art",
+   "english": "art"
+ },
+ {
+   "key": 19,
+   "french": "art sonore",
+   "english": "sound art"
+ },
+ {
+   "key": 20,
+   "french": "art web",
+   "english": "web art"
+ },
+ {
+   "key": 21,
+   "french": "artisanat",
+   "english": "craft"
+ },
+ {
+   "key": 22,
+   "french": "autochtone",
+   "english": "indigenous"
+ },
+ {
+   "key": 23,
+   "french": "bien-être",
+   "english": "care"
+ },
+ {
+   "key": 24,
+   "french": "biohacking",
+   "english": "biohacking"
+ },
+ {
+   "key": 25,
+   "french": "biotechnologie",
+   "english": "biotechnology"
+ },
+ {
+   "key": 26,
+   "french": "blogue",
+   "english": "blog"
+ },
+ {
+   "key": 27,
+   "french": "corps",
+   "english": "body"
+ },
+ {
+   "key": 28,
+   "french": "capitalisme",
+   "english": "capitalism"
+ },
+ {
+   "key": 29,
+   "french": "censure",
+   "english": "censorship"
+ },
+ {
+   "key": 30,
+   "french": "centre d’artistes autogéré",
+   "english": "artist-run centre"
+ },
+ {
+   "key": 31,
+   "french": "collaboration",
+   "english": "collaboration"
+ },
+ {
+   "key": 32,
+   "french": "connectivité",
+   "english": "connectivity"
+ },
+ {
+   "key": 33,
+   "french": "conservation des données",
+   "english": "data retention"
+ },
+ {
+   "key": 34,
+   "french": "construction sociale",
+   "english": "socila construction"
+ },
+ {
+   "key": 35,
+   "french": "consumérisme",
+   "english": "consumerism"
+ },
+ {
+   "key": 36,
+   "french": "culture",
+   "english": "culture"
+ },
+ {
+   "key": 37,
+   "french": "culture du viol",
+   "english": "rape"
+ },
+ {
+   "key": 38,
+   "french": "culture pop",
+   "english": "pop culture"
+ },
+ {
+   "key": 39,
+   "french": "cyberféminisme",
+   "english": "cyberfeminism"
+ },
+ {
+   "key": 40,
+   "french": "detournement",
+   "english": "detourment"
+ },
+ {
+   "key": 41,
+   "french": "diffusion",
+   "english": "diffusion"
+ },
+ {
+   "key": 42,
+   "french": "numérique",
+   "english": "digital"
+ },
+ {
+   "key": 43,
+   "french": "discours",
+   "english": "discourse"
+ },
+ {
+   "key": 44,
+   "french": "documentaire",
+   "english": "documentary"
+ },
+ {
+   "key": 45,
+   "french": "données",
+   "english": "data"
+ },
+ {
+   "key": 46,
+   "french": "égoportrait",
+   "english": "selfie"
+ },
+ {
+   "key": 47,
+   "french": "emale",
+   "english": "emale"
+ },
+ {
+   "key": 48,
+   "french": "émancipation",
+   "english": "empowerment"
+ },
+ {
+   "key": 49,
+   "french": "engagement",
+   "english": "commitment"
+ },
+ {
+   "key": 50,
+   "french": "environnement",
+   "english": "environment"
+ },
+ {
+   "key": 51,
+   "french": "entraide",
+   "english": "mutual aid"
+ },
+ {
+   "key": 52,
+   "french": "espaces sécuritaires",
+   "english": "safe spaces"
+ },
+ {
+   "key": 53,
+   "french": "ethnoculturel",
+   "english": "ethnocultural"
+ },
+ {
+   "key": 54,
+   "french": "exhibitionnisme",
+   "english": "exhibitionism"
+ },
+ {
+   "key": 55,
+   "french": "exposition",
+   "english": "exhibition"
+ },
+ {
+   "key": 56,
+   "french": "queer",
+   "english": "queer"
+ },
+ {
+   "key": 57,
+   "french": "féminisme",
+   "english": "feminism"
+ },
+ {
+   "key": 58,
+   "french": "femme",
+   "english": "woman"
+ },
+ {
+   "key": 59,
+   "french": "film",
+   "english": "movie"
+ },
+ {
+   "key": 60,
+   "french": "gratuit",
+   "english": "free"
+ },
+ {
+   "key": 61,
+   "french": "culture",
+   "english": "culture"
+ },
+ {
+   "key": 62,
+   "french": "futur passé",
+   "english": "future past"
+ },
+ {
+   "key": 63,
+   "french": "genre",
+   "english": "gender"
+ },
+ {
+   "key": 64,
+   "french": "piratage",
+   "english": "hacking"
+ },
+ {
+   "key": 65,
+   "french": "hacktivisme",
+   "english": "hacktivism"
+ },
+ {
+   "key": 66,
+   "french": "histoire",
+   "english": "history"
+ },
+ {
+   "key": 67,
+   "french": "histoire de l'art",
+   "english": "art history"
+ },
+ {
+   "key": 68,
+   "french": "HTMlles",
+   "english": "HTMlles"
+ },
+ {
+   "key": 69,
+   "french": "humour",
+   "english": "humor"
+ },
+ {
+   "key": 70,
+   "french": "identité",
+   "english": "identity"
+ },
+ {
+   "key": 71,
+   "french": "image de soi",
+   "english": "self-image"
+ },
+ {
+   "key": 72,
+   "french": "immobilité",
+   "english": "immobility"
+ },
+ {
+   "key": 73,
+   "french": "inclusion",
+   "english": "inclusion"
+ },
+ {
+   "key": 74,
+   "french": "installation",
+   "english": "installation"
+ },
+ {
+   "key": 75,
+   "french": "Internet",
+   "english": "Internet"
+ },
+ {
+   "key": 76,
+   "french": "intervention",
+   "english": "intervention"
+ },
+ {
+   "key": 77,
+   "french": "intimité",
+   "english": "privacy"
+ },
+ {
+   "key": 78,
+   "french": "jeu",
+   "english": "gaming"
+ },
+ {
+   "key": 79,
+   "french": "LGBTQ",
+   "english": "LGBTQ"
+ },
+ {
+   "key": 80,
+   "french": "liberté",
+   "english": "liberty"
+ },
+ {
+   "key": 81,
+   "french": "ludique",
+   "english": "playful"
+ },
+ {
+   "key": 82,
+   "french": "manifeste",
+   "english": "manifest"
+ },
+ {
+   "key": 83,
+   "french": "masculinité",
+   "english": "masculinity"
+ },
+ {
+   "key": 84,
+   "french": "Matricules",
+   "english": "Matricules"
+ },
+ {
+   "key": 85,
+   "french": "médiation",
+   "english": "mediation"
+ },
+ {
+   "key": 86,
+   "french": "memes",
+   "english": "memes"
+ },
+ {
+   "key": 87,
+   "french": "mémoire",
+   "english": "memory"
+ },
+ {
+   "key": 88,
+   "french": "misogynie",
+   "english": "misogyny"
+ },
+ {
+   "key": 89,
+   "french": "mode",
+   "english": "fashion"
+ },
+ {
+   "key": 90,
+   "french": "mouvements sociaux",
+   "english": "social movements"
+ },
+ {
+   "key": 91,
+   "french": "musique",
+   "english": "music"
+ },
+ {
+   "key": 92,
+   "french": "musique électronique",
+   "english": "electronic music"
+ },
+ {
+   "key": 93,
+   "french": "art web",
+   "english": "net art"
+ },
+ {
+   "key": 94,
+   "french": "nudité",
+   "english": "nudity"
+ },
+ {
+   "key": 95,
+   "french": "patriarcat",
+   "english": "patriarchy"
+ },
+ {
+   "key": 96,
+   "french": "pédagogie",
+   "english": "pedagogy"
+ },
+ {
+   "key": 97,
+   "french": "performance",
+   "english": "performance"
+ },
+ {
+   "key": 98,
+   "french": "personnage",
+   "english": "persona"
+ },
+ {
+   "key": 99,
+   "french": "personne de couleur",
+   "english": "person of color"
+ },
+ {
+   "key": 100,
+   "french": "poésie",
+   "english": "poetry"
+ },
+ {
+   "key": 101,
+   "french": "politique",
+   "english": "politic"
+ },
+ {
+   "key": 102,
+   "french": "pornographie",
+   "english": "pornography"
+ },
+ {
+   "key": 103,
+   "french": "pouvoir",
+   "english": "power"
+ },
+ {
+   "key": 104,
+   "french": "préjugés",
+   "english": "prejudices"
+ },
+ {
+   "key": 105,
+   "french": "queer",
+   "english": "queer"
+ },
+ {
+   "key": 106,
+   "french": "racisme",
+   "english": "racism"
+ },
+ {
+   "key": 107,
+   "french": "radio",
+   "english": "radio"
+ },
+ {
+   "key": 108,
+   "french": "recyclage",
+   "english": "recycling"
+ },
+ {
+   "key": 109,
+   "french": "rédaction",
+   "english": "edition"
+ },
+ {
+   "key": 110,
+   "french": "religion",
+   "english": "religion"
+ },
+ {
+   "key": 111,
+   "french": "remix",
+   "english": "remix"
+ },
+ {
+   "key": 112,
+   "french": "représentation",
+   "english": "representation"
+ },
+ {
+   "key": 113,
+   "french": "réseaux sociaux",
+   "english": "social networks"
+ },
+ {
+   "key": 114,
+   "french": "résistance",
+   "english": "resistance"
+ },
+ {
+   "key": 115,
+   "french": "révolution",
+   "english": "revolution"
+ },
+ {
+   "key": 116,
+   "french": "risque",
+   "english": "risk"
+ },
+ {
+   "key": 117,
+   "french": "robotique",
+   "english": "robotics"
+ },
+ {
+   "key": 118,
+   "french": "santé",
+   "english": "health"
+ },
+ {
+   "key": 119,
+   "french": "sexisme",
+   "english": "sexism"
+ },
+ {
+   "key": 120,
+   "french": "sexualité",
+   "english": "sexuality"
+ },
+ {
+   "key": 121,
+   "french": "signal",
+   "english": "signal"
+ },
+ {
+   "key": 122,
+   "french": "socialisme",
+   "english": "socialism"
+ },
+ {
+   "key": 123,
+   "french": "sociologie de l’art",
+   "english": "sociology"
+ },
+ {
+   "key": 124,
+   "french": "solidarité",
+   "english": "solidarity"
+ },
+ {
+   "key": 125,
+   "french": "subjectivité",
+   "english": "subjectivity"
+ },
+ {
+   "key": 126,
+   "french": "subversion",
+   "english": "subversion"
+ },
+ {
+   "key": 127,
+   "french": "surveillance",
+   "english": "surveillance"
+ },
+ {
+   "key": 128,
+   "french": "sociale",
+   "english": "social"
+ },
+ {
+   "key": 129,
+   "french": "survie",
+   "english": "survival"
+ },
+ {
+   "key": 130,
+   "french": "technologie",
+   "english": "technology"
+ },
+ {
+   "key": 131,
+   "french": "télévision",
+   "english": "television"
+ },
+ {
+   "key": 132,
+   "french": "textile",
+   "english": "textile"
+ },
+ {
+   "key": 133,
+   "french": "transexuel",
+   "english": "transexual"
+ },
+ {
+   "key": 134,
+   "french": "transgenre",
+   "english": "transgender"
+ },
+ {
+   "key": 135,
+   "french": "transition",
+   "english": "transition"
+ },
+ {
+   "key": 136,
+   "french": "typographie",
+   "english": "typography"
+ },
+ {
+   "key": 137,
+   "french": "vagabondage",
+   "english": "vagrancy"
+ },
+ {
+   "key": 138,
+   "french": "vedettariat",
+   "english": "stardom"
+ },
+ {
+   "key": 139,
+   "french": "vêtement",
+   "english": "wearable"
+ },
+ {
+   "key": 140,
+   "french": "vie",
+   "english": "life"
+ },
+ {
+   "key": 141,
+   "french": "vidéo",
+   "english": "video"
+ }
+]
