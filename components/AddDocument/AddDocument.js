@@ -1,6 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import axios from 'axios';
+import Dropzone from 'react-dropzone';
 import TextInput from '../UI/TextInput';
 import CategoriePicker from '../UI/CategoriePicker';
 import TagPicker from '../UI/TagPicker';
@@ -9,13 +10,8 @@ import TextArea from '../UI/TextArea';
 import LinkListEdit from '../UI/LinkListEdit';
 import MediumPicker from '../UI/MediumPicker';
 import SupportPicker from '../UI/SupportPicker';
-import Button from '../UI/Button';
-import XHRUploader from '../UI/XHRUploader';
 import ImageList from '..//EditDocument/ImageList';
 import AudioList from '..//EditDocument/AudioList';
-
-import Dropzone from 'react-dropzone';
-import request from 'superagent';
 
 class AddDocument extends React.Component {
   constructor(props) {
@@ -244,36 +240,11 @@ class AddDocument extends React.Component {
       };
       otherxhr.send(otherform);
     }
-
-
-  //   console.log(acceptedFiles);
-  //   const imgs = acceptedFiles.filter(file => file.type.includes('image'));
-  //   console.log(imgs);
-  //     var file = new FormData();
-  //     file.append('datafile', imgs);
-  //     var req = request
-  //               .post(`http://localhost:4000/api/document/media/${this.state.accession_number}`)
-  // .send(file)
-  // .end(function(error, response){
-  //   if(error) { 
-  //      console.log("Error: " + error);
-  //   } else {console.log('done')}
-  // });
   }
 
   render() {
   const mediauploadlink = `http://localhost:4000/api/document/media/${this.state.accession_number}`;
-  // const uploader = (this.state.accession_number === '') ? null : (<div>
-  //   <XHRUploader
-  //     url={mediauploadlink}
-  //     auto
-  //     maxFiles={25}
-  //     accession_number={this.state.accession_number}
-  //     handleMediaAdd={this.handleMediaAdd}
-  //   />
-  // </div>);
-
-const uploader = <Dropzone onDrop={this.onDrop}>
+  const uploader = <Dropzone onDrop={this.onDrop}>
               <div>Try dropping some files here, or click to select files to upload.</div>
             </Dropzone>;
 
