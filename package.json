@@ -7,7 +7,7 @@
     "2": "node client-server.js & nodemon init.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve-api": "nodemon init.js",
-    "dev": "nodemon init.js & next",
+    "dev": "node client-server.js & nodemon init.js",
     "next": "next",
     "build": "next build",
     "start": "next start -p $PORT",

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class AudioGallery extends React.Component {
+class AudioList extends React.Component {
   constructor(props) {
     super(props);
   }
@@ -27,4 +27,4 @@ class AudioGallery extends React.Component {
   }
 }
 
-export default AudioGallery;
+export default AudioList;

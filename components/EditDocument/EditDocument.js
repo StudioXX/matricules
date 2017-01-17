@@ -14,6 +14,7 @@ import SupportPicker from '../UI/SupportPicker';
 import Button from '../UI/Button';
 import ImageList from './ImageList';
 import AudioList from './AudioList';
+import OtherList from './OtherList';
 
 class EditDocument extends React.Component {
   constructor(props) {
@@ -37,6 +38,7 @@ class EditDocument extends React.Component {
       images: [],
       audio: [],
       video: [],
+      other: [],
     };
     this.handleAccession = this.handleAccession.bind(this);
     this.handleCategorie = this.handleCategorie.bind(this);
@@ -57,6 +59,7 @@ class EditDocument extends React.Component {
     this.handleMedium = this.handleMedium.bind(this);
     this.handleMediaAdd = this.handleMediaAdd.bind(this);
     this.handleImgDelete = this.handleImgDelete.bind(this);
+    this.handleOtherDelete = this.handleOtherDelete.bind(this);
     this.handleAudioDelete = this.handleAudioDelete.bind(this);
     this.handleDocumentDelete = this.handleDocumentDelete.bind(this);
     this.onDrop = this.onDrop.bind(this);
@@ -65,7 +68,6 @@ class EditDocument extends React.Component {
   componentDidMount() {
     this.mounted = true;
     if (this.props._data) {
-      console.log('rednered by server');
       if (this.mounted === true) {
         this.setState({
           _id: this.props._id || '',
@@ -86,10 +88,10 @@ class EditDocument extends React.Component {
           images: this.props.images || [],
           video: this.props.video || [],
           audio: this.props.audio || [],
+          other: this.props.other || [],
         });
       }
     } else {
-      console.log('rednered by client');
       const url = `http://localhost:4000/api/document/${this.props.id}`;
       return new Promise((resolve, reject) => (
         axios.get(url)
@@ -108,6 +110,7 @@ class EditDocument extends React.Component {
         images: _data.images || [],
         audio: _data.audio || [],
         video: _data.video || [],
+        other: _data.other || [],
         links: _data.links || [],
         medium: _data.medium || '',
         notes: _data.notes || '',
@@ -227,6 +230,7 @@ class EditDocument extends React.Component {
       images: this.state.images,
       audio: this.state.audio,
       video: this.state.video,
+      other: this.state.other,
       token: localStorage.token,
     })
     .then((response) => {
@@ -241,7 +245,7 @@ class EditDocument extends React.Component {
   }
 
 
-handleMediaAdd(file) {
+  handleMediaAdd(file) {
     if (file.mimetype.indexOf('image') > -1) {
       const imgs = this.state.images;
       imgs.push(file.originalname);
@@ -250,22 +254,30 @@ handleMediaAdd(file) {
       const audios = this.state.audio;
       audios.push(file.originalname);
       this.setState({ audio: audios, });
+    } else {
+      const other = this.state.other;
+      other.push(file.originalname);
+      this.setState({ other, });
     }
-// TODO: OTHER
+  // TODO: OTHER
   }
 
   handleImgDelete(key) {
-    console.log('deleting img' + key);
     const imgs = this.state.images;
     imgs.splice(key, 1);
     this.setState({ images: imgs, });
   }
 
   handleAudioDelete(key) {
-    console.log('deleting audio' + key);
     const audios = this.state.audio;
     audios.splice(key, 1);
     this.setState({ audio: audios, });
+  }
+
+  handleOtherDelete(key) {
+    const other = this.state.other;
+    other.splice(key, 1);
+    this.setState({ other, });
   }
 
   handleDocumentDelete() {
@@ -359,7 +371,6 @@ handleMediaAdd(file) {
       </div>
       <div>
       keywords:
-      <TagPicker keywords={this.state.keywords} handleAdd={this.handleTagAdd} handleDelete={this.handleTagDelete} />
       </div>
       <div>
       links:
@@ -397,8 +408,10 @@ handleMediaAdd(file) {
         <ImageList handleImgDelete={this.handleImgDelete} accession={this.state.accession_number} images={this.state.images} />
       </div>
       <div>
-        {(this.state.audio.length > 0) ? <AudioList handleAudioDelete={this.handleAudioDelete} accession={this.state.accession_number} audio={this.state.audio} />
-        : null }
+        <AudioList handleAudioDelete={this.handleAudioDelete} accession={this.state.accession_number} audio={this.state.audio} />
+      </div>
+      <div>
+        <OtherList handleOtherDelete={this.handleOtherDelete} accession={this.state.accession_number} other={this.state.other} />
       </div>
       <div>
         <button onClick={this.handleSubmit} className={'button-primary'}>Save</button>

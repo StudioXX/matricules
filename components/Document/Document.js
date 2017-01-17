@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Button from '../UI/Button';
 import ImageGallery from './ImageGallery';
 import AudioGallery from './AudioGallery';
+import OtherGallery from './OtherGallery';
 
 class Document extends React.Component {
   constructor(props) {
@@ -27,6 +28,7 @@ class Document extends React.Component {
       title: this.props.title || '',
       audio: this.props.audio || [],
       video: this.props.video || [],
+      other: this.props.other || [],
     };
   }
 
@@ -62,6 +64,7 @@ class Document extends React.Component {
           title: _data.title,
           videos: _data.videos,
           audio: _data.audio,
+          other: _data.other,
         }) },
       (err) => { console.log(err); }
       );
@@ -79,6 +82,7 @@ class Document extends React.Component {
     const titlestring = (language === 'fr') ? 'Titre forgé' : 'Formed Title';
     const images = <div>images: <ImageGallery accession={this.state.accession_number} images={this.state.images} /></div>;
     const audios = <div>audio: <AudioGallery accession={this.state.accession_number} audio={this.state.audio} /></div>;
+    const others = <div>other: <OtherGallery accession={this.state.accession_number} other={this.state.other} /></div>;
 
     return (<div>
       <Head>
@@ -128,6 +132,7 @@ class Document extends React.Component {
       </div>
       {(this.state.audio.length > 0) ? audios : null}
       {(this.state.images.length > 0) ? images : null}
+      {(this.state.other.length > 0) ? others : null}
     </div>
     );
   }

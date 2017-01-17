@@ -73,7 +73,7 @@ const documentSchema = new Schema({
     type: Array,
     required: false,
   },
-  otherfiles: {
+  other: {
     type: Array,
     required: false,
   },
