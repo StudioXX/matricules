@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
+const autoIncrement = require('mongoose-auto-increment');
 const db = require('../db');
 mongoose.Promise = require('bluebird');
 
 const Schema = mongoose.Schema;
 
-const documentSchema = new Schema({
+const keywordSchema = new Schema({
   key: {
     type: String,
     required: true,
@@ -19,8 +20,13 @@ const documentSchema = new Schema({
   },
 });
 
+autoIncrement.initialize(db.get());
+
+// auto-increment on key when create new
+keywordSchema.plugin(autoIncrement.plugin, { model: 'KeywordModel', field: 'key', startAt: 142, });
 // get our db & create a model holding our schema in a collection named shops
-const KeywordModel = db.get().model('Keyword', documentSchema);
+const KeywordModel = db.get().model('Keyword', keywordSchema);
+
 
 module.exports = {
 

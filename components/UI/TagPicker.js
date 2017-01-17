@@ -17,10 +17,16 @@ class TagPicker extends React.Component {
   }
 
   render() {
-    var options = [
-    { value: 'one', label: 'Art' },
-    { value: 'two', label: 'Radio' }
-    ];
+    //  options = [
+    // { value: 'one', label: 'Art' },
+    // { value: 'two', label: 'Radio' }
+    // ];
+    let options;
+    if (this.props.language === 'fr') {
+      options = this.props.suggestions.map((keyword) => ({ value: keyword.key, label: keyword.french, }))
+    } else {
+      options = this.props.suggestions.map((keyword) => ({ value: keyword.key, label: keyword.english, }))
+    }
 
     return (
       <div>

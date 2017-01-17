@@ -1,5 +1,7 @@
 import React from 'react';
 import axios from 'axios';
+import Modal from 'react-modal';
+import KeywordOne from './KeywordOne';
 import KeywordEdit from './KeywordEdit';
 
 class Keywords extends React.Component {
@@ -7,13 +9,27 @@ class Keywords extends React.Component {
     super(props);
     this.state = {
       keywords: [],
+      modalIsOpen: false,
+      selectedKeyword: {},
     };
-    this.handleEnglish = this.handleEnglish.bind(this);
-    this.handleFrench = this.handleFrench.bind(this);
+    this.fetchData = this.fetchData.bind(this);
+    this.openModal = this.openModal.bind(this);
+    this.afterOpenModal = this.afterOpenModal.bind(this);
+    this.closeModal = this.closeModal.bind(this);
+    this.selectKeyword = this.selectKeyword.bind(this);
+    this.createNew = this.createNew.bind(this);
   }
 
   componentDidMount() {
     this.mounted = true;
+    this.fetchData();
+  }
+
+  componentWillUnmount() {
+    this.mounted = false;
+  }
+
+  fetchData() {
     const url = `http://localhost:4000/api/keywords`;
     return new Promise((resolve, reject) => (
       axios.get(url)
@@ -30,30 +46,66 @@ class Keywords extends React.Component {
     );
   }
 
-  componentWillUnmount() {
-    this.mounted = false;
+  openModal() {
+    this.setState({modalIsOpen: true});
   }
 
-  handleEnglish(i, event) {
-    const state = this.state.keywords;
-    console.log(event.target.value)
-    state[i].english = event.target.value;
-    this.setState({ keywords: state, });
+  afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    this.refs.subtitle.style.color = '#f00';
   }
 
-  handleFrench(i, event) {
-    const state = this.state.keywords;
-    state[i].french = event.target.value;
-    this.setState({ keywords: state, });
+  closeModal() {
+    this.setState({modalIsOpen: false});
+    this.fetchData();
+  }
+
+  selectKeyword(obj) {
+    this.setState({
+      selectedKeyword: obj,
+      modalIsOpen: true,
+    });
+  }
+
+  createNew() {
+    this.setState({
+      selectedKeyword: {
+        english: '',
+        french: '',
+        key: 0,
+      },
+      modalIsOpen: true,
+    });
   }
 
   render() {
+    const customStyles = {
+      content: {
+        top                   : '50%',
+        left                  : '50%',
+        right                 : 'auto',
+        bottom                : 'auto',
+        marginRight           : '-50%',
+        transform             : 'translate(-50%, -50%)'
+      }
+    };
     return (<div>
+      <Modal
+        isOpen={this.state.modalIsOpen}
+        onAfterOpen={this.afterOpenModal}
+        onRequestClose={this.closeModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+      >
+        <KeywordEdit closeModal={this.closeModal} selectedKeyword={this.state.selectedKeyword} />
+      </Modal>
+      <button onClick={this.createNew}>Add New Keyword</button>
       {this.state.keywords.map((keyword, i) => {
         return (
-          <KeywordEdit key={i} englishhandler={this.handleEnglish.bind(this, i)} frenchhandler={this.handleFrench.bind(this, i)} key={i} english={keyword.english} french={keyword.french} />
+          <KeywordOne key={i} selectKeyword={this.selectKeyword} english={keyword.english} french={keyword.french} obj={keyword} />
         )
       })}
+
     </div>
     );
   }

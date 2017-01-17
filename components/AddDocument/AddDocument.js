@@ -35,6 +35,7 @@ class AddDocument extends React.Component {
       images: [],
       audio: [],
       video: [],
+      keywordsSuggestions: [],
     };
     this.handleAccession = this.handleAccession.bind(this);
     this.handleCategorie = this.handleCategorie.bind(this);
@@ -57,6 +58,65 @@ class AddDocument extends React.Component {
     this.handleImgDelete = this.handleImgDelete.bind(this);
     this.handleAudioDelete = this.handleAudioDelete.bind(this);
     this.onDrop = this.onDrop.bind(this);
+  }
+
+  componentDidMount() {
+    const url = `http://localhost:4000/api/keywords`;
+    return new Promise((resolve, reject) => (
+        axios.get(url)
+          .then(response => (resolve(response.data)))
+          .catch(error => (reject(error)))
+      ))
+      .then(
+      (_data) => {
+        this.setState({
+          keywordsSuggestions: _data
+        }) },
+      (err) => { console.log(err); });
+  }
+
+  onDrop(acceptedFiles, rejectedFiles) {
+    const imgsform = new FormData();
+    const imgsxhr = new XMLHttpRequest();
+    const otherform = new FormData();
+    const otherxhr = new XMLHttpRequest();
+    const isImg = file => file.type.includes('image');
+    const imgs = acceptedFiles.filter(isImg);
+    const other = acceptedFiles.filter(file => !isImg(file));
+
+    if (imgs.length > 0) {
+      imgs.map(file => imgsform.append('datafile', file));
+      imgsxhr.open('POST', `http://localhost:4000/api/document/photos/${this.state.accession_number}`, true);
+      imgsxhr.onreadystatechange = () => {
+        if (imgsxhr.readyState === 4) {
+          if (imgsxhr.status === 200) {
+            const files = JSON.parse(imgsxhr.responseText);
+            console.log(files);
+            files.map(file => this.handleMediaAdd(file));
+          } else {
+            console.error(imgsxhr.statusText);
+          }
+        }
+      };
+      imgsxhr.send(imgsform);
+    }
+
+    if (other.length > 0) {
+      other.map(file => otherform.append('datafile', file));
+      otherxhr.open('POST', `http://localhost:4000/api/document/media/${this.state.accession_number}`, true);
+      otherxhr.onreadystatechange = () => {
+        if (otherxhr.readyState === 4) {
+          if (otherxhr.status === 200) {
+            const files = JSON.parse(otherxhr.responseText);
+            console.log(files);
+            files.map(file => this.handleMediaAdd(file));
+          } else {
+            console.error(otherxhr.statusText);
+          }
+        }
+      };
+      otherxhr.send(otherform);
+    }
   }
 
   handleAccession(event) {
@@ -198,57 +258,11 @@ class AddDocument extends React.Component {
     this.setState({ audio: audios, });
   }
 
-  onDrop(acceptedFiles, rejectedFiles) {
-    const imgsform = new FormData();
-    const imgsxhr = new XMLHttpRequest();
-    const otherform = new FormData();
-    const otherxhr = new XMLHttpRequest();
-    const isImg = file => file.type.includes('image');
-    const imgs = acceptedFiles.filter(isImg);
-    const other = acceptedFiles.filter(file => !isImg(file));
-
-    if (imgs.length > 0) {
-      imgs.map(file => imgsform.append('datafile', file));
-      imgsxhr.open('POST', `http://localhost:4000/api/document/photos/${this.state.accession_number}`, true);
-      imgsxhr.onreadystatechange = () => {
-        if (imgsxhr.readyState === 4) {
-          if (imgsxhr.status === 200) {
-            const files = JSON.parse(imgsxhr.responseText);
-            console.log(files);
-            files.map(file => this.handleMediaAdd(file));
-          } else {
-            console.error(imgsxhr.statusText);
-          }
-        }
-      };
-      imgsxhr.send(imgsform);
-    }
-
-    if (other.length > 0) {
-      other.map(file => otherform.append('datafile', file));
-      otherxhr.open('POST', `http://localhost:4000/api/document/media/${this.state.accession_number}`, true);
-      otherxhr.onreadystatechange = () => {
-        if (otherxhr.readyState === 4) {
-          if (otherxhr.status === 200) {
-            const files = JSON.parse(otherxhr.responseText);
-            console.log(files);
-            files.map(file => this.handleMediaAdd(file));
-          } else {
-            console.error(otherxhr.statusText);
-          }
-        }
-      };
-      otherxhr.send(otherform);
-    }
-  }
-
   render() {
   const mediauploadlink = `http://localhost:4000/api/document/media/${this.state.accession_number}`;
   const uploader = <Dropzone onDrop={this.onDrop}>
-              <div>Try dropping some files here, or click to select files to upload.</div>
-            </Dropzone>;
-
-
+      <div>Try dropping some files here, or click to select files to upload.</div>
+  </Dropzone>;
 
     // TODO : create keywords db collection and pull from it
     return (<div>
@@ -276,7 +290,7 @@ class AddDocument extends React.Component {
       </div>
       <div>
       keywords:
-      <TagPicker keywords={this.state.keywords} handleAdd={this.handleTagAdd} handleDelete={this.handleTagDelete} />
+      <TagPicker suggestions={this.state.keywordsSuggestions} language={this.props.language} keywords={this.state.keywords} handleAdd={this.handleTagAdd} handleDelete={this.handleTagDelete} />
       </div>
       <div>
       links:
