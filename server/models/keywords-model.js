@@ -50,7 +50,7 @@ module.exports = {
 
   // find & delete from id
   deleteOne: (key) => {
-    return KeywordModel.findOneAndDelete({ key, }).exec();
+    return KeywordModel.remove({ key, }).exec();
   },
 
   // retrieve one by id, then update other fields

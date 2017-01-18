@@ -14,7 +14,6 @@ class Keywords extends React.Component {
     };
     this.fetchData = this.fetchData.bind(this);
     this.openModal = this.openModal.bind(this);
-    this.afterOpenModal = this.afterOpenModal.bind(this);
     this.closeModal = this.closeModal.bind(this);
     this.selectKeyword = this.selectKeyword.bind(this);
     this.createNew = this.createNew.bind(this);
@@ -38,7 +37,6 @@ class Keywords extends React.Component {
     ))
     .then(
     (_data) => {
-      console.log(_data);
       this.setState({
         keywords: _data,
       }); },
@@ -48,11 +46,6 @@ class Keywords extends React.Component {
 
   openModal() {
     this.setState({modalIsOpen: true});
-  }
-
-  afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    this.refs.subtitle.style.color = '#f00';
   }
 
   closeModal() {
@@ -92,7 +85,6 @@ class Keywords extends React.Component {
     return (<div>
       <Modal
         isOpen={this.state.modalIsOpen}
-        onAfterOpen={this.afterOpenModal}
         onRequestClose={this.closeModal}
         style={customStyles}
         contentLabel="Example Modal"

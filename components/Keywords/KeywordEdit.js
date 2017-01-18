@@ -12,6 +12,7 @@ class KeywordEdit extends React.Component {
     this.editSubmit = this.editSubmit.bind(this);
     this.newSubmit = this.newSubmit.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
     this.handleEnglish = this.handleEnglish.bind(this);
     this.handleFrench = this.handleFrench.bind(this);
   }
@@ -76,15 +77,37 @@ class KeywordEdit extends React.Component {
     }
   }
 
+  handleDelete() {
+    const url = `http://localhost:4000/api/keywords/${this.state.key}`;
+    axios({
+      method: 'delete',
+      url,
+      data: { token: localStorage.token, },
+      params: {
+        force: true,
+      },
+    }).then((response) => {
+      console.log(response);
+      this.props.closeModal();
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+  }
+
   render() {
+    const deletethis = (this.state.key === 0) ? null : <button onClick={this.handleDelete}>Delete</button>;
     return (
       <div>
         english:
         <input onChange={this.handleEnglish} type="text" style={{width:400,marginRight:20}} value={this.state.english} />
         francais:
         <input onChange={this.handleFrench} type="text" style={{width:400}} width="200" value={this.state.french} />
+        <div>
         <button onClick={this.props.closeModal}>close</button>
+        {deletethis}
         <button onClick={this.handleSubmit} className={'button-primary'}>Submit</button>
+        </div>
       </div>
     );
   }
