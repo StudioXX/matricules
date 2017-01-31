@@ -22,11 +22,11 @@ connection.connect(function(err) {
   console.log('connected as id ' + connection.threadId);
 });
 
-const query = `SELECT * FROM finalmap;`
+const query = `SELECT * FROM keywordseventsprogram`
 
 connection.query(query, function(err, rows, fields) {
   if (err) throw err;
-  var file = 'fullarchives.json'
+  var file = 'keywordseventsprogram.json'
   let allitems = [];
   for (i=0; i<rows.length; i++) {
       const string=JSON.stringify(rows[i]);

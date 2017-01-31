@@ -11,7 +11,8 @@
     "next": "next",
     "build": "next build",
     "start": "next start -p $PORT",
-    "postinstall": "heroku-nextjs-build"
+    "postinstall": "heroku-nextjs-build",
+    "serve": "nodemon init.js"
   },
   "author": "",
   "license": "ISC",
@@ -35,6 +36,7 @@
     "express-jwt": "^5.1.0",
     "file-type": "^3.9.0",
     "fs-extra": "^1.0.0",
+    "html-entities": "^1.2.0",
     "image-size": "^0.5.1",
     "image-size-stream": "^1.1.0",
     "imagesize": "^1.0.0",
@@ -54,7 +56,10 @@
     "mongoose": "^4.7.2",
     "mongoose-auto-increment": "^5.0.1",
     "multer": "^1.2.1",
+    "mysql": "^2.12.0",
+    "natural": "^0.4.0",
     "next": "^2.0.0-beta.6",
+    "nlp_compromise": "^6.5.3",
     "passport": "^0.3.2",
     "passport-jwt": "^2.2.1",
     "passport-local": "^1.0.0",
