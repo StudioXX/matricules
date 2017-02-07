@@ -34,12 +34,12 @@ MongoClient.connect(url, (err, db) => {
         // keywords = keywords.split(",");
 
         // // insert keywords
-        // const TfIdf = natural.TfIdf;
-        // const tfidf = new TfIdf();
-        // tfidf.addDocument(doc.bodyenglish);
-        // const topterms = tfidf.listTerms(0).slice(0, 5);
-        // const toptermwords = topterms.map((word) => word.term);
-
+        const TfIdf = natural.TfIdf;
+        const tfidf = new TfIdf();
+        tfidf.addDocument(doc.bodyenglish);
+        const topterms = tfidf.listTerms(0).slice(0, 5);
+        const toptermwords = topterms.map((word) => word.term);
+        console.log(toptermwords);
         // keywords = keywords.concat(toptermwords);
         
 
@@ -59,9 +59,10 @@ MongoClient.connect(url, (err, db) => {
         // doc.keywords = keywords;
 
         // insert participants
-        const people = nlp.text(doc.bodyenglish).people();
-        const names = people.map((person) => person.text);
-        doc.participants = names;
+        // const people = nlp.text(doc.bodyenglish).people();
+        // const names = people.map((person) => person.text);
+        // console.log(names);
+        // doc.participants = names;
 
         // replace HTML entities
         // doc.bodyfrench = doc.bodyfrench.replace('&eacute;', 'é');
@@ -75,7 +76,7 @@ MongoClient.connect(url, (err, db) => {
         // remove HTML
         // doc.bodyenglish = doc.bodyenglish.replace(/<(?:.|\n)*?>/gm, '');
 
-        db.collection('events').save(doc);
+        // db.collection('events').save(doc);
     });
   }
 });

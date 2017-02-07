@@ -5,9 +5,6 @@ JOIN node_revisions on node_revisions.vid=node.vid
 JOIN content_type_content_event on node_revisions.vid=content_type_content_event.vid
 WHERE node.type='content_event'
 
-
-
-
 /* create english table */
 
 CREATE TABLE eventsenglish
@@ -17,7 +14,6 @@ JOIN keywordsmap ON keywordsmap.documentID=node.vid
 JOIN node_revisions on node_revisions.vid=node.vid
 JOIN content_type_content_event on node_revisions.vid=content_type_content_event.vid
 WHERE node.type='content_event' AND language='en'
-
 
 /* merge event keywords onto documents */
 
@@ -29,10 +25,6 @@ JOIN vocabulary ON term_data.vid=vocabulary.vid and vocabulary.name='Keywords'
 JOIN content_field_linked_documents_video on content_field_linked_documents_video.nid = term_node.nid
 JOIN node on node.nid = content_field_linked_documents_video.field_linked_documents_video_nid
 GROUP by nid
-
-
-
-
 
 -- create eventsmerged table with both languages, keywords, participants
 SELECT eventsenglish.tnid, eventsenglish.bodyenglish, eventsenglish.titleenglish, eventsenglish.start, eventsenglish.end, eventsfrench.titlefrench, eventsfrench.bodyfrench, CONCAT(eventsenglish.keywords, ', ',  eventsfrench.keywords) AS keywords
@@ -48,6 +40,17 @@ FROM content_field_participant
 JOIN node_revisions ON content_field_participant.field_participant_nid = node_revisions.nid
 GROUP BY content_field_participant.nid
 
+
+--- create table of events and their participants
+SELECT DISTINCT content_field_participant.vid, content_field_participant.nid, content_field_participant.field_participant_nid, GROUP_CONCAT(node_revisions.title SEPARATOR ', ') as participants
+FROM content_field_participant
+JOIN node_revisions ON content_field_participant.field_participant_nid=node_revisions.nid
+GROUP BY nid
+
+-- merge these two tables
+SELECT eventsmerged.tnid, eventsmerged.titleenglish, eventsmerged.titlefrench, eventsmerged.bodyenglish, eventsmerged.bodyfrench, eventsmerged.start, eventsmerged.end, eventsmerged.keywords, eventsparticipantsmap.participants
+FROM eventsmerged
+JOIN eventsparticipantsmap on eventsmerged.tnid=eventsparticipantsmap.nid
 
 -- map associated docs onto participants
 
