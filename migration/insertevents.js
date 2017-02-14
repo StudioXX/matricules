@@ -20,6 +20,26 @@ MongoClient.connect(url, (err, db) => {
     console.log('Unable to connect to the mongoDB server. Error:', err);
   } else {
     console.log('Connection established to', url);
+
+    // fs.readFile('eventsfinal.json', 'utf8', (err, data) => {
+    //   if (err) throw err;
+    //   const json = JSON.parse(data);
+    //   db.collection('events').drop();
+    //   db.collection('events').insert(json, (error, result) => {
+    //     if (error) {
+    //       console.log('error');
+    //       db.close();
+    //       process.exit();
+    //     } else {
+    //       console.log('success');
+    //       db.close();
+    //       process.exit();
+    //     }
+    //   });
+    // });
+
+
+
     // this converts our date field in db to ISOdate objects for mongodb
     // db.collection('documents').find({}).forEach(function(doc) { 
     // doc.date=new Date(doc.date * 1000);
@@ -34,35 +54,34 @@ MongoClient.connect(url, (err, db) => {
         // keywords = keywords.split(",");
 
         // // insert keywords
-        const TfIdf = natural.TfIdf;
-        const tfidf = new TfIdf();
-        tfidf.addDocument(doc.bodyenglish);
-        const topterms = tfidf.listTerms(0).slice(0, 5);
-        const toptermwords = topterms.map((word) => word.term);
-        console.log(toptermwords);
-        // keywords = keywords.concat(toptermwords);
+        // const TfIdf = natural.TfIdf;
+        // const tfidf = new TfIdf();
+        // tfidf.addDocument(doc.bodyenglish);
+        // const topterms = tfidf.listTerms(0).slice(0, 5);
+        // const toptermwords = topterms.map((word) => word.term);
+        // doc.keywords = doc.keywords.concat(toptermwords);
         
-
-        // keywords.forEach((keyword) => {
-        //   if (keyword[0] === ' ') {
-        //     keyword = keyword.substring(1);
-        //   }
-        // })
-
-        // for (let i = 0; i < keywords.length; i += 1) {
-        //   if (keywords[i][0] === " ") {
-        //     console.log(keywords[i])
-        //     keywords[i] = keywords[i].substring(1);
-        //   }
+        // if (!Array.isArray(doc.participants)) {
+        //   doc.participants = doc.participants.split(", ");
         // }
 
-        // doc.keywords = keywords;
+
+        // if (doc.keywords === null) {
+        //   doc.keywords = []
+        // }
+        
+        
+        // db.collection('events').save(doc);
 
         // insert participants
+
+        // if (doc.participants === null) {
+        //   doc.participants = []
+        // }
         // const people = nlp.text(doc.bodyenglish).people();
         // const names = people.map((person) => person.text);
         // console.log(names);
-        // doc.participants = names;
+        // doc.participants = doc.participants.concat(names);
 
         // replace HTML entities
         // doc.bodyfrench = doc.bodyfrench.replace('&eacute;', 'é');
@@ -76,7 +95,58 @@ MongoClient.connect(url, (err, db) => {
         // remove HTML
         // doc.bodyenglish = doc.bodyenglish.replace(/<(?:.|\n)*?>/gm, '');
 
-        // db.collection('events').save(doc);
+        const uniqueArray = doc.allmatricules.filter(function(item, pos, self) {
+            return self.indexOf(item) == pos;
+        })
+
+        doc.allmatricules = uniqueArray;
+
+        // let audio;
+        // if (doc.audio === null) {
+        //   audio = []
+        // } else {
+        //   audio = doc.audio.split(", ");
+        // }
+      
+        // let communiq;
+        // if (doc.communiq === null) {
+        //   communiq = []
+        // } else {
+        //   communiq = doc.communiq.split(", ");
+        // }
+
+        // let docs;
+        // if (doc.docs === null) {
+        //   docs = []
+        // } else {
+        //   docs = doc.docs.split(", ");
+        // }
+
+        // let gallery;
+        // if (doc.gallery === null) {
+        //   gallery = []
+        // } else {
+        //   gallery = doc.gallery.split(", ");
+        // }
+
+        // let program;
+        // if (doc.program === null) {
+        //   program = []
+        // } else {
+        //   program = doc.program.split(", ");
+        // }
+
+        // let videos;
+        // if (doc.videos === null) {
+        //   videos = []
+        // } else {
+        //   videos = doc.videos.split(", ");
+        // }
+
+        // const allmatricules = audio.concat(communiq, docs, gallery, program, videos);
+
+        // doc.allmatricules = allmatricules;
+        db.collection('events').save(doc);
     });
   }
 });

@@ -22,11 +22,11 @@ connection.connect(function(err) {
   console.log('connected as id ' + connection.threadId);
 });
 
-const query = `SELECT * FROM keywordseventsprogram`
+const query = `SELECT * FROM participantswithlinks`
 
 connection.query(query, function(err, rows, fields) {
   if (err) throw err;
-  var file = 'keywordseventsprogram.json'
+  var file = 'participantsfinal.json'
   let allitems = [];
   for (i=0; i<rows.length; i++) {
       const string=JSON.stringify(rows[i]);
