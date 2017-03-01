@@ -33,6 +33,38 @@ const eventtypemap = [
   }
 ];
 
+const formationmap = [
+	{
+		"term_id": 2320,
+    "english": 2321,
+		"name": "Activités éducatives",
+	},
+	{
+		"term_id": 2319,
+    "english": 2322,
+		"name": "Ateliers",
+	}
+]
+
+const pubmap = [
+	{
+		"term_id": 2332,
+    "english": 2334,
+		"name": "Appel"
+	},
+	{
+		"term_id": 2331,
+    "english": 2335,
+		"name": "Bulletin",
+	},
+	{
+		"term_id": 2333,
+    "english": 2336,
+		"name": "Offre"
+	}
+]
+
+
 MongoClient.connect(url, (err, db) => {
   if (err) {
     console.log('Unable to connect to the mongoDB server. Error:', err);
@@ -40,50 +72,38 @@ MongoClient.connect(url, (err, db) => {
     console.log('Connection established to', url);
 
     // operate on events
-    db.collection('realevents').find().forEach(function(doc) {
+    db.collection('publications').find().forEach(function(doc) {
       doc.eventtypeenglish = [];
       doc.eventtypefrench = [];
-      if (doc.keywords.includes('expositions') || doc.keywords.includes('exhibitions') || doc.keywords.includes('exhibition') || doc.keywords.includes('exhibit')) {
-          doc.eventtypeenglish.push(2328);
-          doc.eventtypefrench.push(2325);
-        } else if (doc.bodyenglish && (doc.bodyenglish.includes('presentation') || doc.bodyenglish.includes('presentations') || doc.bodyenglish.includes('conference') || doc.bodyenglish.includes('conférence') || doc.bodyenglish.includes('présentations') || doc.bodyenglish.includes('demonstration') || doc.bodyenglish.includes('artist talk'))) {
-          doc.eventtypeenglish.push(2328);
-          doc.eventtypefrench.push(2325);
-        } else if (doc.bodyfrench && (doc.bodyfrench.includes('presentation') || doc.bodyfrench.includes('presentations') || doc.bodyfrench.includes('conference') || doc.bodyfrench.includes('conférence') || doc.bodyfrench.includes('présentations') || doc.bodyfrench.includes('demonstration') || doc.bodyfrench.includes('artist talk'))) {
-          doc.eventtypeenglish.push(2328);
-          doc.eventtypefrench.push(2325);
-        } else if (doc.keywords.includes('discussions') || doc.keywords.includes('table ronde') || doc.keywords.includes('round table') || doc.keywords.includes('panel') || doc.keywords.includes('colloque') || doc.keywords.includes('debates')) {
-          doc.eventtypeenglish.push(2327);
-          doc.eventtypefrench.push(2323);
-        } else if (doc.bodyenglish && (doc.bodyenglish.includes('discussions')|| doc.bodyenglish.includes('round table') || doc.bodyenglish.includes('panel') || doc.keywords.includes('debates'))) {
-          doc.eventtypeenglish.push(2327);
-          doc.eventtypefrench.push(2323);
-        }  else if (doc.bodyfrench && (doc.bodyfrench.includes('discussion') || doc.bodyfrench.includes('table ronde') || doc.bodyfrench.includes('colloque'))) {
-          doc.eventtypeenglish.push(2327);
-          doc.eventtypefrench.push(2323);
-        } else if (doc.keywords.includes('performance') || doc.keywords.includes('performances')) {
-          doc.eventtypeenglish.push(2329);
-          doc.eventtypefrench.push(2324);
-        } else if (doc.bodyenglish && doc.bodyenglish.includes('performance')) {
-          doc.eventtypeenglish.push(2329);
-          doc.eventtypefrench.push(2324);
-        } else if (doc.bodyfrench && doc.bodyfrench.includes('performance')) {
-          doc.eventtypeenglish.push(2329);
-          doc.eventtypefrench.push(2324);
-        }  else if (doc.keywords.includes('presentation') || doc.keywords.includes('presentations') || doc.keywords.includes('conference') || doc.keywords.includes('conférence') || doc.keywords.includes('présentations') || doc.keywords.includes('demonstration') || doc.keywords.includes('artist talk')) {
-          doc.eventtypeenglish.push(2330);
-          doc.eventtypefrench.push(2326);
-        } else if (doc.bodyenglish && (doc.bodyenglish.includes('presentation') || doc.bodyenglish.includes('presentations') || doc.bodyenglish.includes('conference') || doc.bodyenglish.includes('conférence') || doc.bodyenglish.includes('présentations') || doc.bodyenglish.includes('demonstration') || doc.bodyenglish.includes('artist talk'))) {
-          doc.eventtypeenglish.push(2330);
-          doc.eventtypefrench.push(2326);
-        } else if (doc.bodyfrench && (doc.bodyfrench.includes('presentation') || doc.bodyfrench.includes('presentations') || doc.bodyfrench.includes('conference') || doc.bodyfrench.includes('conférence') || doc.bodyfrench.includes('présentations') || doc.bodyfrench.includes('demonstration') || doc.bodyfrench.includes('artist talk'))) {
-          doc.eventtypeenglish.push(2330);
-          doc.eventtypefrench.push(2326);
-        } else {
-          doc.eventtypeenglish.push(2342);
-          doc.eventtypefrench.push(2341);
+      if (doc.keywords.includes('bulletin') || doc.keywords.includes('newsletter') || doc.keywords.includes('Bulletin du Studio XX') || doc.keywords.includes('annonces') || doc.keywords.includes('annoncement')) {
+          doc.eventtypeenglish.push(2335);
+          doc.eventtypefrench.push(2331);
+        } else if (doc.bodyenglish && (doc.bodyenglish.includes('bulletin') || doc.bodyenglish.includes('newsletter') || doc.bodyenglish.includes('Bulletin du Studio XX') || doc.bodyenglish.includes('annonces') || doc.bodyenglish.includes('annoncement'))) {
+          doc.eventtypeenglish.push(2335);
+          doc.eventtypefrench.push(2331);
+        } else if (doc.bodyfrench && (doc.bodyfrench.includes('bulletin') || doc.bodyfrench.includes('newsletter') || doc.bodyfrench.includes('Bulletin du Studio XX') || doc.bodyfrench.includes('annonces') || doc.bodyfrench.includes('annoncement'))) {
+          doc.eventtypeenglish.push(2335);
+          doc.eventtypefrench.push(2331);
+        } else if (doc.keywords.includes('call') || doc.keywords.includes('appel') || doc.keywords.includes('submission')) {
+          doc.eventtypeenglish.push(2334);
+          doc.eventtypefrench.push(2332);
+        } else if (doc.bodyenglish && (doc.bodyenglish.includes('call for') || doc.bodyenglish.includes('appel de') || doc.bodyenglish.includes('submissions'))) {
+          doc.eventtypeenglish.push(2334);
+          doc.eventtypefrench.push(2332);
+        } else if (doc.bodyfrench && (doc.bodyfrench.includes('call for') || doc.bodyfrench.includes('appel de') || doc.bodyfrench.includes('submissions'))) {
+          doc.eventtypeenglish.push(2334);
+          doc.eventtypefrench.push(2332);
+        } else if (doc.keywords.includes('offer') || doc.keywords.includes('job') || doc.keywords.includes('employment') || doc.keywords.includes('offre') || doc.keywords.includes('internship')) {
+          doc.eventtypeenglish.push(2336);
+          doc.eventtypefrench.push(2333);
+        } else if (doc.bodyenglish && (doc.bodyenglish.includes('offer') || doc.bodyenglish.includes('job') || doc.bodyenglish.includes('employment') || doc.bodyenglish.includes('offre') || doc.bodyenglish.includes('internship'))) {
+          doc.eventtypeenglish.push(2336);
+          doc.eventtypefrench.push(2333);
+        } else if (doc.bodyfrench && (doc.bodyfrench.includes('offer') || doc.bodyfrench.includes('job') || doc.bodyfrench.includes('employment') || doc.bodyfrench.includes('offre') || doc.bodyfrench.includes('internship'))) {
+          doc.eventtypeenglish.push(2336);
+          doc.eventtypefrench.push(2333);
         }
-        db.collection('realevents').save(doc);
+        db.collection('publications').save(doc);
     });
   }
 });
@@ -107,6 +127,24 @@ MongoClient.connect(url, (err, db) => {
 
 
 
+
+
+// doc.eventtypeenglish = [];
+//       doc.eventtypefrench = [];
+//       if (doc.keywords.includes('education') || doc.keywords.includes('educational activities') || doc.keywords.includes('activités éducatives') || doc.keywords.includes('xxmediation') || doc.keywords.includes('mediation') || doc.keywords.includes('médiation')) {
+//           doc.eventtypeenglish.push(2321);
+//           doc.eventtypefrench.push(2320);
+//         } else if (doc.bodyenglish && (doc.bodyenglish.includes('education') || doc.bodyenglish.includes('educational activities') || doc.bodyenglish.includes('activités éducatives') || doc.bodyenglish.includes('xxmediation') || doc.bodyenglish.includes('mediation') || doc.bodyenglish.includes('médiation'))) {
+//           doc.eventtypeenglish.push(2321);
+//           doc.eventtypefrench.push(2320);
+//         } else if (doc.bodyfrench && (doc.bodyfrench.includes('education') || doc.bodyfrench.includes('educational activities') || doc.bodyfrench.includes('activités éducatives') || doc.bodyenglish.includes('xxmediation') || doc.bodyfrench.includes('mediation') || doc.bodyfrench.includes('médiation'))) {
+//           doc.eventtypeenglish.push(2321);
+//           doc.eventtypefrench.push(2320);
+//         }  else {
+//           doc.eventtypeenglish.push(2322);
+//           doc.eventtypefrench.push(2319);
+//         }
+//         db.collection('formations').save(doc);
 
 
 
