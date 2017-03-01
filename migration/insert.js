@@ -2,11 +2,34 @@
 
 const fs = require('fs');
 const mongodb = require('mongodb');
-const express = require('express');
 const path = require('path');
-const keywordsevents = require('../keywordseventsprogram.json');
 
-const app = express();
+const mediummap = [
+ {
+   "french": "Audio",
+   "english": "Audio"
+ },
+ {
+   "french": "Audio/visuel",
+   "english": "Audio/visual"
+ },
+ {
+   "french": "Fichier électronique",
+   "english": "Electronic file"
+ },
+ {
+   "french": "Version imprimée électronique",
+   "english": "Electronic print"
+ },
+ {
+   "french": "Version papier imprimée",
+   "english": "Paper print"
+ },
+ {
+   "french": "Autre",
+   "english": "Other"
+ }
+];
 
 const MongoClient = mongodb.MongoClient;
 const url = 'mongodb://studio:studio@ds151117.mlab.com:51117/matricules';
@@ -17,46 +40,36 @@ MongoClient.connect(url, (err, db) => {
   } else {
     console.log('Connection established to', url);
 
-let nokeywords = 0;
     db.collection('documents').find().forEach(function(doc) {
-      // for (let i = 0; i < keywordsevents.length; i += 1) {
-      //   if (doc.accession_number == keywordsevents[i].doctitle) {
-      //     const newkeywords = keywordsevents[i].keywords.split(", ");
-      //     console.log(newkeywords);
-      //     const oldkeywords = doc.keywords;
-      //     for (let j = 0; j < newkeywords.length; j += 1) {
-      //       if (oldkeywords.includes(newkeywords[j]) === false) {
-      //         oldkeywords.push(newkeywords[j]);
-      //         console.log(newkeywords[j])
-      //       }
-      //     }
-      //     doc.keywords = oldkeywords;
-      //     db.collection('documents').save(doc);
+    
+    console.log(doc.mediumenglish);
+    console.log(doc.mediumfrench);
+      // mediummap.forEach((map) => {
+      //   if (doc.medium === map.english) {
+      //     doc.mediumenglish = map.english;
+      //     doc.mediumfrench = map.french;
       //   }
+      // });
+      // if (!doc.mediumenglish) {
+      //   doc.mediumenglish = "Other";
+      //     doc.mediumfrench = "Autre";
       // }
 
-            if (doc.keywords.length === 0) {
-          nokeywords += 1;
-        }
-        console.log(nokeywords);
+        db.collection('documents').save(doc);
     });
-    
-
-
-
 
     // this converts our date field in db to ISOdate objects for mongodb
-    // db.collection('documents').find({}).forEach(function(doc) { 
+    // db.collection('documents').find({}).forEach(function(doc) {
     // doc.date=new Date(doc.date * 1000);
     // console.log(doc.date);
-    // db.collection('documents').save(doc); 
+    // db.collection('documents').save(doc);
     // })
 
     // fix bad date fields
     // db.collection('documents').update({'accession_number':'2008EVS70607P'}, {$set: {date : new Date('May 1 2008')}}, {w:1}, function(err, result){
     // console.log(result);
     // });
-    
+
     // this converts our keywords into an array
     // db.collection('documents').find().forEach(function(doc) {
     //   if (doc.links !== null && doc.links.constructor === Array) {
@@ -197,13 +210,6 @@ let nokeywords = 0;
     //   }
     //   console.log(nokeywords)
     // });
-    
-
-
-
-
-
-
 
     // fix dates
     // db.collection('documents').find().forEach(function(doc) {
