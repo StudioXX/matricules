@@ -15,6 +15,8 @@ const entities = new Entities();
 const MongoClient = mongodb.MongoClient;
 const url = 'mongodb://conan:conan@ds153239.mlab.com:53239/matriculesparticipants';
 
+const keywordsmap = JSON.parse(fs.readFileSync('./newkeywordsmap.json', 'utf8'));
+
 MongoClient.connect(url, (err, db) => {
   if (err) {
     console.log('Unable to connect to the mongoDB server. Error:', err);
@@ -22,8 +24,8 @@ MongoClient.connect(url, (err, db) => {
     console.log('Connection established to', url);
 
 
-    const events = JSON.parse(fs.readFileSync('events.json', 'utf8'));
-    console.log(events);
+    // const events = JSON.parse(fs.readFileSync('events.json', 'utf8'));
+    // console.log(events);
 
 
     // this converts our date field in db to ISOdate objects for mongodb
@@ -36,14 +38,26 @@ MongoClient.connect(url, (err, db) => {
 
     // operate on events
     db.collection('participants').find().forEach(function(doc) {
-        let matricules = [];
-        const name = doc.titleenglish;
-        for (i = 0; i < events.length; i++) {
-            if (events[i].participants.includes(name)) {
-                matricules = matricules.concat(events[i].allmatricules)
-            }
-        }
-        doc.matricules = matricules;
+
+      doc.keywordsenglish = [];
+      doc.keywordsfrench = [];
+      doc.keywords.forEach(keyword => {
+        keywordsmap.forEach(map => {
+          if (keyword === map.french || keyword === map.english || map.synonymes.includes(keyword)) {
+            doc.keywordsenglish.push(map.englishid)
+            doc.keywordsfrench.push(map.frenchid)
+          }
+        })
+      })
+
+        // let matricules = [];
+        // const name = doc.titleenglish;
+        // for (i = 0; i < events.length; i++) {
+        //     if (events[i].participants.includes(name)) {
+        //         matricules = matricules.concat(events[i].allmatricules)
+        //     }
+        // }
+        // doc.matricules = matricules;
         // let keywords = doc.keywords || [];
         // keywords = keywords.split(",");
 

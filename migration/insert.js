@@ -31,6 +31,8 @@ const mediummap = [
  }
 ];
 
+const keywordsmap = JSON.parse(fs.readFileSync('./newkeywordsmap.json', 'utf8'));
+
 const MongoClient = mongodb.MongoClient;
 const url = 'mongodb://studio:studio@ds151117.mlab.com:51117/matricules';
 
@@ -42,8 +44,14 @@ MongoClient.connect(url, (err, db) => {
 
     db.collection('documents').find().forEach(function(doc) {
     
-    console.log(doc.mediumenglish);
-    console.log(doc.mediumfrench);
+    // if (doc.links.length > 0) {
+    //   const text = doc.links[0].title || doc.links[0].url;
+    //   const link = '<br><a href="' + doc.links[0].url + '">' + text + "</a>";
+    //   doc.description = doc.description += link;
+    //   doc.description_fr = doc.description_fr += link;
+    //   console.log(doc.description);
+    //   console.log(doc.description_fr);
+    // }
       // mediummap.forEach((map) => {
       //   if (doc.medium === map.english) {
       //     doc.mediumenglish = map.english;
@@ -54,7 +62,16 @@ MongoClient.connect(url, (err, db) => {
       //   doc.mediumenglish = "Other";
       //     doc.mediumfrench = "Autre";
       // }
-
+      doc.keywordsenglish = [];
+      doc.keywordsfrench = [];
+      doc.keywords.forEach(keyword => {
+        keywordsmap.forEach(map => {
+          if (keyword === map.french || keyword === map.english || map.synonymes.includes(keyword)) {
+            doc.keywordsenglish.push(map.englishid)
+            doc.keywordsfrench.push(map.frenchid)
+          }
+        })
+      })
         db.collection('documents').save(doc);
     });
 

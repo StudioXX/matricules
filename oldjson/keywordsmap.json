@@ -1,0 +1,2124 @@
+[
+	{
+		"french": "3D",
+		"english": "3D",
+		"synonymes": [
+			"3d sandde",
+			"modélisation",
+			"modeling",
+			"sandde",
+			"Blender",
+			"blender 3D"
+		],
+		"frenchkeywordid": 1947,
+		"englishkeywordid": 2120
+	},
+	{
+		"french": "action",
+		"english": "action",
+		"synonymes": [
+			"intervention"
+		],
+		"frenchkeywordid": 1948,
+		"englishkeywordid": 2124
+	},
+	{
+		"french": "animation",
+		"english": "animation",
+		"synonymes": [
+			"film d'animation",
+			"Animation 3d",
+			"experimental animation and sound"
+		],
+		"frenchkeywordid": 1949,
+		"englishkeywordid": 2127
+	},
+	{
+		"french": "interactivité",
+		"english": "interactivity",
+		"synonymes": [
+			"max/msp",
+			"Arduino",
+			"processing",
+			"MAX",
+			"MSP",
+			"MAX MSP",
+			"max msp",
+			"jitter",
+			"pure data",
+			"pure-data",
+			"sensor"
+		],
+		"frenchkeywordid": 1950,
+		"englishkeywordid": 2197
+	},
+	{
+		"french": "photographie",
+		"english": "photography",
+		"synonymes": [
+			"photo",
+			"photos"
+		],
+		"frenchkeywordid": 1951,
+		"englishkeywordid": 2229
+	},
+	{
+		"french": "écrits",
+		"english": "writing",
+		"synonymes": [
+			"text",
+			"texte",
+			"Edit-a-thon",
+			"essai",
+			"essay",
+			"literature",
+			"embroidery",
+			"screenwriting",
+			"écriture"
+		],
+		"frenchkeywordid": 1952,
+		"englishkeywordid": 2287
+	},
+	{
+		"french": "vidéo",
+		"english": "video",
+		"synonymes": [
+			"videos",
+			"digital montage",
+			"experimental video",
+			"montage video",
+			"con vidéo",
+			"Unfolding Sequences"
+		],
+		"frenchkeywordid": 1953,
+		"englishkeywordid": 2280
+	},
+	{
+		"french": "récit",
+		"english": "storytelling",
+		"synonymes": [
+			"digital storytelling",
+			"récits",
+			"experimental narrative",
+			"conte",
+			"récits numérique"
+		],
+		"frenchkeywordid": 1954,
+		"englishkeywordid": 2251
+	},
+	{
+		"french": "dessin",
+		"english": "drawing",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 1955,
+		"englishkeywordid": 2161
+	},
+	{
+		"french": "gif animé",
+		"english": "animated gif",
+		"synonymes": [
+			"gif"
+		],
+		"frenchkeywordid": 1956,
+		"englishkeywordid": 2181
+	},
+	{
+		"french": "illustration",
+		"english": "illustration",
+		"synonymes": [
+			"artist. illustration"
+		],
+		"frenchkeywordid": 1957,
+		"englishkeywordid": 2189
+	},
+	{
+		"french": "danse",
+		"english": "dance",
+		"synonymes": [
+			"chorégraphie",
+			"choregraphy",
+			"vidéodanse",
+			"videodance",
+			"transformation as a result of editing images",
+			"transformation par le biais de l’image et du montage"
+		],
+		"frenchkeywordid": 1958,
+		"englishkeywordid": 2159
+	},
+	{
+		"french": "djing",
+		"english": "djing",
+		"synonymes": [
+			"dj"
+		],
+		"frenchkeywordid": 1959,
+		"englishkeywordid": 2164
+	},
+	{
+		"french": "impression",
+		"english": "print",
+		"synonymes": [
+			"imprimé",
+			"posters",
+			"sérigraphie",
+			"screen printing"
+		],
+		"frenchkeywordid": 1960,
+		"englishkeywordid": 2191
+	},
+	{
+		"french": "impression 3D",
+		"english": "3D printing",
+		"synonymes": [
+			"3D print"
+		],
+		"frenchkeywordid": 1961,
+		"englishkeywordid": 2192
+	},
+	{
+		"french": "art web",
+		"english": "web art",
+		"synonymes": [
+			"e-art",
+			"net art"
+		],
+		"frenchkeywordid": 1962,
+		"englishkeywordid": 2139
+	},
+	{
+		"french": "art électronique",
+		"english": "electronic art",
+		"synonymes": [
+			"arts électroniques",
+			"documentation oeuvres électroniques",
+			"documentation electronic art",
+			"microcontrôleurs",
+			"microcontroller",
+			"bending",
+			"micro-controllers",
+			"circuits",
+			"électroniques",
+			"circuit",
+			"electronics",
+			"circuit bending",
+			"électronique",
+			"electronic",
+			"circuitry",
+			"electrical",
+			"electro",
+			"électro-bricolage",
+			"electronics art",
+			"Handmade electronics lab",
+			"haut-parleurs de papier",
+			"kinetic art",
+			"art cinétique",
+			"microcontrolers",
+			"art cinétique",
+			"captation",
+			"Electromode",
+			"Hartman",
+			"Le laboratoire d'électronique artisanale"
+		],
+		"frenchkeywordid": 1963,
+		"englishkeywordid": 2140
+	},
+	{
+		"french": "art médiatique",
+		"english": "media art",
+		"synonymes": [
+			"nouveaux médias",
+			"new medias",
+			"new media",
+			"medias arts",
+			"arts médiatiques",
+			"media arts"
+		],
+		"frenchkeywordid": 1964,
+		"englishkeywordid": 2133
+	},
+	{
+		"french": "post-internet",
+		"english": "post-internet",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 1965,
+		"englishkeywordid": 2233
+	},
+	{
+		"french": "installation",
+		"english": "installation",
+		"synonymes": [
+			"installation sonore",
+			"installation sonore immersive"
+		],
+		"frenchkeywordid": 1966,
+		"englishkeywordid": 2195
+	},
+	{
+		"french": "installation vidéo",
+		"english": "video installation",
+		"synonymes": [
+			"con vidéo",
+			"Allison Moore",
+			"Anne-Marie Bouchard"
+		],
+		"frenchkeywordid": 1967,
+		"englishkeywordid": 2196
+	},
+	{
+		"french": "improvisation",
+		"english": "improvisation",
+		"synonymes": [
+			"improviser",
+			"improvisatrice",
+			"improv-electronics",
+			"impro electronique"
+		],
+		"frenchkeywordid": 1968,
+		"englishkeywordid": 2193
+	},
+	{
+		"french": "art interactif",
+		"english": "interactive art",
+		"synonymes": [
+			"installation interactive",
+			"interactive",
+			"interactive media",
+			"interactive science centre",
+			"interfaces",
+			"médias interactifs",
+			"Funda Senova",
+			"Josée Brouillard",
+			"rachel jacobs",
+			"Zoe Bacchus"
+		],
+		"frenchkeywordid": 1969,
+		"englishkeywordid": 2132
+	},
+	{
+		"french": "art sonore",
+		"english": "sound art",
+		"synonymes": [
+			"son",
+			"sonore",
+			"ardour",
+			"paysage sonore",
+			"environnement sonore",
+			"hyper écoute",
+			"noise",
+			"sound installation",
+			"sound-space",
+			"soundscape",
+			"spatialisation",
+			"asound",
+			"babin",
+			"cricket tree crow",
+			"ctrl-alt-del",
+			"enregistrement",
+			"record",
+			"sonic",
+			"supermicmac",
+			"tanz",
+			"tiny",
+			"Tracing the Sharawadji"
+		],
+		"frenchkeywordid": 1970,
+		"englishkeywordid": 2137
+	},
+	{
+		"french": "art visuel",
+		"english": "visual art",
+		"synonymes": [
+			"arts visuels",
+			"visual arts",
+			"art visuels",
+			"visuals arts",
+			"art plastiques",
+			"arts plastiques",
+			"playwright"
+		],
+		"frenchkeywordid": 1971,
+		"englishkeywordid": 2138
+	},
+	{
+		"french": "art numérique",
+		"english": "digital art",
+		"synonymes": [
+			"arts numériques",
+			"digital arts",
+			"elektra",
+			"digital art",
+			"digital arts",
+			"media numerique",
+			"médias numériques",
+			"numérique",
+			"art logiciel",
+			"art réseau",
+			"curatorial",
+			"software art festival",
+			"wave"
+		],
+		"frenchkeywordid": 1972,
+		"englishkeywordid": 2134
+	},
+	{
+		"french": "art public",
+		"english": "public art",
+		"synonymes": [
+			"public art lab",
+			"art social",
+			"art social. collaboration",
+			"art monumental",
+			"social art"
+		],
+		"frenchkeywordid": 1973,
+		"englishkeywordid": 2136
+	},
+	{
+		"french": "art participatif",
+		"english": "participatory art",
+		"synonymes": [
+			"participation",
+			"co-création",
+			"particpation",
+			"engrenage noir",
+			"FB 105",
+			"femmes br@nchées 105",
+			"Kayle Brandon",
+			"SOUCCS",
+			"tricot",
+			"yarnbombing"
+		],
+		"frenchkeywordid": 1974,
+		"englishkeywordid": 2135
+	},
+	{
+		"french": "architecture",
+		"english": "architecture",
+		"synonymes": [
+			"landscape architect"
+		],
+		"frenchkeywordid": 1975,
+		"englishkeywordid": 2130
+	},
+	{
+		"french": "bioart",
+		"english": "bioart",
+		"synonymes": [
+			"biohacking",
+			"biopolitics",
+			"bioresource engineering",
+			"biotechnological",
+			"biodesign"
+		],
+		"frenchkeywordid": 1976,
+		"englishkeywordid": 2143
+	},
+	{
+		"french": "électroacoustique",
+		"english": "electroacoustic",
+		"synonymes": [
+			"électroacoustic",
+			"acoustique",
+			"electroacoustic music"
+		],
+		"frenchkeywordid": 1977,
+		"englishkeywordid": 2291
+	},
+	{
+		"french": "environnement immersif",
+		"english": "immersive environment",
+		"synonymes": [
+			"immersive environments",
+			"environnements immersifs",
+			"environnements sensibles"
+		],
+		"frenchkeywordid": 1978,
+		"englishkeywordid": 2171
+	},
+	{
+		"french": "édition",
+		"english": "publishing",
+		"synonymes": [
+			"editor",
+			"autopublication",
+			"booksprint",
+			"manga",
+			"zine",
+			"zines",
+			"publications",
+			"Self-publishing"
+		],
+		"frenchkeywordid": 1979,
+		"englishkeywordid": 2288
+	},
+	{
+		"french": "effets spéciaux",
+		"english": "special effects",
+		"synonymes": [
+			"VFX",
+			" écran vert",
+			"green screen"
+		],
+		"frenchkeywordid": 1980,
+		"englishkeywordid": 2168
+	},
+	{
+		"french": "design",
+		"english": "design",
+		"synonymes": [
+			"designer",
+			"design graphique",
+			"design graphic",
+			"designer web",
+			"graphic design",
+			"graphic designer",
+			"graphiste"
+		],
+		"frenchkeywordid": 1981,
+		"englishkeywordid": 2160
+	},
+	{
+		"french": "film",
+		"english": "movie",
+		"synonymes": [
+			"filmmaker",
+			"documentaire",
+			"documentary",
+			"court métrage",
+			"films",
+			"movies",
+			"short independent film",
+			"short",
+			"fifa",
+			"image+nation",
+			"Mad Parade",
+			"screening"
+		],
+		"frenchkeywordid": 2293,
+		"englishkeywordid": 2294
+	},
+	{
+		"french": "performance",
+		"english": "performance",
+		"synonymes": [
+			"cyberpermance",
+			"performance en ligne",
+			"performance video",
+			"stand-up",
+			"confessions",
+			"Eastern Bloc",
+			"ENCUENTRO",
+			"EROS FRANKENSTEIN",
+			"show",
+			"skol",
+			"spectacle",
+			"speedshow",
+			"Studio 303",
+			"tagny duff",
+			"viva"
+		],
+		"frenchkeywordid": 1983,
+		"englishkeywordid": 2228
+	},
+	{
+		"french": "jeu",
+		"english": "game",
+		"synonymes": [
+			"ludique",
+			"playful",
+			"jeux",
+			"aventure",
+			"jeu vidéo",
+			"jeux vidéo",
+			"video game",
+			"jeu",
+			"gaming",
+			"games",
+			"girl games",
+			"videogame",
+			"replay: a memory game",
+			"adventure",
+			"arcadia festival",
+			"salon ludique",
+			"serious",
+			"tools"
+		],
+		"frenchkeywordid": 1984,
+		"englishkeywordid": 2202
+	},
+	{
+		"french": "application mobile",
+		"english": "mobile application",
+		"synonymes": [
+			"application",
+			"unity 3D",
+			"unity",
+			"applications",
+			"médias mobiles",
+			"Léa Jeanmougin"
+		],
+		"frenchkeywordid": 1985,
+		"englishkeywordid": 2129
+	},
+	{
+		"french": "intervention publique",
+		"english": "public intervention",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 1986,
+		"englishkeywordid": 2201
+	},
+	{
+		"french": "vjing",
+		"english": "vjing",
+		"synonymes": [
+			"salon FB 100",
+			"WW salon 100"
+		],
+		"frenchkeywordid": 1987,
+		"englishkeywordid": 2283
+	},
+	{
+		"french": "multiplateforme",
+		"english": "multi platform",
+		"synonymes": [
+			"multi-plateforme",
+			"cross media",
+			"multi-plateform",
+			"multiplateform",
+			"numériques",
+			"trans-media"
+		],
+		"frenchkeywordid": 1988,
+		"englishkeywordid": 2217
+	},
+	{
+		"french": "multimédia",
+		"english": "multimedia",
+		"synonymes": [
+			"multimédias",
+			"gimp",
+			"photoshop"
+		],
+		"frenchkeywordid": 1989,
+		"englishkeywordid": 2216
+	},
+	{
+		"french": "musique",
+		"english": "music",
+		"synonymes": [
+			"hip hop",
+			"musique électronique",
+			"electronic music",
+			"composition",
+			"band",
+			"Chip music",
+			"folk music",
+			"groupe",
+			"group",
+			"music actuelle festival",
+			"music technology",
+			"alternate",
+			"breakbeat",
+			"breakbeats",
+			"concert",
+			"pop",
+			"pop tropicale",
+			"songs",
+			"audio hygiene",
+			"gazelle",
+			"indie",
+			"parlour treats",
+			"tropical-pop",
+			"Tyr Jami",
+			"ultrared",
+			"and musician",
+			"Syndja",
+			"violin",
+			"violon",
+			"violoncelle"
+		],
+		"frenchkeywordid": 1990,
+		"englishkeywordid": 2218
+	},
+	{
+		"french": "robotique",
+		"english": "robotic",
+		"synonymes": [
+			"robots",
+			"robotics"
+		],
+		"frenchkeywordid": 1991,
+		"englishkeywordid": 2248
+	},
+	{
+		"french": "spoken word",
+		"english": "spoken word",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 1992,
+		"englishkeywordid": 2265
+	},
+	{
+		"french": "projection",
+		"english": "projection",
+		"synonymes": [
+			"projection",
+			"mapping"
+		],
+		"frenchkeywordid": 1993,
+		"englishkeywordid": 2237
+	},
+	{
+		"french": "peinture",
+		"english": "painting",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 1994,
+		"englishkeywordid": 2227
+	},
+	{
+		"french": "poésie",
+		"english": "poetry",
+		"synonymes": [
+			"Montreal poetry slam"
+		],
+		"frenchkeywordid": 1995,
+		"englishkeywordid": 2235
+	},
+	{
+		"french": "réalité augmentée",
+		"english": "augmented reality",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 1996,
+		"englishkeywordid": 2249
+	},
+	{
+		"french": "réalité virtuelle",
+		"english": "virtual reality",
+		"synonymes": [
+			"VR"
+		],
+		"frenchkeywordid": 1997,
+		"englishkeywordid": 2250
+	},
+	{
+		"french": "remix",
+		"english": "remix",
+		"synonymes": [
+			"détournement",
+			"detourment"
+		],
+		"frenchkeywordid": 1998,
+		"englishkeywordid": 2245
+	},
+	{
+		"french": "stéreoscopie",
+		"english": "stereoscopy",
+		"synonymes": [
+			"stereoscopique",
+			"stereoscopic"
+		],
+		"frenchkeywordid": 1999,
+		"englishkeywordid": 2266
+	},
+	{
+		"french": "sculpture",
+		"english": "sculpture",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2000,
+		"englishkeywordid": 2258
+	},
+	{
+		"french": "télévision",
+		"english": "television",
+		"synonymes": [
+			"Victoria Keddie"
+		],
+		"frenchkeywordid": 2001,
+		"englishkeywordid": 2278
+	},
+	{
+		"french": "voix",
+		"english": "voice",
+		"synonymes": [
+			"chant",
+			"choeur",
+			"choeur maha",
+			"chorale",
+			"art vocal",
+			"alternate",
+			"singer",
+			"classical",
+			"vocal",
+			"opera"
+		],
+		"frenchkeywordid": 2002,
+		"englishkeywordid": 2284
+	},
+	{
+		"french": "théâtre",
+		"english": "theater",
+		"synonymes": [
+			"puppets"
+		],
+		"frenchkeywordid": 2003,
+		"englishkeywordid": 2273
+	},
+	{
+		"french": "multidisciplinarité",
+		"english": "multidisciplinarity",
+		"synonymes": [
+			"artiste multidisciplinaire",
+			"multidisciplinaire",
+			"multidisciplinary artist",
+			"multidisciplinary"
+		],
+		"frenchkeywordid": 2004,
+		"englishkeywordid": 2215
+	},
+	{
+		"french": "interdisciplinarité",
+		"english": "interdisciplinarity",
+		"synonymes": [
+			"artiste interdisciplinaire",
+			"indisciplinarity artist",
+			"artist interdisciplinary",
+			"vasistas"
+		],
+		"frenchkeywordid": 2005,
+		"englishkeywordid": 2198
+	},
+	{
+		"french": "",
+		"english": "",
+		"synonymes": [
+			""
+		]
+	},
+	{
+		"french": "vieillissement",
+		"english": "aging",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2006,
+		"englishkeywordid": 2281
+	},
+	{
+		"french": "activisme",
+		"english": "activism",
+		"synonymes": [
+			"activist",
+			"activiste",
+			"hacktivism",
+			"freedom",
+			"liberté",
+			"No Logo",
+			"artivistic",
+			"autour de l'agora",
+			"seechange.org",
+			"shual",
+			"alphabétisation numérique",
+			"digital literacy",
+			"cdeacf"
+		],
+		"frenchkeywordid": 2007,
+		"englishkeywordid": 2125
+	},
+	{
+		"french": "agentivité",
+		"english": "agency",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2008,
+		"englishkeywordid": 2126
+	},
+	{
+		"french": "anonymat",
+		"english": "anonymity",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2009,
+		"englishkeywordid": 2128
+	},
+	{
+		"french": "archives",
+		"english": "archives",
+		"synonymes": [
+			"matricules",
+			"archivage",
+			"archiving",
+			"archival material",
+			"catalogage"
+		],
+		"frenchkeywordid": 2010,
+		"englishkeywordid": 2131
+	},
+	{
+		"french": "autochtone",
+		"english": "indigenous",
+		"synonymes": [
+			"aboriginal",
+			"firsts nations",
+			"inuit",
+			"native",
+			"premières nations",
+			"qwm"
+		],
+		"frenchkeywordid": 2011,
+		"englishkeywordid": 2141
+	},
+	{
+		"french": "bien-être",
+		"english": "self-care",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2012,
+		"englishkeywordid": 2142
+	},
+	{
+		"french": "communauté",
+		"english": "community",
+		"synonymes": [
+			"China",
+			"Chine",
+			"Chinese women",
+			"chinoises",
+			"communautaire",
+			"le fridge"
+		],
+		"frenchkeywordid": 2013,
+		"englishkeywordid": 2151
+	},
+	{
+		"french": "communs",
+		"english": "commons",
+		"synonymes": [
+			"comun"
+		],
+		"frenchkeywordid": 2014,
+		"englishkeywordid": 2153
+	},
+	{
+		"french": "corps",
+		"english": "body",
+		"synonymes": [
+			"fat",
+			"goddesses"
+		],
+		"frenchkeywordid": 2015,
+		"englishkeywordid": 2155
+	},
+	{
+		"french": "capitalisme",
+		"english": "capitalism",
+		"synonymes": [
+			"capitalist"
+		],
+		"frenchkeywordid": 2016,
+		"englishkeywordid": 2144
+	},
+	{
+		"french": "cartographie",
+		"english": "cartography",
+		"synonymes": [
+			"map"
+		],
+		"frenchkeywordid": 2017,
+		"englishkeywordid": 2145
+	},
+	{
+		"french": "censure",
+		"english": "censorship",
+		"synonymes": [
+			"Oppression Aesthetics"
+		],
+		"frenchkeywordid": 2018,
+		"englishkeywordid": 2146
+	},
+	{
+		"french": "centre d’artistes autogéré",
+		"english": "artist-run centre",
+		"synonymes": [
+			"centre d'artistes",
+			"artist run center"
+		],
+		"frenchkeywordid": 2019,
+		"englishkeywordid": 2147
+	},
+	{
+		"french": "cinéma",
+		"english": "cinema",
+		"synonymes": [
+			"cinema out of the box",
+			"realisatrices equitables",
+			"Entr'elles",
+			"eye",
+			"FNC"
+		],
+		"frenchkeywordid": 2020,
+		"englishkeywordid": 2148
+	},
+	{
+		"french": "collaboration",
+		"english": "collaboration",
+		"synonymes": [
+			"collectif",
+			"collective",
+			"collective project"
+		],
+		"frenchkeywordid": 2021,
+		"englishkeywordid": 2149
+	},
+	{
+		"french": "communication",
+		"english": "communication",
+		"synonymes": [
+			"promotion"
+		],
+		"frenchkeywordid": 2022,
+		"englishkeywordid": 2152
+	},
+	{
+		"french": "culture",
+		"english": "culture",
+		"synonymes": [
+			"cultural specificity",
+			"cultural organization",
+			"cultural blending"
+		],
+		"frenchkeywordid": 2023,
+		"englishkeywordid": 2157
+	},
+	{
+		"french": "cyberféminisme",
+		"english": "cyberfeminism",
+		"synonymes": [
+			"cyberespace"
+		],
+		"frenchkeywordid": 2024,
+		"englishkeywordid": 2158
+	},
+	{
+		"french": "création",
+		"english": "creation",
+		"synonymes": [
+			"indisciplinaire",
+			"indisciplinairy",
+			"interstices"
+		],
+		"frenchkeywordid": 2025,
+		"englishkeywordid": 2156
+	},
+	{
+		"french": "DIY",
+		"english": "DIY",
+		"synonymes": [
+			"fais-le-toi-même",
+			"do it yourself",
+			"faites-le-vous-même",
+			"légitimation et économie du savoir culture DIY"
+		],
+		"frenchkeywordid": 2026,
+		"englishkeywordid": 2121
+	},
+	{
+		"french": "direct",
+		"english": "live",
+		"synonymes": [
+			"en direct",
+			"live art",
+			"live code sound"
+		],
+		"frenchkeywordid": 2027,
+		"englishkeywordid": 2162
+	},
+	{
+		"french": "données",
+		"english": "data",
+		"synonymes": [
+			"base de données",
+			"bases de données",
+			"database",
+			"data storage",
+			"databases",
+			"library",
+			"DXLab",
+			"visualisation",
+			"vizualisation"
+		],
+		"frenchkeywordid": 2028,
+		"englishkeywordid": 2165
+	},
+	{
+		"french": "diversité",
+		"english": "diversity",
+		"synonymes": [
+			"maghrébines",
+			"métissage culturel",
+			"ethnicity",
+			"noirs",
+			"black history month",
+			"black lives matter",
+			"spécificité culturelle",
+			"lebanon",
+			"afro to the future",
+			"afrofuturiste",
+			"Sharrae Lyon",
+			"Shirin Neshat",
+			"Ytasha Womack",
+			" ethnoculturalisme",
+			"ethnoculturalism"
+		],
+		"frenchkeywordid": 2029,
+		"englishkeywordid": 2163
+	},
+	{
+		"french": "droit d'auteur",
+		"english": "copyright",
+		"synonymes": [
+			"copyleft",
+			"droits d'auteurs"
+		],
+		"frenchkeywordid": 2030,
+		"englishkeywordid": 2166
+	},
+	{
+		"french": "économie",
+		"english": "economy",
+		"synonymes": [
+			"économie sociale",
+			"economic",
+			"finance",
+			"financement",
+			"financing",
+			"funding",
+			"fund",
+			"comptabilité"
+		],
+		"frenchkeywordid": 2031,
+		"englishkeywordid": 2286
+	},
+	{
+		"french": "éducation",
+		"english": "education",
+		"synonymes": [
+			"étudiants",
+			"gouter"
+		],
+		"frenchkeywordid": 2032,
+		"englishkeywordid": 2289
+	},
+	{
+		"french": "égoportrait",
+		"english": "selfie",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2033,
+		"englishkeywordid": 2290
+	},
+	{
+		"french": "émancipation",
+		"english": "emancipation",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2034,
+		"englishkeywordid": 2292
+	},
+	{
+		"french": "empouvoirement ",
+		"english": "empowerment",
+		"synonymes": [
+			""
+		],
+		"englishkeywordid": 2169
+	},
+	{
+		"french": "environnement",
+		"english": "environment",
+		"synonymes": [
+			"recyclage",
+			"recycling",
+			"ecology",
+			"écologie",
+			"abeilles",
+			"bees",
+			"environments",
+			"forêt",
+			"Forest",
+			"génie des bioressources",
+			"militarization climate change",
+			"militarisation",
+			"bramchées",
+			"réchauffement climatique",
+			"récupération"
+		],
+		"frenchkeywordid": 2036,
+		"englishkeywordid": 2170
+	},
+	{
+		"french": "espace",
+		"english": "space",
+		"synonymes": [
+			"location",
+			"espaces",
+			"locaux",
+			"lab",
+			"panorama"
+		],
+		"frenchkeywordid": 2037,
+		"englishkeywordid": 2172
+	},
+	{
+		"french": "espace public",
+		"english": "public space",
+		"synonymes": [
+			"extérieur",
+			"outside",
+			"public",
+			"Quartier 20.14",
+			"social art"
+		],
+		"frenchkeywordid": 2038,
+		"englishkeywordid": 2173
+	},
+	{
+		"french": "queer",
+		"english": "queer",
+		"synonymes": [
+			"La Sala Rossa"
+		],
+		"frenchkeywordid": 2039,
+		"englishkeywordid": 2242
+	},
+	{
+		"french": "féminisme",
+		"english": "feminism",
+		"synonymes": [
+			"féministe",
+			"féminist",
+			"femmes",
+			"women",
+			"cyclo-feminism",
+			"féminin",
+			"female",
+			"feminist alliances",
+			"feminist gaming",
+			"condition feminine",
+			"founder",
+			"Gabrielle Ancitil",
+			"quintessence",
+			"women's action",
+			"womeninview"
+		],
+		"frenchkeywordid": 2040,
+		"englishkeywordid": 2178
+	},
+	{
+		"french": "festival",
+		"english": "festival",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2041,
+		"englishkeywordid": 2174
+	},
+	{
+		"french": "flux",
+		"english": "stream",
+		"synonymes": [
+			"jenny-cam",
+			"streaming technologies",
+			"streaming"
+		],
+		"frenchkeywordid": 2042,
+		"englishkeywordid": 2176
+	},
+	{
+		"french": "futur",
+		"english": "future",
+		"synonymes": [
+			"Future vision"
+		],
+		"frenchkeywordid": 2043,
+		"englishkeywordid": 2177
+	},
+	{
+		"french": "globalisation",
+		"english": "globalization",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2044,
+		"englishkeywordid": 2182
+	},
+	{
+		"french": "gestion",
+		"english": "management",
+		"synonymes": [
+			"administration"
+		],
+		"frenchkeywordid": 2045,
+		"englishkeywordid": 2180
+	},
+	{
+		"french": "libre",
+		"english": "open source",
+		"synonymes": [
+			"open source software",
+			"logiciel libre",
+			"logiciel",
+			"linux",
+			"open-source",
+			"free software",
+			"free",
+			"libre graphics meeeting",
+			"open software",
+			"Ekwa Ekoko",
+			"Floh Herra-Vega"
+		],
+		"frenchkeywordid": 2046,
+		"englishkeywordid": 2205
+	},
+	{
+		"french": "localisation",
+		"english": "localisation",
+		"synonymes": [
+			"GPS",
+			"map",
+			"geo based",
+			"géolocalisation",
+			"geolocalisation",
+			"site‐specific"
+		],
+		"frenchkeywordid": 2047,
+		"englishkeywordid": 2206
+	},
+	{
+		"french": "genre",
+		"english": "gender",
+		"synonymes": [
+			"dynamique de genre",
+			"gender dynamics",
+			"gender equity",
+			"genders",
+			"gendercancon",
+			"transgender",
+			"superheart"
+		],
+		"frenchkeywordid": 2048,
+		"englishkeywordid": 2179
+	},
+	{
+		"french": "piratage",
+		"english": "hacking",
+		"synonymes": [
+			"hackers",
+			"musées",
+			"museum"
+		],
+		"frenchkeywordid": 2049,
+		"englishkeywordid": 2230
+	},
+	{
+		"french": "hacktivisme",
+		"english": "hacktivism",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2050,
+		"englishkeywordid": 2183
+	},
+	{
+		"french": "histoire",
+		"english": "history",
+		"synonymes": [
+			"memory",
+			"histoiry",
+			"historic",
+			"historique",
+			"eniac",
+			"musée des ondes",
+			"mythologie",
+			"mythology",
+			"la pierre de Rosette",
+			"Rosetta Stone",
+			"capsule temporelle",
+			"time capsule"
+		],
+		"frenchkeywordid": 2051,
+		"englishkeywordid": 2184
+	},
+	{
+		"french": "histoire de l'art",
+		"english": "art history",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2052,
+		"englishkeywordid": 2185
+	},
+	{
+		"french": "humour",
+		"english": "humor",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2053,
+		"englishkeywordid": 2186
+	},
+	{
+		"french": "identité",
+		"english": "identity",
+		"synonymes": [
+			"personnages virtuels"
+		],
+		"frenchkeywordid": 2054,
+		"englishkeywordid": 2188
+	},
+	{
+		"french": "informatique",
+		"english": "computing",
+		"synonymes": [
+			"millennium",
+			"computer",
+			"ww2",
+			"software"
+		],
+		"frenchkeywordid": 2055,
+		"englishkeywordid": 2194
+	},
+	{
+		"french": "image de soi",
+		"english": "self-image",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2056,
+		"englishkeywordid": 2190
+	},
+	{
+		"french": "intergénération",
+		"english": "intergeneration",
+		"synonymes": [
+			"intergenerational"
+		],
+		"frenchkeywordid": 2057,
+		"englishkeywordid": 2199
+	},
+	{
+		"french": "Internet",
+		"english": "Internet",
+		"synonymes": [
+			"Web",
+			"web 2.0",
+			"online",
+			"Googling",
+			"Internet Research",
+			"jigh speed",
+			"webcaméra",
+			"Web jam",
+			"wikipédia",
+			"recherche internet",
+			"recherche web",
+			"sémiologie",
+			"semiology",
+			"traffic"
+		],
+		"frenchkeywordid": 2058,
+		"englishkeywordid": 2122
+	},
+	{
+		"french": "intervention",
+		"english": "intervention",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2059,
+		"englishkeywordid": 2200
+	},
+	{
+		"french": "confidentialité",
+		"english": "privacy",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2060,
+		"englishkeywordid": 2154
+	},
+	{
+		"french": "LGBTQ",
+		"english": "LGBTQ",
+		"synonymes": [
+			"lesbian"
+		],
+		"frenchkeywordid": 2061,
+		"englishkeywordid": 2123
+	},
+	{
+		"french": "langage",
+		"english": "language",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2062,
+		"englishkeywordid": 2203
+	},
+	{
+		"french": "liberté",
+		"english": "liberty",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2063,
+		"englishkeywordid": 2204
+	},
+	{
+		"french": "marginalisation",
+		"english": "marginalization",
+		"synonymes": [
+			"marginalisé",
+			"marginalized"
+		],
+		"frenchkeywordid": 2064,
+		"englishkeywordid": 2208
+	},
+	{
+		"french": "maison",
+		"english": "home",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2065,
+		"englishkeywordid": 2207
+	},
+	{
+		"french": "memes",
+		"english": "memes",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2066,
+		"englishkeywordid": 2209
+	},
+	{
+		"french": "médiation",
+		"english": "mediation",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2067
+	},
+	{
+		"french": "mémoire",
+		"english": "memory",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2068,
+		"englishkeywordid": 2222
+	},
+	{
+		"french": "migration",
+		"english": "migration",
+		"synonymes": [
+			"migrations",
+			"immigration"
+		],
+		"frenchkeywordid": 2069,
+		"englishkeywordid": 2210
+	},
+	{
+		"french": "misogynie",
+		"english": "misogyny",
+		"synonymes": [
+			"mansplaining"
+		],
+		"frenchkeywordid": 2070,
+		"englishkeywordid": 2211
+	},
+	{
+		"french": "mobilité",
+		"english": "mobility",
+		"synonymes": [
+			"mobile",
+			"technologie mobile",
+			"mobile technology",
+			"mobile cinema",
+			"mobile media"
+		],
+		"frenchkeywordid": 2071,
+		"englishkeywordid": 2212
+	},
+	{
+		"french": "mode",
+		"english": "fashion",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2072,
+		"englishkeywordid": 2213
+	},
+	{
+		"french": "mouvements sociaux",
+		"english": "social movements",
+		"synonymes": [
+			"manifestation",
+			"change",
+			"transitions"
+		],
+		"frenchkeywordid": 2073,
+		"englishkeywordid": 2214
+	},
+	{
+		"french": "nature",
+		"english": "nature",
+		"synonymes": [
+			"consciousness"
+		],
+		"frenchkeywordid": 2074,
+		"englishkeywordid": 2223
+	},
+	{
+		"french": "nudité",
+		"english": "nudity",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2075,
+		"englishkeywordid": 2224
+	},
+	{
+		"french": "politique",
+		"english": "politics",
+		"synonymes": [
+			"politic",
+			"colonialisme",
+			"colonialism",
+			"democracy",
+			"democratic",
+			"anti-impérialisme",
+			"journée sans culture",
+			"austerity",
+			"canadian media industry",
+			"polictics",
+			"political science",
+			"poltique",
+			"upgrade"
+		],
+		"frenchkeywordid": 2076,
+		"englishkeywordid": 2231
+	},
+	{
+		"french": "pornographie",
+		"english": "pornography",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2077,
+		"englishkeywordid": 2232
+	},
+	{
+		"french": "pouvoir",
+		"english": "power",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2078,
+		"englishkeywordid": 2234
+	},
+	{
+		"french": "programmation",
+		"english": "programming",
+		"synonymes": [
+			"code",
+			"Boolean logic",
+			"bug",
+			"coding",
+			"computer programming",
+			"développeur logiciel",
+			"programmer",
+			"python",
+			"software developer"
+		],
+		"frenchkeywordid": 2079,
+		"englishkeywordid": 2236
+	},
+	{
+		"french": "préjugés",
+		"english": "prejudices",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2080,
+		"englishkeywordid": 2239
+	},
+	{
+		"french": "psychologie",
+		"english": "psychology",
+		"synonymes": [
+			"psychogeographie",
+			"psychisme",
+			"psyche"
+		],
+		"frenchkeywordid": 2081,
+		"englishkeywordid": 2240
+	},
+	{
+		"french": "racisme",
+		"english": "racism",
+		"synonymes": [
+			"race",
+			"institutionnel racisme",
+			"prisons",
+			"sarah baartman"
+		],
+		"frenchkeywordid": 2082,
+		"englishkeywordid": 2243
+	},
+	{
+		"french": "radio",
+		"english": "radio",
+		"synonymes": [
+			"opera radiophonique",
+			"radio host",
+			"radio show",
+			"radio-craft",
+			"radiophonic"
+		],
+		"frenchkeywordid": 2083,
+		"englishkeywordid": 2244
+	},
+	{
+		"french": "représentation",
+		"english": "representation",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2084,
+		"englishkeywordid": 2246
+	},
+	{
+		"french": "commerce électronique",
+		"english": "e-commerce",
+		"synonymes": [
+			"electronic commerce"
+		],
+		"frenchkeywordid": 2085,
+		"englishkeywordid": 2150
+	},
+	{
+		"french": "hypermédia",
+		"english": "hypermedia",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2086,
+		"englishkeywordid": 2187
+	},
+	{
+		"french": "médias",
+		"english": "medias",
+		"synonymes": [
+			"communication",
+			"media",
+			"presse",
+			"digital media"
+		],
+		"frenchkeywordid": 2087,
+		"englishkeywordid": 2219
+	},
+	{
+		"french": "médias sociaux",
+		"english": "social media",
+		"synonymes": [
+			"social medias",
+			"facebook",
+			"twitter",
+			"réseaux sociaux",
+			"social networks"
+		],
+		"frenchkeywordid": 2088,
+		"englishkeywordid": 2220
+	},
+	{
+		"french": "réseau",
+		"english": "network",
+		"synonymes": [
+			"connectivité",
+			"connectivity",
+			"reseau"
+		],
+		"frenchkeywordid": 2089,
+		"englishkeywordid": 2252
+	},
+	{
+		"french": "pays",
+		"english": "country",
+		"synonymes": [
+			"land",
+			"terre"
+		],
+		"frenchkeywordid": 2090,
+		"englishkeywordid": 2225
+	},
+	{
+		"french": "paysage",
+		"english": "landscape",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2091,
+		"englishkeywordid": 2226
+	},
+	{
+		"french": "propriété intellectuelle",
+		"english": "intellectual property",
+		"synonymes": [
+			"Intellectual Property Rights"
+		],
+		"frenchkeywordid": 2092,
+		"englishkeywordid": 2238
+	},
+	{
+		"french": "publicité",
+		"english": "publicity",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2093,
+		"englishkeywordid": 2241
+	},
+	{
+		"french": "résistance",
+		"english": "resistance",
+		"synonymes": [
+			"sustainability"
+		],
+		"frenchkeywordid": 2094,
+		"englishkeywordid": 2253
+	},
+	{
+		"french": "révolution",
+		"english": "revolution",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2095,
+		"englishkeywordid": 2254
+	},
+	{
+		"french": "risque",
+		"english": "risk",
+		"synonymes": [
+			"risky"
+		],
+		"frenchkeywordid": 2096,
+		"englishkeywordid": 2247
+	},
+	{
+		"french": "santé",
+		"english": "health",
+		"synonymes": [
+			"cancer",
+			"breast",
+			"breast cancer",
+			"autonomous sensory meridian response"
+		],
+		"frenchkeywordid": 2097,
+		"englishkeywordid": 2255
+	},
+	{
+		"french": "sécurité",
+		"english": "security",
+		"synonymes": [
+			"espaces sûrs",
+			"safe spaces"
+		],
+		"frenchkeywordid": 2098,
+		"englishkeywordid": 2270
+	},
+	{
+		"french": "développement web",
+		"english": "web development",
+		"synonymes": [
+			"site web",
+			"web",
+			"website",
+			"wordpress",
+			"WordPress",
+			"html",
+			"HTML",
+			"CSS",
+			"drupal",
+			"cms",
+			"web site",
+			"système de gestion des contenus",
+			"Html5",
+			"css3",
+			"web pages",
+			"création pages web",
+			"pages web",
+			"content management sytstem",
+			"creating web pages",
+			"design web",
+			"web design",
+			"website",
+			"website designing",
+			"websites",
+			"web programming",
+			"W3",
+			"seminar"
+		],
+		"frenchkeywordid": 2099,
+		"englishkeywordid": 2167
+	},
+	{
+		"french": "science",
+		"english": "science",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2100,
+		"englishkeywordid": 2256
+	},
+	{
+		"french": "science-fiction",
+		"english": "science fiction",
+		"synonymes": [
+			"alien nation"
+		],
+		"frenchkeywordid": 2101,
+		"englishkeywordid": 2257
+	},
+	{
+		"french": "sexisme",
+		"english": "sexism",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2102,
+		"englishkeywordid": 2259
+	},
+	{
+		"french": "sexualité",
+		"english": "sexuality",
+		"synonymes": [
+			"Contra-sexual Manifesto",
+			"érotisme",
+			"erotism",
+			"prostitution"
+		],
+		"frenchkeywordid": 2103,
+		"englishkeywordid": 2260
+	},
+	{
+		"french": "sociologie",
+		"english": "sociology",
+		"synonymes": [
+			"social",
+			"socilogie",
+			"socio-politique",
+			"socio-political",
+			"socio-économie"
+		],
+		"frenchkeywordid": 2104,
+		"englishkeywordid": 2262
+	},
+	{
+		"french": "solidarité",
+		"english": "solidarity",
+		"synonymes": [
+			"entraide"
+		],
+		"frenchkeywordid": 2105,
+		"englishkeywordid": 2263
+	},
+	{
+		"french": "spiritualité",
+		"english": "spirituality",
+		"synonymes": [
+			"religion",
+			"foi",
+			"faith",
+			"arts and religion",
+			"arts plastiques et religion"
+		],
+		"frenchkeywordid": 2106,
+		"englishkeywordid": 2264
+	},
+	{
+		"french": "subjectivité",
+		"english": "subjectivity",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2107,
+		"englishkeywordid": 2267
+	},
+	{
+		"french": "subversion",
+		"english": "subversion",
+		"synonymes": [
+			"subversions"
+		],
+		"frenchkeywordid": 2108,
+		"englishkeywordid": 2268
+	},
+	{
+		"french": "surveillance",
+		"english": "surveillance",
+		"synonymes": [
+			"webcam",
+			"closed-circuit video cameras",
+			"cyber surveillance",
+			"cybersurveillance",
+			"big brother"
+		],
+		"frenchkeywordid": 2109,
+		"englishkeywordid": 2269
+	},
+	{
+		"french": "social",
+		"english": "social",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2110,
+		"englishkeywordid": 2261
+	},
+	{
+		"french": "télécommunications",
+		"english": "telecommunications",
+		"synonymes": [
+			"telecomm",
+			"réseautique"
+		],
+		"frenchkeywordid": 2111,
+		"englishkeywordid": 2277
+	},
+	{
+		"french": "technologie",
+		"english": "technology",
+		"synonymes": [
+			"technologies",
+			"machines",
+			"digital technologies",
+			"ICT",
+			"engineering",
+			"gadget",
+			"MIT",
+			"techno",
+			"technician",
+			"tech",
+			"technophobia"
+		],
+		"frenchkeywordid": 2112,
+		"englishkeywordid": 2271
+	},
+	{
+		"french": "télévision",
+		"english": "television",
+		"synonymes": [
+			"reality tv"
+		],
+		"frenchkeywordid": 2001,
+		"englishkeywordid": 2278
+	},
+	{
+		"french": "textile",
+		"english": "textile",
+		"synonymes": [
+			"fibres",
+			"Layne",
+			"textil"
+		],
+		"frenchkeywordid": 2113,
+		"englishkeywordid": 2272
+	},
+	{
+		"french": "transexuel",
+		"english": "transexual",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2114,
+		"englishkeywordid": 2274
+	},
+	{
+		"french": "transgenre",
+		"english": "transgender",
+		"synonymes": [
+			"trans"
+		],
+		"frenchkeywordid": 2115,
+		"englishkeywordid": 2275
+	},
+	{
+		"french": "typographie",
+		"english": "typography",
+		"synonymes": [
+			""
+		],
+		"frenchkeywordid": 2116,
+		"englishkeywordid": 2276
+	},
+	{
+		"french": "vêtement",
+		"english": "wearable",
+		"synonymes": [
+			"wearable technology",
+			"clothing"
+		],
+		"frenchkeywordid": 2117,
+		"englishkeywordid": 2285
+	},
+	{
+		"french": "violence",
+		"english": "violence",
+		"synonymes": [
+			"tragedy",
+			"6 décembre",
+			"murder",
+			"polytechnique",
+			"tragédie /polytechnique",
+			"tragédie",
+			"septembre 2011"
+		],
+		"frenchkeywordid": 2118,
+		"englishkeywordid": 2282
+	},
+	{
+		"french": "urbanité",
+		"english": "urbanity",
+		"synonymes": [
+			"cité",
+			"cities",
+			"ville",
+			"city",
+			"urbain",
+			"urban",
+			"urbanism",
+			"urbanisme"
+		],
+		"frenchkeywordid": 2119,
+		"englishkeywordid": 2279
+	}
+]
